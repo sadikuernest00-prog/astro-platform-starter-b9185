@@ -1,5 +1,26 @@
 ---
 const FORM_ENDPOINT = "https://formspree.io/f/xzznjkvd";
+const CEO_EMAIL = "contact@robertamicolsen.com";
+const CEO_NAME = "Habbitx";
+
+const faqs = [
+  {
+    q: "Is this financial advice?",
+    a: "No. Amicbridge provides general educational and planning guidance. We do not provide regulated financial advice or recommend specific securities. Consider a licensed professional for personalized advice.",
+  },
+  {
+    q: "Do you manage funds or hold money?",
+    a: "No. Amicbridge does not custody funds, execute trades, or guarantee outcomes. You remain in full control of your accounts and decisions.",
+  },
+  {
+    q: "What should I include in my request?",
+    a: "Your goals, timeline, risk comfort, and what you can invest monthly. Avoid sensitive data like bank logins, passwords, or full ID numbers.",
+  },
+  {
+    q: "What happens after I submit?",
+    a: "We review your request, follow up with clarifying questions if needed, and send a structured strategy framework and next steps.",
+  },
+];
 ---
 
 <!doctype html>
@@ -7,187 +28,393 @@ const FORM_ENDPOINT = "https://formspree.io/f/xzznjkvd";
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Amicbridge Invest — Grow your money with clarity</title>
-  <meta name="description" content="Send an investment growth request. Get a clear, human-first strategy for growing your money." />
+  <title>Amicbridge Invest — Build a plan to grow your money</title>
+  <meta name="description" content="Send an investment growth request. Get a clear, human-first strategy framework for growing your money—without hype." />
+  <meta name="robots" content="index,follow" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
 </head>
 
 <body>
-  <!-- HEADER -->
-  <header class="header">
-    <div class="container header-inner">
-      <div class="brand">
-        <div class="logo">A</div>
-        <div>
-          <strong>Amicbridge Invest</strong>
-          <div class="muted">amicbridge.com</div>
-        </div>
-      </div>
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#top" aria-label="Amicbridge Invest home">
+        <span class="mark" aria-hidden="true">A</span>
+        <span class="brand-text">
+          <span class="brand-name">Amicbridge Invest</span>
+          <span class="brand-sub">amicbridge.com</span>
+        </span>
+      </a>
 
-      <nav class="nav">
+      <nav class="nav" aria-label="Primary navigation">
         <a href="#how">How it works</a>
         <a href="#request">Send request</a>
-        <a href="#contact">Contact</a>
+        <a href="#trust">Trust</a>
+        <a href="#contact" class="nav-cta">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main>
+  <main id="top">
     <!-- HERO -->
     <section class="hero">
       <div class="container hero-grid">
-        <div>
-          <span class="pill">Investment growth requests open</span>
+        <div class="hero-copy">
+          <div class="pill-row">
+            <span class="pill">Requests open</span>
+            <span class="pill pill-soft">Education-first</span>
+            <span class="pill pill-soft">No custody • No guarantees</span>
+          </div>
 
           <h1>
-            Grow your money<br />
-            <span>with a clear plan.</span>
+            A calm, credible way to<br />
+            <span>grow your money.</span>
           </h1>
 
           <p class="lead">
-            Amicbridge helps people describe their financial goals and receive
-            structured, educational guidance on how to grow their money —
-            without hype or hidden agendas.
+            Describe your goal, timeline, and comfort with risk. We’ll respond with a structured strategy framework
+            and next steps—simple, readable, and designed to help you actually follow through.
           </p>
 
-          <div class="cta">
-            <a class="btn primary" href="#request">Send investment request</a>
-            <a class="btn" href="#how">How it works</a>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#request">Send investment request</a>
+            <a class="btn btn-outline" href="#how">See how it works</a>
           </div>
 
-          <div class="trust">
-            <div>🔒 Privacy-aware</div>
-            <div>🧾 No custody of funds</div>
-            <div>📘 Not financial advice</div>
+          <div class="signal-row" aria-label="Signals">
+            <div class="signal">
+              <span class="signal-ic" aria-hidden="true">🔒</span>
+              <div>
+                <strong>Privacy-aware</strong>
+                <span>Share only what’s needed</span>
+              </div>
+            </div>
+            <div class="signal">
+              <span class="signal-ic" aria-hidden="true">🧾</span>
+              <div>
+                <strong>Clear boundaries</strong>
+                <span>Not financial advice</span>
+              </div>
+            </div>
+            <div class="signal">
+              <span class="signal-ic" aria-hidden="true">🧠</span>
+              <div>
+                <strong>Strategy over hype</strong>
+                <span>Simple, repeatable approach</span>
+              </div>
+            </div>
           </div>
 
           <div class="disclaimer">
-            <strong>Important:</strong> Amicbridge provides general educational
-            and planning guidance only. We do not provide financial advice,
-            manage funds, or guarantee outcomes.
+            <strong>Disclaimer:</strong> Amicbridge provides general educational and planning guidance only.
+            We do not manage money, custody funds, or guarantee outcomes. Consider professional advice where appropriate.
           </div>
         </div>
 
-        <aside class="preview">
-          <h4>Example request</h4>
-          <p><strong>Goal:</strong> Grow savings for long-term security</p>
-          <p><strong>Timeline:</strong> 2–5 years</p>
-          <p><strong>Risk comfort:</strong> Moderate</p>
+        <aside class="hero-aside">
+          <div class="panel">
+            <div class="panel-top">
+              <div class="panel-title">
+                <span class="live-dot" aria-hidden="true"></span>
+                Example request
+              </div>
+              <span class="panel-tag">Preview</span>
+            </div>
+
+            <div class="panel-block">
+              <div class="kicker">Goal</div>
+              <div class="kv"><span>Purpose</span><strong>Long-term growth</strong></div>
+              <div class="row2">
+                <div class="kv"><span>Timeline</span><strong>3–5 years</strong></div>
+                <div class="kv"><span>Risk</span><strong>Moderate</strong></div>
+              </div>
+              <div class="kv"><span>Monthly invest</span><strong>€250</strong></div>
+            </div>
+
+            <div class="hr" aria-hidden="true"></div>
+
+            <div class="panel-block">
+              <div class="kicker">What you receive</div>
+              <ul class="mini-list">
+                <li>Strategy framework (clear steps)</li>
+                <li>Risk & habit alignment</li>
+                <li>Next actions checklist</li>
+              </ul>
+            </div>
+
+            <p class="panel-note">
+              Keep it high-level. Never send passwords, bank logins, or full ID numbers.
+            </p>
+          </div>
         </aside>
       </div>
     </section>
 
-    <!-- HOW IT WORKS -->
-    <section class="section" id="how">
+    <!-- VALUE -->
+    <section class="section">
       <div class="container">
-        <h2>How it works</h2>
+        <div class="section-head">
+          <h2>What makes this trustworthy</h2>
+          <p>
+            Trust isn’t a vibe. It’s clarity, boundaries, and a process you can understand.
+          </p>
+        </div>
 
-        <div class="steps">
-          <div class="step">
-            <span>1</span>
-            <p>Send a request describing your goal, timeline, and comfort with risk.</p>
-          </div>
-          <div class="step">
-            <span>2</span>
-            <p>Your request is reviewed and clarified if needed.</p>
-          </div>
-          <div class="step">
-            <span>3</span>
-            <p>You receive a clear strategy framework and next steps.</p>
-          </div>
+        <div class="cards">
+          <article class="card">
+            <h3>Clear scope</h3>
+            <p>We provide education and planning frameworks—not product pushing or hidden incentives.</p>
+          </article>
+          <article class="card">
+            <h3>Simple strategy</h3>
+            <p>We keep it readable: goals → risk → allocation ideas → habits → next steps.</p>
+          </article>
+          <article class="card">
+            <h3>Your control</h3>
+            <p>No custody, no forced moves. You keep control of accounts and decisions.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- REQUEST FORM -->
-    <section class="section alt" id="request">
+    <!-- HOW -->
+    <section class="section section-soft" id="how">
       <div class="container">
-        <h2>Investment growth request</h2>
-        <p class="muted">
-          Keep details high-level. Do not include passwords, bank logins, or ID numbers.
-        </p>
+        <div class="section-head">
+          <h2>How it works</h2>
+          <p>Three steps, designed to reduce confusion and increase follow-through.</p>
+        </div>
 
-        <form class="form" action={FORM_ENDPOINT} method="POST">
-          <input type="hidden" name="requestType" value="Investment Growth Request" />
-
-          <div class="grid2">
-            <label>
-              Full name
-              <input name="name" required />
-            </label>
-            <label>
-              Email
-              <input type="email" name="email" required />
-            </label>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div>
+              <strong>Send a request</strong>
+              <p>Tell us your goal, timeline, current situation, and comfort with risk.</p>
+            </div>
           </div>
-
-          <div class="grid3">
-            <label>
-              Current savings (approx.)
-              <input name="currentSavings" placeholder="€5,000" />
-            </label>
-            <label>
-              Monthly amount to invest
-              <input name="monthlyAmount" placeholder="€300" />
-            </label>
-            <label>
-              Timeline
-              <input name="timeline" placeholder="2–5 years" required />
-            </label>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div>
+              <strong>Clarify</strong>
+              <p>We may ask a couple of questions to make sure the plan fits your constraints.</p>
+            </div>
           </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div>
+              <strong>Receive a framework</strong>
+              <p>You get a structured plan template + next steps checklist—simple and actionable.</p>
+            </div>
+          </div>
+        </div>
 
-          <label>
-            Risk comfort
-            <select name="riskComfort" required>
-              <option value="">Select</option>
-              <option>Low</option>
-              <option>Moderate</option>
-              <option>High</option>
-            </select>
-          </label>
-
-          <label>
-            What do you want help with?
-            <textarea name="message" rows="5" required></textarea>
-          </label>
-
-          <label class="checkbox">
-            <input type="checkbox" required />
-            <span>I understand this is educational guidance, not financial advice.</span>
-          </label>
-
-          <button class="btn primary">Send request</button>
-        </form>
+        <div class="callout">
+          <strong>Safety note:</strong> Don’t include sensitive info in forms (bank logins, passwords, full IDs).
+        </div>
       </div>
     </section>
 
-    <!-- CONTACT CEO -->
-    <section class="section" id="contact">
-      <div class="container contact">
-        <h2>Contact</h2>
+    <!-- REQUEST -->
+    <section class="section" id="request">
+      <div class="container">
+        <div class="section-head">
+          <h2>Send an investment growth request</h2>
+          <p>We’ll respond with a clear framework. Keep details high-level and honest.</p>
+        </div>
 
-        <div class="contact-card">
-          <div class="avatar">H</div>
-          <div>
-            <strong>Habbitx</strong>
-            <div class="muted">CEO — Amicbridge</div>
+        <div class="form-layout">
+          <form class="form" action={FORM_ENDPOINT} method="POST">
+            <input type="hidden" name="requestType" value="Investment Growth Request" />
 
-            <p>
-              Email:
-              <a href="mailto:contact@robertamicolsen.com">
-                contact@robertamicolsen.com
-              </a>
+            <div class="grid2">
+              <label>
+                Full name
+                <input name="name" autocomplete="name" placeholder="Your name" required />
+              </label>
+
+              <label>
+                Email
+                <input type="email" name="email" autocomplete="email" placeholder="you@email.com" required />
+              </label>
+            </div>
+
+            <div class="grid3">
+              <label>
+                Current savings (approx.)
+                <input name="currentSavings" placeholder="e.g., €5,000" />
+              </label>
+
+              <label>
+                Monthly amount you can invest
+                <input name="monthlyInvest" placeholder="e.g., €250" />
+              </label>
+
+              <label>
+                Timeline
+                <input name="timeline" placeholder="e.g., 6 months / 2 years / 5 years" required />
+              </label>
+            </div>
+
+            <div class="grid2">
+              <label>
+                Risk comfort
+                <select name="riskComfort" required>
+                  <option value="" selected disabled>Select one</option>
+                  <option value="Low">Low (prefer stability)</option>
+                  <option value="Moderate">Moderate (balanced)</option>
+                  <option value="High">High (comfortable with swings)</option>
+                </select>
+              </label>
+
+              <label>
+                Goal (optional)
+                <input name="goal" placeholder="e.g., House deposit, retirement, emergency buffer" />
+              </label>
+            </div>
+
+            <label>
+              What do you want help with?
+              <textarea
+                name="message"
+                rows="6"
+                placeholder="Example: I want a simple long-term plan. I’m new to investing, I can invest monthly, and I want something low-stress."
+                required></textarea>
+            </label>
+
+            <label class="checkbox">
+              <input type="checkbox" name="acknowledge" required />
+              <span>I understand this is educational guidance, not financial advice, and outcomes aren’t guaranteed.</span>
+            </label>
+
+            <button class="btn btn-primary" type="submit">Send request</button>
+
+            <p class="fineprint">
+              By submitting, you agree we may contact you about your request. Please do not send sensitive information.
             </p>
+          </form>
 
-            <p>
-              Website:
-              <a href="https://robertamicolsen.com" target="_blank">
-                robertamicolsen.com
+          <aside class="sidebar">
+            <div class="side-card">
+              <h3>What happens next</h3>
+              <ul>
+                <li>We review your request</li>
+                <li>We ask clarifying questions (if needed)</li>
+                <li>You receive a strategy framework + checklist</li>
+              </ul>
+            </div>
+
+            <div class="side-card side-soft">
+              <h3>What not to send</h3>
+              <ul>
+                <li>Passwords or bank logins</li>
+                <li>Credit card numbers</li>
+                <li>Full ID / sensitive documents</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST -->
+    <section class="section section-soft" id="trust">
+      <div class="container">
+        <div class="section-head">
+          <h2>Trust & boundaries</h2>
+          <p>We’re explicit about what this platform is—and isn’t.</p>
+        </div>
+
+        <div class="trust-grid">
+          <div class="trust-card">
+            <h3>Connection + guidance</h3>
+            <p>We provide educational frameworks to help you reason about growth strategies.</p>
+          </div>
+          <div class="trust-card">
+            <h3>No custody</h3>
+            <p>We don’t hold funds, execute trades, or access your accounts.</p>
+          </div>
+          <div class="trust-card">
+            <h3>No guarantees</h3>
+            <p>Markets are uncertain. We don’t promise returns or outcomes.</p>
+          </div>
+        </div>
+
+        <div class="callout callout-blue">
+          <strong>Professional note:</strong> If you need personalized advice, tax guidance, or regulated investment recommendations,
+          consult a licensed professional in your country.
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <h2>FAQ</h2>
+          <p>Short answers. Straight talk.</p>
+        </div>
+
+        <div class="faq">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section section-soft" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <p>Serious questions, partnerships, or investor interest—reach the CEO directly.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="contact-top">
+              <div class="avatar" aria-hidden="true">H</div>
+              <div>
+                <strong>{CEO_NAME}</strong>
+                <div class="muted">CEO • Amicbridge</div>
+              </div>
+            </div>
+
+            <div class="contact-lines">
+              <div class="line">
+                <span class="label">Email</span>
+                <a class="link" href={`mailto:${CEO_EMAIL}`}>{CEO_EMAIL}</a>
+              </div>
+              <div class="line">
+                <span class="label">Website</span>
+                <a class="link" href="https://robertamicolsen.com" target="_blank" rel="noreferrer">robertamicolsen.com</a>
+              </div>
+            </div>
+
+            <div class="contact-note">
+              Please don’t email sensitive information. Use the request form for structured details.
+            </div>
+
+            <div class="contact-actions">
+              <a class="btn btn-primary" href={`mailto:${CEO_EMAIL}?subject=Amicbridge%20Invest%20-%20Contact`}>
+                Email CEO
               </a>
-            </p>
+              <a class="btn btn-outline" href="#request">Send request</a>
+            </div>
+          </div>
 
-            <a class="btn primary" href="mailto:contact@robertamicolsen.com">
-              Email CEO
-            </a>
+          <div class="contact-card soft">
+            <h3>Best messages include</h3>
+            <ul>
+              <li>Your goal and timeline</li>
+              <li>Budget range / monthly invest</li>
+              <li>Country/region</li>
+              <li>Risk comfort (low/moderate/high)</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -195,53 +422,375 @@ const FORM_ENDPOINT = "https://formspree.io/f/xzznjkvd";
 
     <!-- FOOTER -->
     <footer class="footer">
-      <div class="container">
-        <p>
-          © {new Date().getFullYear()} Amicbridge.  
-          Educational platform only. No custody. No guarantees.
-        </p>
+      <div class="container footer-inner">
+        <div class="foot-left">
+          <div class="foot-brand">
+            <span class="mark small" aria-hidden="true">A</span>
+            <div>
+              <strong>Amicbridge Invest</strong>
+              <div class="muted">amicbridge.com</div>
+            </div>
+          </div>
+          <p class="muted" style="margin-top:.7rem;">
+            Educational guidance only. No custody. No guarantees.
+          </p>
+        </div>
+
+        <div class="foot-links">
+          <a href="#how">How it works</a>
+          <a href="#request">Send request</a>
+          <a href="#trust">Trust</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+
+      <div class="container foot-bottom">
+        <span class="muted">© {new Date().getFullYear()} Amicbridge. All rights reserved.</span>
       </div>
     </footer>
   </main>
 
-  <!-- STYLES -->
   <style>
-    body{margin:0;font-family:system-ui;background:#fff;color:#0f172a}
+    :root{
+      --bg:#ffffff;
+      --text:#0b1220;
+      --muted:#475569;
+      --muted2:#64748b;
+      --border:#e2e8f0;
+      --soft:#f8fafc;
+      --soft2:#f1f5f9;
+      --brand:#2563eb;
+      --brand2:#1d4ed8;
+      --ok:#16a34a;
+      --shadow:0 18px 70px rgba(2,6,23,.08);
+      --r:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
     a{color:inherit}
-    .container{max-width:1100px;margin:auto;padding:0 1rem}
-    .header{border-bottom:1px solid #e5e7eb;position:sticky;top:0;background:#fff}
-    .header-inner{display:flex;justify-content:space-between;align-items:center;padding:1rem 0}
-    .brand{display:flex;gap:.7rem;align-items:center}
-    .logo{width:40px;height:40px;background:#2563eb;color:#fff;border-radius:12px;display:grid;place-items:center;font-weight:900}
-    .nav a{margin-left:1rem;font-weight:700;text-decoration:none;color:#475569}
-    .hero{padding:4rem 0}
-    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem}
-    h1{font-size:3rem;line-height:1.1}
-    h1 span{color:#2563eb}
-    .pill{display:inline-block;background:#f1f5f9;border:1px solid #e5e7eb;padding:.3rem .6rem;border-radius:999px;font-weight:700}
-    .lead{font-size:1.1rem;color:#475569}
-    .cta{margin:1rem 0}
-    .btn{display:inline-block;padding:.8rem 1.1rem;border-radius:999px;border:1px solid #e5e7eb;font-weight:800;text-decoration:none}
-    .btn.primary{background:#2563eb;color:#fff;border-color:#2563eb}
-    .trust{display:flex;gap:1rem;color:#475569;font-weight:700;margin-top:1rem}
-    .disclaimer{margin-top:1rem;background:#f8fafc;border:1px solid #e5e7eb;padding:1rem;border-radius:16px;color:#475569}
-    .preview{background:#f8fafc;border:1px solid #e5e7eb;padding:1rem;border-radius:16px}
-    .section{padding:3rem 0}
-    .section.alt{background:#f8fafc}
+    .container{width:min(1140px,calc(100% - 2rem));margin:0 auto}
+
+    /* Topbar */
+    .topbar{
+      position: sticky; top: 0; z-index: 30;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.95rem 0}
+    .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none}
+    .mark{
+      width:40px;height:40px;border-radius:14px;
+      display:grid;place-items:center;
+      background: linear-gradient(135deg, var(--brand), var(--ok));
+      color:#fff;font-weight:950;
+      box-shadow: 0 12px 26px rgba(37,99,235,.18);
+      flex:0 0 auto;
+    }
+    .mark.small{width:32px;height:32px;border-radius:12px}
+    .brand-text{display:flex;flex-direction:column;line-height:1.05}
+    .brand-name{font-weight:950;letter-spacing:.2px}
+    .brand-sub{font-size:.86rem;color:var(--muted2)}
+
+    .nav{display:flex;gap:1rem;align-items:center}
+    .nav a{
+      text-decoration:none;
+      font-weight:850;
+      color: var(--muted);
+      padding:.35rem .55rem;
+      border-radius:12px;
+    }
+    .nav a:hover{background: var(--soft2); color: var(--text)}
+    .nav-cta{
+      border:1px solid var(--border);
+      background: var(--soft);
+      color: var(--text) !important;
+    }
+
+    /* Hero */
+    .hero{padding: 3.9rem 0 2.8rem}
+    .hero-grid{display:grid;grid-template-columns: 1.12fr .88fr;gap:2rem;align-items:start}
+    .pill-row{display:flex;gap:.55rem;flex-wrap:wrap}
+    .pill{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:.32rem .62rem;border-radius:999px;
+      border:1px solid var(--border);
+      background: #fff;
+      color: var(--muted);
+      font-weight:900;
+      font-size:.9rem;
+    }
+    .pill-soft{background: var(--soft)}
+    h1{
+      margin: 1.05rem 0 0;
+      font-size: clamp(2.35rem, 4.3vw, 3.55rem);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+    h1 span{
+      background: linear-gradient(90deg, var(--brand), var(--ok));
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .lead{margin: 1rem 0 1.35rem;color: var(--muted);font-size: 1.08rem;max-width: 78ch}
+    .cta-row{display:flex;gap:.8rem;flex-wrap:wrap}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:.92rem 1.15rem;border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+      font-weight:950;
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .btn-primary{
+      background: var(--brand);
+      border-color: var(--brand);
+      color:#fff;
+      box-shadow: 0 16px 30px rgba(37,99,235,.18);
+    }
+    .btn-outline{background: var(--soft)}
+    .btn-primary:hover{filter:brightness(.98)}
+    .btn-outline:hover{background: var(--soft2)}
+
+    .signal-row{
+      display:grid;grid-template-columns:repeat(3,1fr);
+      gap:.85rem;margin-top:1.35rem;
+    }
+    .signal{
+      border:1px solid var(--border);
+      border-radius: var(--r);
+      background:#fff;
+      padding:.9rem .95rem;
+      display:flex;gap:.65rem;
+    }
+    .signal-ic{font-size:1.1rem}
+    .signal strong{display:block}
+    .signal span{display:block;color:var(--muted);font-size:.92rem;margin-top:.12rem}
+
+    .disclaimer{
+      margin-top: 1.1rem;
+      border:1px solid var(--border);
+      background: var(--soft);
+      border-radius: var(--r);
+      padding: 1rem 1.05rem;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    /* Panel */
+    .panel{
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius: var(--r);
+      padding: 1.15rem;
+      box-shadow: var(--shadow);
+    }
+    .panel-top{display:flex;align-items:center;justify-content:space-between;gap:.7rem;margin-bottom:.9rem}
+    .panel-title{display:flex;align-items:center;gap:.55rem;font-weight:950;color:var(--muted)}
+    .live-dot{width:10px;height:10px;border-radius:999px;background:var(--ok);box-shadow:0 0 0 6px rgba(22,163,74,.12)}
+    .panel-tag{
+      font-size:.85rem;color:var(--muted);
+      border:1px solid var(--border);
+      background: var(--soft);
+      padding:.25rem .55rem;border-radius:999px;
+      font-weight:900;
+    }
+    .panel-block{margin-bottom: 1rem}
+    .kicker{
+      font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;
+      color: var(--muted2); margin-bottom:.35rem;
+    }
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}
+    .kv{
+      border:1px solid var(--border);
+      background: var(--soft);
+      border-radius: 14px;
+      padding: .75rem .8rem;
+      display:flex;align-items:center;justify-content:space-between;gap:.8rem;
+      margin-top:.6rem;
+    }
+    .kv span{color:var(--muted);font-weight:850;font-size:.92rem}
+    .kv strong{font-weight:950}
+    .hr{height:1px;background: var(--border); margin: 1rem 0}
+    .mini-list{margin:0;padding-left:1.1rem;color:var(--muted)}
+    .mini-list li{margin:.4rem 0}
+    .panel-note{margin:0;color:var(--muted);font-size:.92rem}
+
+    /* Sections */
+    .section{padding: 3.1rem 0}
+    .section-soft{background: linear-gradient(180deg, var(--soft), #fff)}
+    .section-head{max-width: 82ch;margin-bottom: 1.25rem}
+    .section-head h2{margin:0;font-size: 1.8rem;letter-spacing:-.01em}
+    .section-head p{margin:.55rem 0 0;color:var(--muted)}
+
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .card{
+      background:#fff;border:1px solid var(--border);border-radius: var(--r);
+      padding:1.1rem 1.15rem; box-shadow:0 8px 30px rgba(2,6,23,.04);
+    }
+    .card h3{margin:0 0 .35rem}
+    .card p{margin:0;color:var(--muted)}
+
     .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-    .step{border:1px solid #e5e7eb;border-radius:16px;padding:1rem}
-    .step span{font-weight:900;color:#2563eb}
-    .form{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:1.5rem}
-    label{display:block;font-weight:800;margin-top:1rem}
-    input,textarea,select{width:100%;padding:.7rem;border-radius:12px;border:1px solid #e5e7eb}
-    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-    .checkbox{display:flex;gap:.5rem;align-items:flex-start;margin-top:1rem}
-    .contact-card{display:flex;gap:1rem;border:1px solid #e5e7eb;border-radius:16px;padding:1.5rem;align-items:center}
-    .avatar{width:56px;height:56px;border-radius:16px;background:#2563eb;color:#fff;display:grid;place-items:center;font-weight:900;font-size:1.4rem}
-    .footer{border-top:1px solid #e5e7eb;padding:2rem 0;color:#475569}
-    @media(max-width:900px){
-      .hero-grid,.steps,.grid2,.grid3{grid-template-columns:1fr}
+    .step{
+      background:#fff;border:1px solid var(--border);border-radius: var(--r);
+      padding:1rem 1.05rem; display:flex;gap:.85rem;
+    }
+    .step-num{
+      width:36px;height:36px;border-radius:14px;
+      display:grid;place-items:center;
+      background: rgba(37,99,235,.10);
+      border:1px solid rgba(37,99,235,.22);
+      color: var(--brand);
+      font-weight: 950;
+      flex:0 0 auto;
+    }
+    .step p{margin:.35rem 0 0;color:var(--muted)}
+
+    .callout{
+      margin-top: 1.1rem;
+      padding: 1rem 1.05rem;
+      border-radius: var(--r);
+      border: 1px solid rgba(22,163,74,.25);
+      background: rgba(22,163,74,.06);
+      color: var(--muted);
+      font-weight: 800;
+    }
+    .callout-blue{
+      border-color: rgba(37,99,235,.25);
+      background: rgba(37,99,235,.06);
+      font-weight: 800;
+    }
+
+    /* Form layout */
+    .form-layout{display:grid;grid-template-columns: 1.2fr .8fr;gap:1rem;align-items:start}
+    .form{
+      background:#fff;border:1px solid var(--border);border-radius: var(--r);
+      padding:1.2rem; box-shadow: 0 10px 40px rgba(2,6,23,.05);
+    }
+    label{display:block;font-weight:950;margin:.75rem 0 .25rem}
+    input, textarea, select{
+      width:100%;
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:14px;
+      padding:.82rem .9rem;
+      font: inherit;
+      color: var(--text);
+      outline:none;
+    }
+    textarea{resize:vertical}
+    input:focus, textarea:focus, select:focus{
+      border-color: rgba(37,99,235,.45);
+      box-shadow: 0 0 0 4px rgba(37,99,235,.12);
+    }
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem}
+    .checkbox{
+      display:flex;gap:.65rem;align-items:flex-start;
+      font-weight:900;color:var(--muted);margin-top:.85rem;
+    }
+    .checkbox input{width:auto;margin-top:.2rem}
+    .fineprint{margin:.7rem 0 0;color:var(--muted2);font-size:.92rem}
+
+    .sidebar{display:grid;gap:1rem}
+    .side-card{
+      background:#fff;border:1px solid var(--border);border-radius: var(--r);
+      padding:1.1rem 1.15rem;
+    }
+    .side-soft{background: var(--soft)}
+    .side-card h3{margin:0 0 .6rem}
+    .side-card ul{margin:0;padding-left:1.15rem;color:var(--muted)}
+    .side-card li{margin:.45rem 0}
+
+    /* Trust grid */
+    .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .trust-card{
+      background:#fff;border:1px solid var(--border);border-radius: var(--r);
+      padding:1.1rem 1.15rem;
+    }
+    .trust-card h3{margin:0 0 .35rem}
+    .trust-card p{margin:0;color:var(--muted)}
+
+    /* FAQ */
+    .faq{display:grid;gap:.65rem}
+    .faq-item{
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius: var(--r);
+      padding: .95rem 1.05rem;
+    }
+    .faq-item summary{cursor:pointer;font-weight:950}
+    .faq-item p{margin:.6rem 0 0;color:var(--muted)}
+
+    /* Contact */
+    .contact-grid{
+      display:grid;grid-template-columns: 1.2fr .8fr;
+      gap: 1rem; align-items: start;
+    }
+    .contact-card{
+      background:#fff;border:1px solid var(--border);border-radius: var(--r);
+      padding:1.2rem; box-shadow: 0 10px 40px rgba(2,6,23,.05);
+    }
+    .contact-card.soft{background: var(--soft); box-shadow:none}
+    .contact-top{display:flex;align-items:center;gap:.75rem;margin-bottom:.9rem}
+    .avatar{
+      width:46px;height:46px;border-radius:16px;
+      display:grid;place-items:center;
+      font-weight:950;color:#fff;
+      background: linear-gradient(135deg, var(--brand), var(--ok));
+      box-shadow: 0 12px 26px rgba(37,99,235,.18);
+    }
+    .contact-lines{display:grid;gap:.65rem;margin-top:.6rem}
+    .line{
+      display:flex;justify-content:space-between;gap:1rem;
+      padding:.75rem .85rem;background: var(--soft);
+      border:1px solid var(--border);border-radius:14px;
+    }
+    .label{color:var(--muted2);font-weight:950}
+    .link{font-weight:950;text-decoration:none}
+    .link:hover{text-decoration:underline}
+    .contact-note{
+      margin-top:.9rem;
+      padding:.9rem 1rem;
+      border-radius: var(--r);
+      border: 1px solid rgba(37,99,235,.22);
+      background: rgba(37,99,235,.06);
+      color: var(--muted);
+      font-weight: 850;
+    }
+    .contact-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1rem}
+
+    /* Footer */
+    .footer{border-top:1px solid var(--border);padding:2.2rem 0 1.6rem;background:#fff}
+    .footer-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+    .foot-brand{display:flex;align-items:center;gap:.7rem}
+    .foot-links{display:flex;gap:1rem;flex-wrap:wrap}
+    .foot-links a{text-decoration:none;color:var(--muted);font-weight:950}
+    .foot-links a:hover{text-decoration:underline}
+    .foot-bottom{margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border)}
+
+    /* Responsive */
+    @media (max-width: 1020px){
+      .hero-grid{grid-template-columns:1fr}
+      .signal-row{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr}
+      .form-layout{grid-template-columns:1fr}
+      .trust-grid{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .grid3{grid-template-columns:1fr}
+    }
+    @media (max-width: 780px){
+      .nav{display:none}
+      .grid2{grid-template-columns:1fr}
     }
   </style>
 </body>
