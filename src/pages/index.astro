@@ -9,25 +9,25 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Amicbridge — Borrow • Lend • Investment Strategy</title>
+  <title>Amicbridge — Borrow & Lend Network</title>
   <meta
     name="description"
-    content="Amicbridge is a connection platform. Send a borrow request, lending request, or investment strategy request. No custody. No guarantees."
+    content="Amicbridge is a verified network bridge connecting borrowers and lenders. Identity verification required before network access."
   />
 </head>
 
 <body>
-  <header class="header" id="top">
+  <!-- HEADER -->
+  <header class="header">
     <div class="container header-inner">
       <div class="brand">
         <strong>Amicbridge</strong>
-        <span class="muted">Connection platform</span>
+        <span class="muted">Verified lending network</span>
       </div>
 
-      <nav class="nav" aria-label="Primary navigation">
+      <nav class="nav">
         <a href="#about">About</a>
         <a href="#request">Request</a>
-        <a href="#agreement">Loan agreement</a>
         <a href="#safety">Safety</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -38,21 +38,22 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
     <!-- HERO -->
     <section class="section hero">
       <div class="container">
-        <h1>Borrow. Lend. Invest — with clarity.</h1>
+        <h1>A verified network for borrowing and lending</h1>
 
         <p class="lead">
-          Amicbridge helps serious people and business partners connect.
-          Use one simple form to request a loan, offer lending, or ask for general investment strategy guidance.
+          Amicbridge is a network bridge for serious people and business partners
+          who want to borrow money, lend money, or request general investment strategy guidance.
         </p>
 
         <div class="notice">
-          <strong>Important:</strong> Amicbridge is a connection platform. We do not provide loans, hold money,
-          or guarantee repayment. Agreements are made directly between parties. Always do your own checks.
+          <strong>Important:</strong>
+          Amicbridge is a connection platform. We do not provide loans, do not hold money,
+          and do not guarantee repayment. All agreements are made directly between parties.
         </div>
 
         <div class="actions">
           <a class="btn primary" href="#request">Send a request</a>
-          <a class="btn" href="#safety">Safety</a>
+          <a class="btn" href="#safety">Safety & verification</a>
         </div>
       </div>
     </section>
@@ -61,24 +62,27 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
     <section class="section" id="about">
       <div class="container">
         <h2>About Amicbridge</h2>
+
         <p>
-          Amicbridge is built for clarity. Borrowers can explain what they need, lenders can define their terms,
-          and both sides can communicate directly.
+          Amicbridge connects people who want to lend and borrow money directly.
+          Borrowers explain their needs and repayment plan. Lenders define their terms and conditions.
         </p>
 
         <p class="muted">
-          We are not a bank and we are not a payment provider. We do not custody funds and we do not guarantee outcomes.
+          To improve trust and reduce fraud, Amicbridge requires identity verification
+          before users are granted access to the network.
         </p>
       </div>
     </section>
 
-    <!-- REQUEST (ONE BOX) -->
+    <!-- REQUEST FORM -->
     <section class="section alt" id="request">
       <div class="container">
         <h2>Send a request</h2>
+
         <p class="muted">
-          Choose request type and fill in the important information. Do not include passwords, bank logins,
-          or sensitive identity numbers.
+          Select the request type and provide the relevant information.
+          Identity verification is handled separately before network access.
         </p>
 
         <div class="box">
@@ -88,203 +92,103 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
             <div class="grid2">
               <label>
                 Full name / Company
-                <input name="name" autocomplete="name" required />
+                <input name="name" required />
               </label>
 
               <label>
                 Email
-                <input type="email" name="email" autocomplete="email" required />
+                <input type="email" name="email" required />
               </label>
             </div>
 
             <label>
               Request type
               <select name="requestType" id="requestType" required>
-                <option value="" selected disabled>Select</option>
+                <option value="" disabled selected>Select</option>
                 <option value="Borrow request">Borrow request</option>
                 <option value="Lending request">Lending request</option>
                 <option value="Investment strategy request">Investment strategy request</option>
               </select>
             </label>
 
-            <!-- Borrow fields -->
-            <div class="section-fields" id="borrowFields" hidden>
+            <!-- Borrow -->
+            <div id="borrowFields" class="section-fields" hidden>
               <div class="grid2">
-                <label>
-                  Amount needed (NOK)
-                  <input name="borrow_amount_nok" inputmode="numeric" placeholder="e.g. 50,000" />
+                <label>Amount needed (NOK)
+                  <input name="borrow_amount" />
                 </label>
-
-                <label>
-                  Duration
-                  <input name="borrow_duration" placeholder="e.g. 6 months / 12 months" />
+                <label>Duration
+                  <input name="borrow_duration" />
                 </label>
               </div>
-
-              <div class="grid2">
-                <label>
-                  Max interest (optional)
-                  <input name="borrow_max_interest" placeholder="e.g. 8% / negotiable" />
-                </label>
-
-                <label>
-                  Purpose
-                  <input name="borrow_purpose" placeholder="Personal / Business / Project" />
-                </label>
-              </div>
-
-              <label>
-                Repayment plan (important)
-                <textarea
-                  name="borrow_repayment_plan"
-                  rows="4"
-                  placeholder="How will you repay? Income source, schedule, any collateral (if relevant)."></textarea>
+              <label>Repayment plan
+                <textarea name="borrow_repayment" rows="4"></textarea>
               </label>
             </div>
 
-            <!-- Lend fields -->
-            <div class="section-fields" id="lendFields" hidden>
+            <!-- Lend -->
+            <div id="lendFields" class="section-fields" hidden>
               <div class="grid2">
-                <label>
-                  Amount available (NOK)
-                  <input name="lend_amount_nok" inputmode="numeric" placeholder="e.g. 100,000" />
+                <label>Amount available (NOK)
+                  <input name="lend_amount" />
                 </label>
-
-                <label>
-                  Preferred duration
-                  <input name="lend_duration" placeholder="e.g. 6–12 months" />
+                <label>Preferred duration
+                  <input name="lend_duration" />
                 </label>
               </div>
-
-              <div class="grid2">
-                <label>
-                  Expected interest (optional)
-                  <input name="lend_expected_interest" placeholder="e.g. 6–10% / negotiable" />
-                </label>
-
-                <label>
-                  Lending focus (optional)
-                  <select name="lend_focus">
-                    <option value="">Select</option>
-                    <option value="Personal loans">Personal loans</option>
-                    <option value="Small business">Small business</option>
-                    <option value="Projects">Projects</option>
-                    <option value="Case by case">Case by case</option>
-                  </select>
-                </label>
-              </div>
-
-              <label>
-                Conditions (important)
-                <textarea
-                  name="lend_conditions"
-                  rows="4"
-                  placeholder="What do you require? Documentation, collateral, repayment schedule, communication expectations."></textarea>
+              <label>Lending conditions
+                <textarea name="lend_conditions" rows="4"></textarea>
               </label>
             </div>
 
-            <!-- Investment fields -->
-            <div class="section-fields" id="investFields" hidden>
-              <div class="grid2">
-                <label>
-                  Monthly amount (approx.)
-                  <input name="invest_monthly_amount" placeholder="e.g. 2,000 NOK" />
-                </label>
-
-                <label>
-                  Timeline
-                  <input name="invest_timeline" placeholder="e.g. 5 years / 10 years" />
-                </label>
-              </div>
-
-              <label>
-                Risk comfort (optional)
-                <select name="invest_risk">
-                  <option value="">Select</option>
-                  <option value="Low">Low</option>
-                  <option value="Moderate">Moderate</option>
-                  <option value="High">High</option>
-                </select>
-              </label>
-
-              <label>
-                Current situation (optional)
-                <textarea
-                  name="invest_situation"
-                  rows="4"
-                  placeholder="Example: savings, income stability, goals (house, retirement, buffer)."></textarea>
+            <!-- Investment -->
+            <div id="investFields" class="section-fields" hidden>
+              <label>Investment goal
+                <textarea name="invest_goal" rows="4"></textarea>
               </label>
             </div>
 
-            <!-- Common message -->
             <label>
-              Details (important)
-              <textarea
-                name="message"
-                rows="6"
-                placeholder="Write clearly. If borrowing: explain why, how you repay. If lending: terms. If investing: goals and constraints."
-                required></textarea>
+              Additional details
+              <textarea name="message" rows="6" required></textarea>
             </label>
 
             <label class="checkbox">
-              <input type="checkbox" name="acknowledge" required />
+              <input type="checkbox" required />
               <span>
-                I understand Amicbridge is a connection platform and does not provide loans, hold money, or guarantee outcomes.
+                I understand Amicbridge verifies user identity but does not guarantee outcomes or repayment.
               </span>
             </label>
 
             <button class="btn primary" type="submit">Send request</button>
-
-            <p class="fineprint">
-              Safety: Never share passwords, bank logins, seed phrases, private keys, or full ID numbers.
-            </p>
           </form>
         </div>
       </div>
     </section>
 
-    <!-- LOAN AGREEMENT (TEXT ONLY) -->
-    <section class="section" id="agreement">
-      <div class="container">
-        <h2>Loan agreement contract</h2>
-
-        <p>
-          Amicbridge provides a loan agreement contract template that borrowers and lenders can use to document the terms they agree on.
-          This helps both parties stay clear on repayment schedule, interest, duration, and responsibilities.
-        </p>
-
-        <p class="muted">
-          The agreement is provided for general guidance only and is not legal advice.
-          For larger loans or business loans, consider consulting a lawyer or professional advisor.
-        </p>
-
-        <div class="notice subtle">
-          <strong>Note:</strong> Amicbridge is not a party to the loan agreement and does not guarantee repayment.
-        </div>
-      </div>
-    </section>
-
     <!-- SAFETY -->
-    <section class="section alt" id="safety">
+    <section class="section" id="safety">
       <div class="container">
-        <h2>Safety</h2>
+        <h2>Safety & identity verification</h2>
 
         <div class="notice">
-          <strong>Be careful:</strong> Verify identity, use written terms, and consider professional advice for large amounts.
-          Amicbridge does not verify users and does not guarantee outcomes.
+          <strong>Verified network:</strong>
+          Amicbridge verifies user identity before granting access to the network.
+          Verification helps reduce fraud but does not remove financial risk.
+          Always use written agreements and consider professional advice for large amounts.
         </div>
 
         <ul class="plain-list">
-          <li>Verify identity before agreements.</li>
-          <li>Use written contracts with clear terms.</li>
-          <li>Do not share sensitive access information.</li>
-          <li>Keep communication documented and clear.</li>
+          <li>Identity verification is required before network access</li>
+          <li>Amicbridge does not hold funds or act as a lender</li>
+          <li>All agreements are made directly between parties</li>
+          <li>Use written contracts with clear repayment terms</li>
         </ul>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section class="section" id="contact">
+    <section class="section alt" id="contact">
       <div class="container">
         <h2>Contact</h2>
 
@@ -292,20 +196,16 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
           <strong>{CEO_NAME}</strong>
           <div class="muted">CEO — Amicbridge</div>
           <p>Email: <a href={`mailto:${CEO_EMAIL}`}>{CEO_EMAIL}</a></p>
-
-          <div class="actions">
-            <a class="btn primary" href={`mailto:${CEO_EMAIL}?subject=Amicbridge%20Inquiry`}>Email CEO</a>
-            <a class="btn" href="#request">Send request</a>
-          </div>
         </div>
       </div>
     </section>
 
+    <!-- FOOTER -->
     <footer class="footer">
       <div class="container footer-inner">
         <div>
           <strong>Amicbridge</strong>
-          <div class="muted">Connection platform</div>
+          <div class="muted">Verified network bridge</div>
         </div>
 
         <div class="muted">
@@ -319,26 +219,21 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
     </footer>
   </main>
 
-  <!-- JS: show/hide fields by request type -->
+  <!-- JS -->
   <script>
-    (function () {
-      const type = document.getElementById("requestType");
-      const borrow = document.getElementById("borrowFields");
-      const lend = document.getElementById("lendFields");
-      const invest = document.getElementById("investFields");
+    const type = document.getElementById("requestType");
+    const borrow = document.getElementById("borrowFields");
+    const lend = document.getElementById("lendFields");
+    const invest = document.getElementById("investFields");
 
-      function update() {
-        const v = type.value;
-        borrow.hidden = v !== "Borrow request";
-        lend.hidden = v !== "Lending request";
-        invest.hidden = v !== "Investment strategy request";
-      }
-
-      type.addEventListener("change", update);
-      update();
-    })();
+    type.addEventListener("change", () => {
+      borrow.hidden = type.value !== "Borrow request";
+      lend.hidden = type.value !== "Lending request";
+      invest.hidden = type.value !== "Investment strategy request";
+    });
   </script>
 
+  <!-- STYLES -->
   <style>
     :root{
       --text:#111827;
@@ -352,91 +247,28 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
       background:#fff;
       color:var(--text);
-      line-height:1.55;
     }
     .container{max-width:900px;margin:auto;padding:0 1rem}
-    a{color:inherit}
-    .muted{color:var(--muted)}
-
-    .header{
-      border-bottom:1px solid var(--border);
-      background:#fff;
-      position:sticky;
-      top:0;
-      z-index:10;
-    }
-    .header-inner{display:flex;justify-content:space-between;align-items:baseline;padding:1rem 0;gap:1rem}
-    .brand{display:flex;flex-direction:column}
+    .header{border-bottom:1px solid var(--border);background:#fff}
+    .header-inner{display:flex;justify-content:space-between;padding:1rem 0}
     .nav a{margin-left:1rem;color:var(--muted);text-decoration:none;font-weight:600}
-    .nav a:hover{text-decoration:underline;color:var(--text)}
-
     .section{padding:2.2rem 0}
-    .section.alt{background:var(--soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-    .hero h1{font-size:2rem;margin:0 0 .6rem}
-    h2{font-size:1.3rem;margin:0 0 .6rem}
-    .lead{color:var(--muted);font-size:1.05rem;max-width:80ch}
-
-    .notice{
-      border:1px solid var(--border);
-      background:#fff;
-      padding:.9rem;
-      border-radius:var(--radius);
-      margin-top:1rem;
-      color:var(--muted);
-    }
-    .notice.subtle{background:var(--soft)}
-
-    .actions{margin-top:1rem;display:flex;gap:.7rem;flex-wrap:wrap}
-    .btn{
-      padding:.6rem 1rem;
-      border-radius:var(--radius);
-      border:1px solid var(--border);
-      background:#fff;
-      text-decoration:none;
-      font-weight:600;
-      display:inline-block;
-    }
-    .btn.primary{background:#111827;color:#fff;border-color:#111827}
-
-    .plain-list{margin:1rem 0 0;padding-left:1.2rem;color:var(--muted)}
-    .plain-list li{margin:.35rem 0}
-
-    .box{
-      border:1px solid var(--border);
-      background:#fff;
-      border-radius:var(--radius);
-      padding:1rem;
-      margin-top:1rem;
-    }
-
-    .form label{display:block;margin-top:.85rem;font-weight:600}
-    input,textarea,select{
-      width:100%;
-      padding:.6rem;
-      border-radius:var(--radius);
-      border:1px solid var(--border);
-      margin-top:.3rem;
-      font:inherit;
-      background:#fff;
-    }
-    textarea{resize:vertical}
+    .section.alt{background:var(--soft)}
+    h1{font-size:2rem}
+    h2{font-size:1.3rem}
+    .lead{color:var(--muted)}
+    .notice{border:1px solid var(--border);padding:.9rem;border-radius:var(--radius);color:var(--muted)}
+    .box{border:1px solid var(--border);padding:1rem;border-radius:var(--radius);background:#fff}
+    label{display:block;margin-top:.8rem;font-weight:600}
+    input,textarea,select{width:100%;padding:.6rem;border:1px solid var(--border);border-radius:var(--radius)}
     .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
     .checkbox{display:flex;gap:.5rem;margin-top:1rem;color:var(--muted)}
-    .checkbox input{width:auto;margin-top:.25rem}
-    .fineprint{color:var(--muted);font-size:.92rem;margin:.7rem 0 0}
-    .section-fields{margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--border)}
-
-    .contact-box{
-      border:1px solid var(--border);
-      background:#fff;
-      padding:1rem;
-      border-radius:var(--radius);
-      margin-top:1rem;
-    }
-
+    .btn{padding:.6rem 1rem;border:1px solid var(--border);border-radius:var(--radius);background:#fff;font-weight:600}
+    .btn.primary{background:#111827;color:#fff}
     .footer{border-top:1px solid var(--border);padding:1.4rem 0}
-    .footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;color:var(--muted)}
-
+    .footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;color:var(--muted)}
+    .plain-list{padding-left:1.2rem;color:var(--muted)}
+    .contact-box{border:1px solid var(--border);padding:1rem;border-radius:var(--radius)}
     @media(max-width:720px){
       .nav{display:none}
       .grid2{grid-template-columns:1fr}
