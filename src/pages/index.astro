@@ -12,7 +12,7 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
   <title>Amicbridge — Borrow • Lend • Investment Strategy</title>
   <meta
     name="description"
-    content="Amicbridge is a connection platform. Send a borrow request, lending request, or investment strategy request. Includes a simple loan agreement template."
+    content="Amicbridge is a connection platform. Send a borrow request, lending request, or investment strategy request. No custody. No guarantees."
   />
 </head>
 
@@ -41,7 +41,8 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
         <h1>Borrow. Lend. Invest — with clarity.</h1>
 
         <p class="lead">
-          Amicbridge helps serious people and business partners connect. Send one request and we’ll review it for clarity.
+          Amicbridge helps serious people and business partners connect.
+          Use one simple form to request a loan, offer lending, or ask for general investment strategy guidance.
         </p>
 
         <div class="notice">
@@ -51,7 +52,7 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
 
         <div class="actions">
           <a class="btn primary" href="#request">Send a request</a>
-          <a class="btn" href="#agreement">Loan agreement template</a>
+          <a class="btn" href="#safety">Safety</a>
         </div>
       </div>
     </section>
@@ -61,8 +62,12 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
       <div class="container">
         <h2>About Amicbridge</h2>
         <p>
-          Use one simple form to request a loan, offer lending, or ask for general investment strategy guidance.
-          We focus on clear communication and serious requests.
+          Amicbridge is built for clarity. Borrowers can explain what they need, lenders can define their terms,
+          and both sides can communicate directly.
+        </p>
+
+        <p class="muted">
+          We are not a bank and we are not a payment provider. We do not custody funds and we do not guarantee outcomes.
         </p>
       </div>
     </section>
@@ -83,12 +88,12 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
             <div class="grid2">
               <label>
                 Full name / Company
-                <input name="name" id="name" autocomplete="name" required />
+                <input name="name" autocomplete="name" required />
               </label>
 
               <label>
                 Email
-                <input type="email" name="email" id="email" autocomplete="email" required />
+                <input type="email" name="email" autocomplete="email" required />
               </label>
             </div>
 
@@ -107,24 +112,24 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
               <div class="grid2">
                 <label>
                   Amount needed (NOK)
-                  <input name="borrow_amount_nok" id="borrow_amount_nok" inputmode="numeric" placeholder="e.g. 50,000" />
+                  <input name="borrow_amount_nok" inputmode="numeric" placeholder="e.g. 50,000" />
                 </label>
 
                 <label>
                   Duration
-                  <input name="borrow_duration" id="borrow_duration" placeholder="e.g. 6 months / 12 months" />
+                  <input name="borrow_duration" placeholder="e.g. 6 months / 12 months" />
                 </label>
               </div>
 
               <div class="grid2">
                 <label>
                   Max interest (optional)
-                  <input name="borrow_max_interest" id="borrow_max_interest" placeholder="e.g. 8% / negotiable" />
+                  <input name="borrow_max_interest" placeholder="e.g. 8% / negotiable" />
                 </label>
 
                 <label>
                   Purpose
-                  <input name="borrow_purpose" id="borrow_purpose" placeholder="Personal / Business / Project" />
+                  <input name="borrow_purpose" placeholder="Personal / Business / Project" />
                 </label>
               </div>
 
@@ -132,7 +137,6 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
                 Repayment plan (important)
                 <textarea
                   name="borrow_repayment_plan"
-                  id="borrow_repayment_plan"
                   rows="4"
                   placeholder="How will you repay? Income source, schedule, any collateral (if relevant)."></textarea>
               </label>
@@ -143,27 +147,27 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
               <div class="grid2">
                 <label>
                   Amount available (NOK)
-                  <input name="lend_amount_nok" id="lend_amount_nok" inputmode="numeric" placeholder="e.g. 100,000" />
+                  <input name="lend_amount_nok" inputmode="numeric" placeholder="e.g. 100,000" />
                 </label>
 
                 <label>
                   Preferred duration
-                  <input name="lend_duration" id="lend_duration" placeholder="e.g. 6–12 months" />
+                  <input name="lend_duration" placeholder="e.g. 6–12 months" />
                 </label>
               </div>
 
               <div class="grid2">
                 <label>
                   Expected interest (optional)
-                  <input name="lend_expected_interest" id="lend_expected_interest" placeholder="e.g. 6–10% / negotiable" />
+                  <input name="lend_expected_interest" placeholder="e.g. 6–10% / negotiable" />
                 </label>
 
                 <label>
-                  Focus
-                  <select name="lend_focus" id="lend_focus">
-                    <option value="">Select (optional)</option>
-                    <option value="Personal">Personal loans</option>
-                    <option value="Business">Small business</option>
+                  Lending focus (optional)
+                  <select name="lend_focus">
+                    <option value="">Select</option>
+                    <option value="Personal loans">Personal loans</option>
+                    <option value="Small business">Small business</option>
                     <option value="Projects">Projects</option>
                     <option value="Case by case">Case by case</option>
                   </select>
@@ -174,7 +178,6 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
                 Conditions (important)
                 <textarea
                   name="lend_conditions"
-                  id="lend_conditions"
                   rows="4"
                   placeholder="What do you require? Documentation, collateral, repayment schedule, communication expectations."></textarea>
               </label>
@@ -185,19 +188,19 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
               <div class="grid2">
                 <label>
                   Monthly amount (approx.)
-                  <input name="invest_monthly_amount" id="invest_monthly_amount" placeholder="e.g. 2,000 NOK" />
+                  <input name="invest_monthly_amount" placeholder="e.g. 2,000 NOK" />
                 </label>
 
                 <label>
                   Timeline
-                  <input name="invest_timeline" id="invest_timeline" placeholder="e.g. 5 years / 10 years" />
+                  <input name="invest_timeline" placeholder="e.g. 5 years / 10 years" />
                 </label>
               </div>
 
               <label>
-                Risk comfort
-                <select name="invest_risk" id="invest_risk">
-                  <option value="">Select (optional)</option>
+                Risk comfort (optional)
+                <select name="invest_risk">
+                  <option value="">Select</option>
                   <option value="Low">Low</option>
                   <option value="Moderate">Moderate</option>
                   <option value="High">High</option>
@@ -208,7 +211,6 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
                 Current situation (optional)
                 <textarea
                   name="invest_situation"
-                  id="invest_situation"
                   rows="4"
                   placeholder="Example: savings, income stability, goals (house, retirement, buffer)."></textarea>
               </label>
@@ -219,7 +221,6 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
               Details (important)
               <textarea
                 name="message"
-                id="message"
                 rows="6"
                 placeholder="Write clearly. If borrowing: explain why, how you repay. If lending: terms. If investing: goals and constraints."
                 required></textarea>
@@ -228,16 +229,11 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
             <label class="checkbox">
               <input type="checkbox" name="acknowledge" required />
               <span>
-                I understand Amicbridge is a connection platform. It does not provide loans, hold money, or guarantee outcomes.
+                I understand Amicbridge is a connection platform and does not provide loans, hold money, or guarantee outcomes.
               </span>
             </label>
 
-            <div class="actions">
-              <button class="btn primary" type="submit">Send request</button>
-              <button class="btn" type="button" id="generateAgreementBtn">
-                Generate loan agreement (template)
-              </button>
-            </div>
+            <button class="btn primary" type="submit">Send request</button>
 
             <p class="fineprint">
               Safety: Never share passwords, bank logins, seed phrases, private keys, or full ID numbers.
@@ -247,37 +243,23 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
       </div>
     </section>
 
-    <!-- LOAN AGREEMENT TEMPLATE -->
+    <!-- LOAN AGREEMENT (TEXT ONLY) -->
     <section class="section" id="agreement">
       <div class="container">
-        <h2>Loan agreement template</h2>
+        <h2>Loan agreement contract</h2>
 
-        <p class="muted">
-          Template for informational purposes only — not legal advice. For serious amounts, consult a lawyer.
-          Amicbridge does not verify parties and is not a party to the agreement.
+        <p>
+          Amicbridge provides a loan agreement contract template that borrowers and lenders can use to document the terms they agree on.
+          This helps both parties stay clear on repayment schedule, interest, duration, and responsibilities.
         </p>
 
-        <div class="notice">
-          <strong>How to use:</strong> Fill the form above (borrow or lend), click “Generate loan agreement”, review the text,
-          and use “Print / Save as PDF”. Adjust terms as needed.
-        </div>
+        <p class="muted">
+          The agreement is provided for general guidance only and is not legal advice.
+          For larger loans or business loans, consider consulting a lawyer or professional advisor.
+        </p>
 
-        <div class="box">
-          <div class="actions">
-            <button class="btn primary" type="button" id="printAgreementBtn">Print / Save as PDF</button>
-            <button class="btn" type="button" id="clearAgreementBtn">Clear</button>
-          </div>
-
-          <textarea
-            id="agreementText"
-            class="agreement"
-            rows="26"
-            spellcheck="false"
-            placeholder="Your generated agreement will appear here."></textarea>
-
-          <p class="fineprint">
-            Tip: Write names and ID details carefully. Do not include sensitive account logins. Consider signing with BankID or a verified signature tool.
-          </p>
+        <div class="notice subtle">
+          <strong>Note:</strong> Amicbridge is not a party to the loan agreement and does not guarantee repayment.
         </div>
       </div>
     </section>
@@ -289,13 +271,13 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
 
         <div class="notice">
           <strong>Be careful:</strong> Verify identity, use written terms, and consider professional advice for large amounts.
-          Amicbridge does not verify or guarantee users.
+          Amicbridge does not verify users and does not guarantee outcomes.
         </div>
 
         <ul class="plain-list">
-          <li>Use written agreements (amount, duration, interest, schedule, late fees).</li>
-          <li>Verify identity and ability to repay (documentation, references, collateral if needed).</li>
-          <li>Never share sensitive access information (passwords, logins, private keys).</li>
+          <li>Verify identity before agreements.</li>
+          <li>Use written contracts with clear terms.</li>
+          <li>Do not share sensitive access information.</li>
           <li>Keep communication documented and clear.</li>
         </ul>
       </div>
@@ -337,7 +319,7 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
     </footer>
   </main>
 
-  <!-- JS: show/hide fields + generate agreement -->
+  <!-- JS: show/hide fields by request type -->
   <script>
     (function () {
       const type = document.getElementById("requestType");
@@ -354,185 +336,6 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
 
       type.addEventListener("change", update);
       update();
-
-      // Agreement generator
-      const generateBtn = document.getElementById("generateAgreementBtn");
-      const printBtn = document.getElementById("printAgreementBtn");
-      const clearBtn = document.getElementById("clearAgreementBtn");
-      const agreementText = document.getElementById("agreementText");
-
-      function safe(v) {
-        return (v || "").toString().trim();
-      }
-
-      function generateAgreement() {
-        const requestType = safe(type.value);
-
-        if (requestType !== "Borrow request" && requestType !== "Lending request") {
-          agreementText.value =
-            "Loan agreement template is intended for Borrow or Lending requests.\n\n" +
-            "Select 'Borrow request' or 'Lending request' above, fill the relevant fields, then click Generate again.";
-          document.getElementById("agreement").scrollIntoView({ behavior: "smooth" });
-          return;
-        }
-
-        // Pull form fields
-        const name = safe(document.getElementById("name").value);
-        const email = safe(document.getElementById("email").value);
-
-        const bAmount = safe(document.getElementById("borrow_amount_nok").value);
-        const bDuration = safe(document.getElementById("borrow_duration").value);
-        const bMaxInterest = safe(document.getElementById("borrow_max_interest").value);
-        const bPurpose = safe(document.getElementById("borrow_purpose").value);
-        const bRepay = safe(document.getElementById("borrow_repayment_plan").value);
-
-        const lAmount = safe(document.getElementById("lend_amount_nok").value);
-        const lDuration = safe(document.getElementById("lend_duration").value);
-        const lInterest = safe(document.getElementById("lend_expected_interest").value);
-        const lConditions = safe(document.getElementById("lend_conditions").value);
-
-        // Best-effort values
-        const principal = bAmount || lAmount || "[NOK amount]";
-        const duration = bDuration || lDuration || "[duration]";
-        const interest = bMaxInterest || lInterest || "[interest rate / terms]";
-        const purpose = bPurpose || "[purpose]";
-        const extra = bRepay || lConditions || "[additional terms]";
-
-        const today = new Date();
-        const dateStr = today.toISOString().slice(0, 10);
-
-        agreementText.value =
-`LOAN AGREEMENT (TEMPLATE)
-Date: ${dateStr}
-
-IMPORTANT NOTICE:
-This template is provided for informational purposes only and is not legal advice. Parties should obtain independent legal and financial advice before signing. Amicbridge is not a party to this agreement and provides no guarantees.
-
-1) PARTIES
-Lender:
-Name/Company: ________________________________
-Address: _____________________________________
-ID/Org no.: ___________________________________
-Email/Phone: _________________________________
-
-Borrower:
-Name/Company: ________________________________
-Address: _____________________________________
-ID/Org no.: ___________________________________
-Email/Phone: _________________________________
-
-(Reference request contact: ${name || "[name]"} / ${email || "[email]"})
-
-2) LOAN AMOUNT
-Principal amount: NOK ${principal}
-
-3) PURPOSE (optional)
-${purpose}
-
-4) INTEREST
-Interest: ${interest}
-Interest calculation method: _____________________
-Interest payment schedule: _______________________
-
-5) TERM AND REPAYMENT
-Loan term / duration: ${duration}
-
-Repayment schedule (choose one):
-[ ] Monthly installments
-[ ] Single payment at maturity
-[ ] Other: _____________________________________
-
-Repayment details:
-________________________________________________
-________________________________________________
-
-6) FEES AND LATE PAYMENT
-Late fee / default interest (if any):
-________________________________________________
-
-7) PREPAYMENT
-Borrower may prepay the loan:
-[ ] Yes, without penalty
-[ ] Yes, with penalty: _________________________
-[ ] No
-
-8) SECURITY / COLLATERAL (optional)
-[ ] None
-[ ] Collateral description:
-________________________________________________
-________________________________________________
-
-9) REPRESENTATIONS
-Each party confirms:
-- They are legally able to enter this agreement.
-- They have provided accurate information to the best of their knowledge.
-
-10) DISPUTES AND GOVERNING LAW
-Governing law (choose):
-[ ] Norway
-[ ] Other: _____________________________________
-
-Dispute resolution:
-[ ] Negotiation in good faith
-[ ] Mediation
-[ ] Court jurisdiction: __________________________
-
-11) NOTICES
-Notices must be sent to the addresses/emails listed in Section 1.
-
-12) ENTIRE AGREEMENT
-This document represents the entire agreement between the parties regarding this loan. Any changes must be in writing and signed.
-
-SIGNATURES
-
-LENDER
-Name: ________________________________
-Signature: ___________________________
-Date: ________________________________
-
-BORROWER
-Name: ________________________________
-Signature: ___________________________
-Date: ________________________________
-
-NOTES / ADDITIONAL TERMS (optional)
-${extra || ""}`.trim();
-
-        document.getElementById("agreement").scrollIntoView({ behavior: "smooth" });
-      }
-
-      generateBtn.addEventListener("click", generateAgreement);
-
-      printBtn.addEventListener("click", function () {
-        const text = agreementText.value.trim();
-        if (!text) return;
-
-        const w = window.open("", "_blank");
-        w.document.open();
-        w.document.write(`
-          <!doctype html>
-          <html>
-          <head>
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <title>Loan Agreement</title>
-            <style>
-              body{font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; padding: 24px; line-height: 1.5;}
-              pre{white-space: pre-wrap; word-wrap: break-word; font-size: 14px;}
-            </style>
-          </head>
-          <body>
-            <pre>${text.replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")}</pre>
-            <script>window.print();<\/script>
-          </body>
-          </html>
-        `);
-        w.document.close();
-      });
-
-      clearBtn.addEventListener("click", function () {
-        agreementText.value = "";
-      });
     })();
   </script>
 
@@ -581,6 +384,7 @@ ${extra || ""}`.trim();
       margin-top:1rem;
       color:var(--muted);
     }
+    .notice.subtle{background:var(--soft)}
 
     .actions{margin-top:1rem;display:flex;gap:.7rem;flex-wrap:wrap}
     .btn{
@@ -591,7 +395,6 @@ ${extra || ""}`.trim();
       text-decoration:none;
       font-weight:600;
       display:inline-block;
-      cursor:pointer;
     }
     .btn.primary{background:#111827;color:#fff;border-color:#111827}
 
@@ -622,14 +425,6 @@ ${extra || ""}`.trim();
     .checkbox input{width:auto;margin-top:.25rem}
     .fineprint{color:var(--muted);font-size:.92rem;margin:.7rem 0 0}
     .section-fields{margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--border)}
-
-    .agreement{
-      margin-top: .9rem;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 13px;
-      line-height: 1.45;
-      min-height: 420px;
-    }
 
     .contact-box{
       border:1px solid var(--border);
