@@ -12,7 +12,7 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
   <title>Amicbridge — Crypto Investment Strategy</title>
   <meta
     name="description"
-    content="Request a crypto investment strategy framework. Educational guidance only. No custody, no guarantees."
+    content="Request a crypto investment strategy framework. Free request. Paid educational strategy after review."
   />
 </head>
 
@@ -22,13 +22,14 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
     <div class="container header-inner">
       <div class="brand">
         <strong>Amicbridge</strong>
-        <span class="muted">Crypto strategy (education)</span>
+        <span class="muted">Crypto strategy education</span>
       </div>
 
       <nav class="nav">
         <a href="#about">About</a>
         <a href="#how">How it works</a>
-        <a href="#request">Request strategy</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#request">Request</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -41,19 +42,19 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
         <h1>Crypto investment strategy requests</h1>
 
         <p class="lead">
-          Amicbridge helps people think clearly about crypto investing.
+          Amicbridge helps you think clearly about crypto investing.
           You send your goal, timeline, and risk comfort.
-          You receive a structured, educational strategy framework you can follow.
+          You receive a structured, educational strategy framework.
         </p>
 
         <div class="notice">
-          <strong>Important:</strong> This is educational guidance only.
+          <strong>Important:</strong> This service provides educational guidance only.
           We do not provide financial advice, manage funds, execute trades,
-          or guarantee returns. Crypto is volatile and you can lose money.
+          or guarantee returns.
         </div>
 
         <div class="actions">
-          <a class="btn primary" href="#request">Request a strategy</a>
+          <a class="btn primary" href="#request">Send free request</a>
           <a class="btn" href="#how">How it works</a>
         </div>
       </div>
@@ -65,15 +66,14 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
         <h2>About Amicbridge</h2>
 
         <p>
-          Many people lose money in crypto because they follow hype,
-          trade emotionally, or never define rules.
-          Amicbridge exists to slow things down and bring structure.
+          Crypto investing is confusing and emotionally difficult.
+          Many people lose money by reacting to hype instead of following a plan.
+          Amicbridge exists to provide structure, clarity, and rules.
         </p>
 
         <p class="muted">
-          We focus on allocation thinking, risk awareness,
-          habit-based investing, and security basics —
-          not predictions or promises.
+          We focus on allocation thinking, risk management, habit-based investing,
+          and security basics — not predictions or promises.
         </p>
       </div>
     </section>
@@ -85,22 +85,56 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
 
         <ol class="steps">
           <li>
-            <strong>Send a request.</strong>
-            <span>Your goal, timeline, experience, and risk comfort.</span>
+            <strong>Send a free request</strong>
+            <span>Share your goal, timeline, and risk comfort.</span>
           </li>
           <li>
-            <strong>Review & clarify.</strong>
-            <span>We may ask a follow-up question if needed.</span>
+            <strong>Review</strong>
+            <span>Your request is reviewed. We may ask a clarification question.</span>
           </li>
           <li>
-            <strong>Receive a framework.</strong>
-            <span>A clear strategy outline and next steps.</span>
+            <strong>Optional paid strategy</strong>
+            <span>If suitable, you receive a payment link for a written strategy framework.</span>
           </li>
         </ol>
 
         <div class="notice subtle">
-          <strong>Security note:</strong>
+          <strong>Security reminder:</strong>
           Never share seed phrases, private keys, passwords, or exchange logins.
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <h2>Pricing</h2>
+
+        <p>
+          Submitting a request is <strong>free</strong>.
+          Payment is requested only if you choose to proceed after review.
+        </p>
+
+        <div class="pricing-box">
+          <h3>Crypto strategy framework</h3>
+
+          <p class="price">€59 – €99 (one-time)</p>
+
+          <ul>
+            <li>Written strategy framework (educational)</li>
+            <li>Allocation & risk guidance</li>
+            <li>DCA & rebalancing rules</li>
+            <li>Security best practices</li>
+            <li>Clear next steps checklist</li>
+          </ul>
+
+          <p class="muted">
+            Price depends on complexity. Payment does not guarantee results or profits.
+          </p>
+        </div>
+
+        <div class="notice subtle">
+          Payment is optional. No subscriptions. No performance fees.
         </div>
       </div>
     </section>
@@ -108,10 +142,11 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
     <!-- REQUEST FORM -->
     <section class="section" id="request">
       <div class="container">
-        <h2>Request a crypto investment strategy</h2>
+        <h2>Send a crypto investment strategy request</h2>
 
         <p class="muted">
-          Keep information high-level. Do not include sensitive data.
+          Request submission is free. If suitable, you may receive a payment link
+          for an educational strategy framework.
         </p>
 
         <form class="form" action={FORM_ENDPOINT} method="POST">
@@ -166,7 +201,7 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
             <textarea
               name="message"
               rows="6"
-              placeholder="Describe your goal and what kind of guidance you want. Avoid sensitive information."
+              placeholder="Describe your goal and what guidance you want. Avoid sensitive information."
               required></textarea>
           </label>
 
@@ -176,10 +211,6 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
           </label>
 
           <button class="btn primary" type="submit">Send request</button>
-
-          <p class="fineprint">
-            Do not submit passwords, private keys, or sensitive personal data.
-          </p>
         </form>
       </div>
     </section>
@@ -189,36 +220,20 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
       <div class="container">
         <h2>Contact</h2>
 
-        <p>
-          For serious questions, partnerships, or clarification about the platform,
-          you may contact the CEO directly.
-        </p>
-
         <div class="contact-box">
           <strong>{CEO_NAME}</strong>
           <div class="muted">CEO — Amicbridge</div>
 
-          <div class="contact-lines">
-            <div>
-              <span class="muted">Email:</span>
-              <a href={`mailto:${CEO_EMAIL}`}>{CEO_EMAIL}</a>
-            </div>
-          </div>
+          <p>
+            Email:
+            <a href={`mailto:${CEO_EMAIL}`}>{CEO_EMAIL}</a>
+          </p>
 
           <div class="actions">
-            <a
-              class="btn primary"
-              href={`mailto:${CEO_EMAIL}?subject=Amicbridge%20Crypto%20Strategy`}
-            >
-              Email CEO
-            </a>
-            <a class="btn" href="#request">Request strategy</a>
+            <a class="btn primary" href={`mailto:${CEO_EMAIL}`}>Email CEO</a>
+            <a class="btn" href="#request">Send request</a>
           </div>
         </div>
-
-        <p class="muted" style="margin-top: 0.8rem;">
-          Please do not send sensitive information by email.
-        </p>
       </div>
     </section>
 
@@ -244,118 +259,58 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
   <!-- STYLES -->
   <style>
     :root{
-      --bg:#ffffff;
       --text:#111827;
       --muted:#4b5563;
       --border:#e5e7eb;
       --soft:#f9fafb;
       --radius:8px;
     }
-
-    *{box-sizing:border-box}
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      background:var(--bg);
+      background:#fff;
       color:var(--text);
       line-height:1.55;
     }
-    a{color:inherit}
     .container{max-width:900px;margin:auto;padding:0 1rem}
+    a{color:inherit}
 
-    .header{
-      border-bottom:1px solid var(--border);
-      background:#fff;
-      position:sticky;
-      top:0;
-    }
-    .header-inner{
-      display:flex;
-      justify-content:space-between;
-      align-items:baseline;
-      padding:1rem 0;
-    }
-    .brand{display:flex;flex-direction:column}
-    .nav a{
-      margin-left:1rem;
-      text-decoration:none;
-      color:var(--muted);
-      font-weight:600;
-    }
+    .header{border-bottom:1px solid var(--border);background:#fff;position:sticky;top:0}
+    .header-inner{display:flex;justify-content:space-between;padding:1rem 0}
+    .nav a{margin-left:1rem;color:var(--muted);text-decoration:none;font-weight:600}
 
     .section{padding:2.2rem 0}
     .section.alt{background:var(--soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-    h1{font-size:2rem;margin-bottom:.6rem}
-    h2{font-size:1.3rem;margin-bottom:.6rem}
-    .lead{color:var(--muted);font-size:1.05rem}
+    h1{font-size:2rem}
+    h2{font-size:1.3rem}
+    .lead{color:var(--muted)}
 
-    .notice{
-      border:1px solid var(--border);
-      background:#fff;
-      padding:.9rem;
-      border-radius:var(--radius);
-      color:var(--muted);
-      margin-top:1rem;
-    }
+    .notice{border:1px solid var(--border);padding:.9rem;border-radius:var(--radius);margin-top:1rem;color:var(--muted)}
     .notice.subtle{background:var(--soft)}
 
-    .actions{margin-top:1rem;display:flex;gap:.7rem;flex-wrap:wrap}
-    .btn{
-      padding:.65rem 1rem;
-      border-radius:var(--radius);
-      border:1px solid var(--border);
-      text-decoration:none;
-      font-weight:600;
-      background:#fff;
-    }
+    .actions{margin-top:1rem;display:flex;gap:.7rem}
+    .btn{padding:.6rem 1rem;border-radius:var(--radius);border:1px solid var(--border);background:#fff;text-decoration:none;font-weight:600}
     .btn.primary{background:#111827;color:#fff;border-color:#111827}
 
     .steps{padding-left:1.2rem}
     .steps li{margin:.8rem 0}
     .steps span{display:block;color:var(--muted)}
 
-    .form{
-      border:1px solid var(--border);
-      background:#fff;
-      padding:1rem;
-      border-radius:var(--radius);
-      margin-top:1rem;
-    }
-    label{display:block;font-weight:600;margin-top:.9rem}
-    input,textarea,select{
-      width:100%;
-      margin-top:.3rem;
-      padding:.6rem;
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-    }
-    textarea{resize:vertical}
+    .pricing-box{border:1px solid var(--border);padding:1rem;border-radius:var(--radius);background:#fff}
+    .price{font-size:1.2rem;font-weight:700}
+    ul{padding-left:1.2rem}
+
+    .form{border:1px solid var(--border);padding:1rem;border-radius:var(--radius);background:#fff;margin-top:1rem}
+    label{display:block;margin-top:.9rem;font-weight:600}
+    input,textarea,select{width:100%;padding:.6rem;border-radius:var(--radius);border:1px solid var(--border)}
     .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
     .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
     .checkbox{display:flex;gap:.5rem;margin-top:1rem;color:var(--muted)}
-    .fineprint{color:var(--muted);font-size:.9rem;margin-top:.6rem}
 
-    .contact-box{
-      border:1px solid var(--border);
-      background:#fff;
-      padding:1rem;
-      border-radius:var(--radius);
-      margin-top:1rem;
-    }
-    .contact-lines{margin-top:.5rem}
+    .contact-box{border:1px solid var(--border);padding:1rem;border-radius:var(--radius);background:#fff}
 
-    .footer{
-      border-top:1px solid var(--border);
-      padding:1.4rem 0;
-    }
-    .footer-inner{
-      display:flex;
-      justify-content:space-between;
-      gap:1rem;
-      flex-wrap:wrap;
-      color:var(--muted);
-      font-size:.95rem;
-    }
+    .footer{border-top:1px solid var(--border);padding:1.4rem 0}
+    .footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;color:var(--muted)}
 
     @media(max-width:720px){
       .nav{display:none}
