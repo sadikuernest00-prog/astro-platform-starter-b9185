@@ -1,629 +1,248 @@
 ---
 const FORM_ENDPOINT = "https://formspree.io/f/xzznjkvd";
-
-const site = {
-  name: "Amicbridge Invest",
-  domain: "amicbridge.com",
-  headline: "Tell us your goals. Get a clear investment growth strategy.",
-  subheadline:
-    "Send a request describing how you want to grow your money — timeline, risk comfort, and goals. We’ll respond with structured guidance and next steps.",
-};
-
-const pillars = [
-  {
-    title: "Goal-based planning",
-    desc: "We start with what you want (house, safety buffer, retirement) and design a path that fits your timeline.",
-  },
-  {
-    title: "Risk & behavior",
-    desc: "Growth isn’t only math. We help align risk, habits, and expectations so you can actually stick to the plan.",
-  },
-  {
-    title: "Simple strategy",
-    desc: "Clear allocation ideas, diversification basics, and a repeatable approach — without unnecessary complexity.",
-  },
-];
-
-const steps = [
-  {
-    title: "Send your request",
-    desc: "Share your goal, timeline, and what you’ve tried so far.",
-  },
-  {
-    title: "We review & respond",
-    desc: "We reply with structured questions and a proposed strategy framework.",
-  },
-  {
-    title: "Build your plan",
-    desc: "You get a clear plan and next steps (educational guidance — not financial advice).",
-  },
-];
-
-const faqs = [
-  {
-    q: "Is this financial advice?",
-    a: "No. We provide general education and planning guidance, not personalized financial advice or product recommendations. Consider a licensed advisor for regulated advice.",
-  },
-  {
-    q: "Do you manage my money?",
-    a: "No. We don’t custody funds or execute trades. You remain in control of your accounts and decisions.",
-  },
-  {
-    q: "What should I include in the request?",
-    a: "Your goal, timeline, current savings/income range, risk comfort, and anything important. Avoid sensitive info like passwords or full ID numbers.",
-  },
-];
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{site.name} — Investment growth request</title>
-    <meta name="description" content={site.subheadline} />
-    <meta name="robots" content="index,follow" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Amicbridge Invest — Grow your money with clarity</title>
+  <meta name="description" content="Send an investment growth request. Get a clear, human-first strategy for growing your money." />
+</head>
 
-  <body>
-    <!-- Header -->
-    <header class="header">
-      <div class="container header-inner">
-        <a class="brand" href="#top" aria-label={`${site.name} home`}>
-          <span class="mark" aria-hidden="true">AI</span>
-          <span class="brand-text">
-            <span class="brand-name">{site.name}</span>
-            <span class="brand-domain">{site.domain}</span>
-          </span>
-        </a>
-
-        <nav class="nav" aria-label="Primary navigation">
-          <a href="#how">How it works</a>
-          <a href="#request">Send request</a>
-          <a href="#faq">FAQ</a>
-          <a class="nav-cta" href="#request">Get started</a>
-        </nav>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo">A</div>
+        <div>
+          <strong>Amicbridge Invest</strong>
+          <div class="muted">amicbridge.com</div>
+        </div>
       </div>
-    </header>
 
-    <main id="top">
-      <!-- Hero -->
-      <section class="hero">
-        <div class="container hero-grid">
-          <div class="hero-copy">
-            <div class="pill-row">
-              <span class="pill">Strategy requests open</span>
-              <span class="pill subtle">Education-first</span>
-            </div>
+      <nav class="nav">
+        <a href="#how">How it works</a>
+        <a href="#request">Send request</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-            <h1>
-              {site.headline.split(".")[0]}.<br />
-              <span>{site.headline.split(".").slice(1).join(".").trim() || "Build a plan you can follow."}</span>
-            </h1>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="pill">Investment growth requests open</span>
 
-            <p class="lead">{site.subheadline}</p>
+          <h1>
+            Grow your money<br />
+            <span>with a clear plan.</span>
+          </h1>
 
-            <div class="cta-row">
-              <a class="btn btn-primary" href="#request">Send investment growth request</a>
-              <a class="btn btn-outline" href="#how">See how it works</a>
-            </div>
+          <p class="lead">
+            Amicbridge helps people describe their financial goals and receive
+            structured, educational guidance on how to grow their money —
+            without hype or hidden agendas.
+          </p>
 
-            <div class="trust">
-              <div class="trust-card">
-                <span class="ic" aria-hidden="true">🔒</span>
-                <div>
-                  <strong>Privacy-aware</strong>
-                  <span>Don’t share sensitive info</span>
-                </div>
-              </div>
-              <div class="trust-card">
-                <span class="ic" aria-hidden="true">🧾</span>
-                <div>
-                  <strong>Clear disclaimer</strong>
-                  <span>Not financial advice</span>
-                </div>
-              </div>
-              <div class="trust-card">
-                <span class="ic" aria-hidden="true">🧠</span>
-                <div>
-                  <strong>Simple frameworks</strong>
-                  <span>Plan, habits, risk</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="disclaimer">
-              <strong>Disclaimer:</strong> This platform provides general education and planning guidance only.
-              It is not financial advice, and we don’t manage money or recommend specific securities.
-              Consider a licensed professional for regulated advice.
-            </div>
+          <div class="cta">
+            <a class="btn primary" href="#request">Send investment request</a>
+            <a class="btn" href="#how">How it works</a>
           </div>
 
-          <aside class="hero-panel" aria-label="Preview">
-            <div class="panel">
-              <div class="panel-top">
-                <div class="panel-title">
-                  <span class="dot" aria-hidden="true"></span>
-                  Example request
-                </div>
-                <span class="panel-tag">Preview</span>
-              </div>
+          <div class="trust">
+            <div>🔒 Privacy-aware</div>
+            <div>🧾 No custody of funds</div>
+            <div>📘 Not financial advice</div>
+          </div>
 
-              <div class="block">
-                <div class="kicker">Goal</div>
-                <div class="kv"><span>Target</span><strong>€30,000</strong></div>
-                <div class="kv"><span>Timeline</span><strong>24 months</strong></div>
-              </div>
-
-              <div class="hr" aria-hidden="true"></div>
-
-              <div class="block">
-                <div class="kicker">Profile</div>
-                <div class="kv"><span>Risk comfort</span><strong>Moderate</strong></div>
-                <div class="kv"><span>Monthly invest</span><strong>€350</strong></div>
-              </div>
-
-              <p class="panel-note">
-                You describe your goal and constraints. We respond with a structured plan framework.
-              </p>
-            </div>
-          </aside>
+          <div class="disclaimer">
+            <strong>Important:</strong> Amicbridge provides general educational
+            and planning guidance only. We do not provide financial advice,
+            manage funds, or guarantee outcomes.
+          </div>
         </div>
-      </section>
 
-      <!-- Value props -->
-      <section class="section">
-        <div class="container">
-          <div class="section-head">
-            <h2>What you get</h2>
-            <p>
-              A trusted investment experience starts with clarity. We focus on simple, repeatable strategy — not hype.
-            </p>
+        <aside class="preview">
+          <h4>Example request</h4>
+          <p><strong>Goal:</strong> Grow savings for long-term security</p>
+          <p><strong>Timeline:</strong> 2–5 years</p>
+          <p><strong>Risk comfort:</strong> Moderate</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section" id="how">
+      <div class="container">
+        <h2>How it works</h2>
+
+        <div class="steps">
+          <div class="step">
+            <span>1</span>
+            <p>Send a request describing your goal, timeline, and comfort with risk.</p>
+          </div>
+          <div class="step">
+            <span>2</span>
+            <p>Your request is reviewed and clarified if needed.</p>
+          </div>
+          <div class="step">
+            <span>3</span>
+            <p>You receive a clear strategy framework and next steps.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REQUEST FORM -->
+    <section class="section alt" id="request">
+      <div class="container">
+        <h2>Investment growth request</h2>
+        <p class="muted">
+          Keep details high-level. Do not include passwords, bank logins, or ID numbers.
+        </p>
+
+        <form class="form" action={FORM_ENDPOINT} method="POST">
+          <input type="hidden" name="requestType" value="Investment Growth Request" />
+
+          <div class="grid2">
+            <label>
+              Full name
+              <input name="name" required />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" required />
+            </label>
           </div>
 
           <div class="grid3">
-            {pillars.map((p) => (
-              <div class="card">
-                <h3>{p.title}</h3>
-                <p>{p.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <!-- How -->
-      <section class="section alt" id="how">
-        <div class="container">
-          <div class="section-head">
-            <h2>How it works</h2>
-            <p>Three steps. No drama. No jargon.</p>
+            <label>
+              Current savings (approx.)
+              <input name="currentSavings" placeholder="€5,000" />
+            </label>
+            <label>
+              Monthly amount to invest
+              <input name="monthlyAmount" placeholder="€300" />
+            </label>
+            <label>
+              Timeline
+              <input name="timeline" placeholder="2–5 years" required />
+            </label>
           </div>
 
-          <div class="steps">
-            {steps.map((s, i) => (
-              <div class="step">
-                <div class="step-num">{i + 1}</div>
-                <div>
-                  <strong>{s.title}</strong>
-                  <p>{s.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+          <label>
+            Risk comfort
+            <select name="riskComfort" required>
+              <option value="">Select</option>
+              <option>Low</option>
+              <option>Moderate</option>
+              <option>High</option>
+            </select>
+          </label>
 
-      <!-- Request form -->
-      <section class="section" id="request">
-        <div class="container">
-          <div class="section-head">
-            <h2>Send your investment growth request</h2>
+          <label>
+            What do you want help with?
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+
+          <label class="checkbox">
+            <input type="checkbox" required />
+            <span>I understand this is educational guidance, not financial advice.</span>
+          </label>
+
+          <button class="btn primary">Send request</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- CONTACT CEO -->
+    <section class="section" id="contact">
+      <div class="container contact">
+        <h2>Contact</h2>
+
+        <div class="contact-card">
+          <div class="avatar">H</div>
+          <div>
+            <strong>Habbitx</strong>
+            <div class="muted">CEO — Amicbridge</div>
+
             <p>
-              Describe your goal and situation. Keep it high-level — no sensitive information.
+              Email:
+              <a href="mailto:contact@robertamicolsen.com">
+                contact@robertamicolsen.com
+              </a>
             </p>
-          </div>
 
-          <div class="form-wrap">
-            <form class="form" action={FORM_ENDPOINT} method="POST">
-              <input type="hidden" name="requestType" value="Investment growth request" />
-
-              <div class="grid2">
-                <label>
-                  Full name
-                  <input name="name" type="text" autocomplete="name" placeholder="Your name" required />
-                </label>
-                <label>
-                  Email
-                  <input name="email" type="email" autocomplete="email" placeholder="you@email.com" required />
-                </label>
-              </div>
-
-              <div class="grid3">
-                <label>
-                  Current savings (approx.)
-                  <input name="currentSavings" type="text" placeholder="e.g., €2,000" />
-                </label>
-                <label>
-                  Monthly amount you can invest
-                  <input name="monthlyInvest" type="text" placeholder="e.g., €200" />
-                </label>
-                <label>
-                  Timeline
-                  <input name="timeline" type="text" placeholder="e.g., 6 months / 2 years" required />
-                </label>
-              </div>
-
-              <div class="grid2">
-                <label>
-                  Goal amount (optional)
-                  <input name="goalAmount" type="text" placeholder="e.g., €30,000" />
-                </label>
-
-                <label>
-                  Risk comfort
-                  <select name="riskComfort" required>
-                    <option value="" selected disabled>Select one</option>
-                    <option value="Low">Low (prefer stability)</option>
-                    <option value="Moderate">Moderate (balanced)</option>
-                    <option value="High">High (can tolerate swings)</option>
-                  </select>
-                </label>
-              </div>
-
-              <label>
-                What do you want help with?
-                <textarea
-                  name="message"
-                  rows="6"
-                  placeholder="Example: I want a simple plan to grow savings for a house deposit. I can invest monthly and I’m new to investing. I want something low-stress and long-term."
-                  required></textarea>
-              </label>
-
-              <label class="checkbox">
-                <input type="checkbox" name="acknowledge" required />
-                <span>
-                  I understand this is general education/planning guidance and not personalized financial advice.
-                </span>
-              </label>
-
-              <button class="btn btn-primary" type="submit">Send request</button>
-              <p class="tiny">
-                By submitting, you agree we may contact you about your request.
-              </p>
-            </form>
-
-            <div class="side">
-              <div class="side-card">
-                <h3>What happens next</h3>
-                <ul>
-                  <li>We review your request.</li>
-                  <li>We reply with clarifying questions (if needed).</li>
-                  <li>You receive a strategy framework and next steps.</li>
-                </ul>
-              </div>
-
-              <div class="side-card subtle">
-                <h3>What not to send</h3>
-                <ul>
-                  <li>Passwords or bank logins</li>
-                  <li>Full ID numbers</li>
-                  <li>Credit card details</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- FAQ -->
-      <section class="section alt" id="faq">
-        <div class="container">
-          <div class="section-head">
-            <h2>FAQ</h2>
-            <p>Short answers. Straight talk.</p>
-          </div>
-
-          <div class="faq">
-            {faqs.map((f) => (
-              <details class="faq-item">
-                <summary>{f.q}</summary>
-                <p>{f.a}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <!-- Footer -->
-      <footer class="footer">
-        <div class="container footer-inner">
-          <div class="foot-left">
-            <div class="foot-brand">
-              <span class="mark small" aria-hidden="true">AI</span>
-              <div>
-                <strong>{site.name}</strong>
-                <div class="muted">{site.domain}</div>
-              </div>
-            </div>
-            <p class="muted" style="margin-top:.7rem;">
-              Not financial advice. No custody. No guarantees.
+            <p>
+              Website:
+              <a href="https://robertamicolsen.com" target="_blank">
+                robertamicolsen.com
+              </a>
             </p>
-          </div>
 
-          <div class="foot-links">
-            <a href="#how">How it works</a>
-            <a href="#request">Send request</a>
-            <a href="#faq">FAQ</a>
+            <a class="btn primary" href="mailto:contact@robertamicolsen.com">
+              Email CEO
+            </a>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="container foot-bottom">
-          <span class="muted">© {new Date().getFullYear()} {site.name}. All rights reserved.</span>
-        </div>
-      </footer>
-    </main>
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <p>
+          © {new Date().getFullYear()} Amicbridge.  
+          Educational platform only. No custody. No guarantees.
+        </p>
+      </div>
+    </footer>
+  </main>
 
-    <style>
-      :root{
-        --bg:#ffffff;
-        --text:#0b1220;
-        --muted:#475569;
-        --muted2:#64748b;
-        --border:#e2e8f0;
-        --soft:#f8fafc;
-        --soft2:#f1f5f9;
-        --brand:#2563eb;
-        --brand2:#1d4ed8;
-        --ok:#16a34a;
-        --shadow:0 18px 70px rgba(2,6,23,.08);
-        --r:18px;
-      }
-      *{box-sizing:border-box}
-      html,body{margin:0;padding:0}
-      body{
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-        background: var(--bg);
-        color: var(--text);
-        line-height: 1.5;
-      }
-      a{color:inherit}
-      .container{width:min(1120px,calc(100% - 2rem));margin:0 auto}
-
-      .header{
-        position: sticky; top: 0; z-index: 30;
-        background: rgba(255,255,255,.92);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid var(--border);
-      }
-      .header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.95rem 0}
-      .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none}
-      .mark{
-        width:40px;height:40px;border-radius:14px;
-        display:grid;place-items:center;
-        background: linear-gradient(135deg, var(--brand), var(--ok));
-        color:#fff;font-weight:950;
-        box-shadow: 0 12px 26px rgba(37,99,235,.18);
-      }
-      .mark.small{width:32px;height:32px;border-radius:12px}
-      .brand-text{display:flex;flex-direction:column;line-height:1.05}
-      .brand-name{font-weight:950;letter-spacing:.2px}
-      .brand-domain{font-size:.86rem;color:var(--muted2)}
-      .nav{display:flex;gap:1rem;align-items:center}
-      .nav a{
-        text-decoration:none;
-        font-weight:800;
-        color: var(--muted);
-        padding:.35rem .5rem;
-        border-radius:12px;
-      }
-      .nav a:hover{background: var(--soft2); color: var(--text)}
-      .nav-cta{
-        border:1px solid var(--border);
-        background: var(--soft);
-        color: var(--text) !important;
-      }
-
-      .hero{padding: 3.8rem 0 2.6rem}
-      .hero-grid{display:grid;grid-template-columns: 1.15fr .85fr;gap:2rem;align-items:start}
-      .pill-row{display:flex;gap:.55rem;flex-wrap:wrap}
-      .pill{
-        display:inline-flex;align-items:center;justify-content:center;
-        padding:.32rem .6rem;border-radius:999px;
-        border:1px solid var(--border);
-        background: var(--soft);
-        color: var(--muted);
-        font-weight:900;
-        font-size:.9rem;
-      }
-      .pill.subtle{background:#fff}
-      h1{
-        margin: 1rem 0 0;
-        font-size: clamp(2.25rem, 4.2vw, 3.35rem);
-        line-height: 1.05;
-        letter-spacing: -0.03em;
-      }
-      h1 span{
-        background: linear-gradient(90deg, var(--brand), var(--ok));
-        -webkit-background-clip:text;background-clip:text;color:transparent;
-      }
-      .lead{margin: 1rem 0 1.35rem;color: var(--muted);font-size: 1.06rem;max-width: 74ch}
-      .cta-row{display:flex;gap:.8rem;flex-wrap:wrap}
-      .btn{
-        display:inline-flex;align-items:center;justify-content:center;
-        padding:.92rem 1.15rem;border-radius:999px;
-        border:1px solid var(--border);
-        background:#fff;
-        font-weight:950;
-        text-decoration:none;
-        cursor:pointer;
-      }
-      .btn-primary{
-        background: var(--brand);
-        border-color: var(--brand);
-        color:#fff;
-        box-shadow: 0 16px 30px rgba(37,99,235,.18);
-      }
-      .btn-outline{background: var(--soft)}
-      .trust{
-        display:grid;grid-template-columns:repeat(3,1fr);
-        gap:.8rem;margin-top:1.35rem;
-      }
-      .trust-card{
-        border:1px solid var(--border);
-        border-radius: var(--r);
-        background:#fff;
-        padding:.9rem .95rem;
-        display:flex;gap:.65rem;
-      }
-      .ic{font-size:1.1rem}
-      .trust-card strong{display:block}
-      .trust-card span{display:block;color:var(--muted);font-size:.92rem;margin-top:.12rem}
-      .disclaimer{
-        margin-top: 1.1rem;
-        border:1px solid var(--border);
-        background: var(--soft);
-        border-radius: var(--r);
-        padding: 1rem 1.05rem;
-        color: var(--muted);
-        font-size: .95rem;
-      }
-
-      .panel{
-        border:1px solid var(--border);
-        background:#fff;
-        border-radius: var(--r);
-        padding: 1.1rem;
-        box-shadow: var(--shadow);
-      }
-      .panel-top{display:flex;align-items:center;justify-content:space-between;gap:.7rem;margin-bottom:.9rem}
-      .panel-title{display:flex;align-items:center;gap:.55rem;font-weight:950;color:var(--muted)}
-      .dot{width:10px;height:10px;border-radius:999px;background:var(--ok);box-shadow:0 0 0 6px rgba(22,163,74,.12)}
-      .panel-tag{
-        font-size:.85rem;color:var(--muted);
-        border:1px solid var(--border);
-        background: var(--soft);
-        padding:.25rem .55rem;border-radius:999px;
-        font-weight:900;
-      }
-      .block{margin-bottom:1rem}
-      .kicker{
-        font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;
-        color: var(--muted2); margin-bottom:.35rem;
-      }
-      .kv{
-        border:1px solid var(--border);
-        background: var(--soft);
-        border-radius: 14px;
-        padding: .75rem .8rem;
-        display:flex;align-items:center;justify-content:space-between;gap:.8rem;
-        margin-top:.6rem;
-      }
-      .kv span{color:var(--muted);font-weight:800;font-size:.92rem}
-      .kv strong{font-weight:950}
-      .hr{height:1px;background: var(--border); margin: 1rem 0}
-      .panel-note{margin:0;color:var(--muted);font-size:.92rem}
-
-      .section{padding: 3rem 0}
-      .section.alt{background: linear-gradient(180deg, var(--soft), #fff)}
-      .section-head{max-width: 80ch;margin-bottom: 1.25rem}
-      .section-head h2{margin:0;font-size: 1.75rem;letter-spacing:-.01em}
-      .section-head p{margin:.55rem 0 0;color:var(--muted)}
-
-      .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-      .card{
-        background:#fff;border:1px solid var(--border);border-radius: var(--r);
-        padding:1.1rem 1.15rem; box-shadow:0 8px 30px rgba(2,6,23,.04);
-      }
-      .card h3{margin:0 0 .35rem}
-      .card p{margin:0;color:var(--muted)}
-
-      .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-      .step{
-        background:#fff;border:1px solid var(--border);border-radius: var(--r);
-        padding:1rem 1.05rem; display:flex;gap:.85rem;
-      }
-      .step-num{
-        width:36px;height:36px;border-radius:14px;
-        display:grid;place-items:center;
-        background: rgba(37,99,235,.10);
-        border:1px solid rgba(37,99,235,.22);
-        color: var(--brand);
-        font-weight: 950;
-        flex:0 0 auto;
-      }
-      .step p{margin:.35rem 0 0;color:var(--muted)}
-
-      .form-wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:1rem;align-items:start}
-      .form{
-        background:#fff;border:1px solid var(--border);border-radius: var(--r);
-        padding:1.2rem; box-shadow: 0 10px 40px rgba(2,6,23,.05);
-      }
-      label{display:block;font-weight:950;margin:.75rem 0 .25rem}
-      input, textarea, select{
-        width:100%;
-        border:1px solid var(--border);
-        background:#fff;
-        border-radius:14px;
-        padding:.82rem .9rem;
-        font: inherit;
-        color: var(--text);
-        outline:none;
-      }
-      textarea{resize:vertical}
-      input:focus, textarea:focus, select:focus{
-        border-color: rgba(37,99,235,.45);
-        box-shadow: 0 0 0 4px rgba(37,99,235,.12);
-      }
-      .grid2{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
-      .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem}
-      .checkbox{
-        display:flex;gap:.65rem;align-items:flex-start;
-        font-weight:850;color:var(--muted);margin-top:.85rem;
-      }
-      .checkbox input{width:auto;margin-top:.2rem}
-      .tiny{margin:.65rem 0 0;color:var(--muted2);font-size:.9rem}
-
-      .side{display:grid;gap:1rem}
-      .side-card{
-        background:#fff;border:1px solid var(--border);border-radius: var(--r);
-        padding:1.1rem 1.15rem;
-      }
-      .side-card.subtle{background: var(--soft)}
-      .side-card h3{margin:0 0 .6rem}
-      .side-card ul{margin:0;padding-left:1.15rem;color:var(--muted)}
-      .side-card li{margin:.45rem 0}
-
-      .faq{display:grid;gap:.65rem}
-      .faq-item{
-        border:1px solid var(--border);
-        background:#fff;
-        border-radius: var(--r);
-        padding: .95rem 1.05rem;
-      }
-      .faq-item summary{cursor:pointer;font-weight:950}
-      .faq-item p{margin:.6rem 0 0;color:var(--muted)}
-
-      .footer{border-top:1px solid var(--border);padding:2.2rem 0 1.6rem;background:#fff}
-      .footer-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-      .foot-brand{display:flex;align-items:center;gap:.7rem}
-      .foot-links{display:flex;gap:1rem;flex-wrap:wrap}
-      .foot-links a{text-decoration:none;color:var(--muted);font-weight:950}
-      .foot-links a:hover{text-decoration:underline}
-      .foot-bottom{margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border)}
-
-      @media (max-width: 1000px){
-        .hero-grid{grid-template-columns:1fr}
-        .trust{grid-template-columns:1fr}
-        .grid3{grid-template-columns:1fr}
-        .steps{grid-template-columns:1fr}
-        .form-wrap{grid-template-columns:1fr}
-      }
-      @media (max-width: 780px){
-        .nav{display:none}
-        .grid2{grid-template-columns:1fr}
-      }
-    </style>
-  </body>
+  <!-- STYLES -->
+  <style>
+    body{margin:0;font-family:system-ui;background:#fff;color:#0f172a}
+    a{color:inherit}
+    .container{max-width:1100px;margin:auto;padding:0 1rem}
+    .header{border-bottom:1px solid #e5e7eb;position:sticky;top:0;background:#fff}
+    .header-inner{display:flex;justify-content:space-between;align-items:center;padding:1rem 0}
+    .brand{display:flex;gap:.7rem;align-items:center}
+    .logo{width:40px;height:40px;background:#2563eb;color:#fff;border-radius:12px;display:grid;place-items:center;font-weight:900}
+    .nav a{margin-left:1rem;font-weight:700;text-decoration:none;color:#475569}
+    .hero{padding:4rem 0}
+    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem}
+    h1{font-size:3rem;line-height:1.1}
+    h1 span{color:#2563eb}
+    .pill{display:inline-block;background:#f1f5f9;border:1px solid #e5e7eb;padding:.3rem .6rem;border-radius:999px;font-weight:700}
+    .lead{font-size:1.1rem;color:#475569}
+    .cta{margin:1rem 0}
+    .btn{display:inline-block;padding:.8rem 1.1rem;border-radius:999px;border:1px solid #e5e7eb;font-weight:800;text-decoration:none}
+    .btn.primary{background:#2563eb;color:#fff;border-color:#2563eb}
+    .trust{display:flex;gap:1rem;color:#475569;font-weight:700;margin-top:1rem}
+    .disclaimer{margin-top:1rem;background:#f8fafc;border:1px solid #e5e7eb;padding:1rem;border-radius:16px;color:#475569}
+    .preview{background:#f8fafc;border:1px solid #e5e7eb;padding:1rem;border-radius:16px}
+    .section{padding:3rem 0}
+    .section.alt{background:#f8fafc}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .step{border:1px solid #e5e7eb;border-radius:16px;padding:1rem}
+    .step span{font-weight:900;color:#2563eb}
+    .form{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:1.5rem}
+    label{display:block;font-weight:800;margin-top:1rem}
+    input,textarea,select{width:100%;padding:.7rem;border-radius:12px;border:1px solid #e5e7eb}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .checkbox{display:flex;gap:.5rem;align-items:flex-start;margin-top:1rem}
+    .contact-card{display:flex;gap:1rem;border:1px solid #e5e7eb;border-radius:16px;padding:1.5rem;align-items:center}
+    .avatar{width:56px;height:56px;border-radius:16px;background:#2563eb;color:#fff;display:grid;place-items:center;font-weight:900;font-size:1.4rem}
+    .footer{border-top:1px solid #e5e7eb;padding:2rem 0;color:#475569}
+    @media(max-width:900px){
+      .hero-grid,.steps,.grid2,.grid3{grid-template-columns:1fr}
+    }
+  </style>
+</body>
 </html>
