@@ -9,10 +9,10 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Amicbridge — Crypto Investment Strategy</title>
+  <title>Amicbridge — Investment Strategy</title>
   <meta
     name="description"
-    content="Request a crypto investment strategy framework. Free request. Paid educational strategy after review."
+    content="Request an investment strategy framework. Free request. Paid educational strategy after review."
   />
 </head>
 
@@ -22,7 +22,7 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
     <div class="container header-inner">
       <div class="brand">
         <strong>Amicbridge</strong>
-        <span class="muted">Crypto strategy education</span>
+        <span class="muted">Investment strategy education</span>
       </div>
 
       <nav class="nav">
@@ -39,17 +39,17 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
     <!-- HERO -->
     <section class="section hero">
       <div class="container">
-        <h1>Crypto investment strategy requests</h1>
+        <h1>Investment strategy requests</h1>
 
         <p class="lead">
-          Amicbridge helps you think clearly about crypto investing.
-          You send your goal, timeline, and risk comfort.
-          You receive a structured, educational strategy framework.
+          Amicbridge helps people think clearly about investing.
+          You describe your goal, timeline, and risk comfort.
+          You receive a structured, educational investment strategy framework.
         </p>
 
         <div class="notice">
-          <strong>Important:</strong> This service provides educational guidance only.
-          We do not provide financial advice, manage funds, execute trades,
+          <strong>Important:</strong> This service provides educational information only.
+          We do not provide financial advice, manage funds, execute investments,
           or guarantee returns.
         </div>
 
@@ -66,14 +66,15 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
         <h2>About Amicbridge</h2>
 
         <p>
-          Crypto investing is confusing and emotionally difficult.
-          Many people lose money by reacting to hype instead of following a plan.
-          Amicbridge exists to provide structure, clarity, and rules.
+          Many people struggle with investing because they lack a clear plan.
+          Emotional decisions, unclear goals, and inconsistent behavior often
+          lead to poor outcomes.
         </p>
 
         <p class="muted">
-          We focus on allocation thinking, risk management, habit-based investing,
-          and security basics — not predictions or promises.
+          Amicbridge focuses on long-term thinking, risk awareness,
+          diversification principles, and disciplined decision-making.
+          No hype. No promises. Just structure and clarity.
         </p>
       </div>
     </section>
@@ -86,7 +87,7 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
         <ol class="steps">
           <li>
             <strong>Send a free request</strong>
-            <span>Share your goal, timeline, and risk comfort.</span>
+            <span>Share your goals, timeline, and risk comfort.</span>
           </li>
           <li>
             <strong>Review</strong>
@@ -99,8 +100,8 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
         </ol>
 
         <div class="notice subtle">
-          <strong>Security reminder:</strong>
-          Never share seed phrases, private keys, passwords, or exchange logins.
+          <strong>Reminder:</strong>
+          Never share passwords, bank logins, private keys, or sensitive identity information.
         </div>
       </div>
     </section>
@@ -116,25 +117,25 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
         </p>
 
         <div class="pricing-box">
-          <h3>Crypto strategy framework</h3>
+          <h3>Investment strategy framework</h3>
 
           <p class="price">NOK 690 – 1,190 (one-time)</p>
 
           <ul>
-            <li>Written strategy framework (educational)</li>
-            <li>Allocation & risk guidance</li>
-            <li>DCA & rebalancing rules</li>
-            <li>Security best practices</li>
-            <li>Clear next steps checklist</li>
+            <li>Written investment strategy framework (educational)</li>
+            <li>Goal and time-horizon alignment</li>
+            <li>Risk and diversification principles</li>
+            <li>Contribution and rebalancing guidance</li>
+            <li>Clear next-steps checklist</li>
           </ul>
 
           <p class="muted">
-            Price depends on complexity. Payment does not guarantee results or profits.
+            Price depends on complexity. Payment does not guarantee results or returns.
           </p>
         </div>
 
         <div class="notice subtle">
-          Payment is optional. No subscriptions. No performance fees.
+          No subscriptions. No performance-based fees.
         </div>
       </div>
     </section>
@@ -142,15 +143,15 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
     <!-- REQUEST FORM -->
     <section class="section" id="request">
       <div class="container">
-        <h2>Send a crypto investment strategy request</h2>
+        <h2>Send an investment strategy request</h2>
 
         <p class="muted">
           Request submission is free. If suitable, you may receive a payment link
-          for an educational strategy framework.
+          for an educational investment strategy framework.
         </p>
 
         <form class="form" action={FORM_ENDPOINT} method="POST">
-          <input type="hidden" name="requestType" value="Crypto investment strategy request" />
+          <input type="hidden" name="requestType" value="Investment strategy request" />
 
           <div class="grid2">
             <label>
@@ -172,7 +173,7 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
 
             <label>
               Timeline
-              <input name="timeline" placeholder="e.g. 1 year, 5 years" required />
+              <input name="timeline" placeholder="e.g. 5 years, 10 years" required />
             </label>
 
             <label>
@@ -181,7 +182,7 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
                 <option value="" disabled selected>Select</option>
                 <option>Beginner</option>
                 <option>Intermediate</option>
-                <option>Advanced</option>
+                <option>Experienced</option>
               </select>
             </label>
           </div>
@@ -201,13 +202,13 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
             <textarea
               name="message"
               rows="6"
-              placeholder="Describe your goal and what guidance you want. Avoid sensitive information."
+              placeholder="Describe your goal and what kind of investment guidance you are looking for."
               required></textarea>
           </label>
 
           <label class="checkbox">
             <input type="checkbox" required />
-            <span>I understand this is educational guidance, not financial advice.</span>
+            <span>I understand this is educational information, not financial advice.</span>
           </label>
 
           <button class="btn primary" type="submit">Send request</button>
@@ -242,7 +243,7 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
       <div class="container footer-inner">
         <div>
           <strong>Amicbridge</strong>
-          <div class="muted">Crypto strategy education</div>
+          <div class="muted">Investment strategy education</div>
         </div>
 
         <div class="muted">
