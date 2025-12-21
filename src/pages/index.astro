@@ -1,7 +1,9 @@
+
 ---
 const FORM_ENDPOINT = "https://formspree.io/f/xzznjkvd";
 const CEO_NAME = "Robert Amicolsen";
 const CEO_EMAIL = "robertamicolsen@gmail.com";
+const ABUSE_EMAIL = "robertamicolsen@gmail.com";
 ---
 
 <!doctype html>
@@ -12,23 +14,24 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
   <title>Amicbridge — Verified Borrow & Lend Network</title>
   <meta
     name="description"
-    content="Amicbridge is a verified network bridge connecting borrowers and lenders. Manual ID verification by the CEO."
+    content="Amicbridge connects serious borrowers and lenders. Manual ID verification required before network access."
   />
+  <meta name="theme-color" content="#ffffff" />
 </head>
 
 <body>
-  <!-- HEADER -->
-  <header class="header">
+  <header class="header" id="top">
     <div class="container header-inner">
       <div class="brand">
         <strong>Amicbridge</strong>
-        <span class="muted">Verified lending network</span>
+        <span class="muted">Verified network bridge</span>
       </div>
 
-      <nav class="nav">
+      <nav class="nav" aria-label="Primary navigation">
         <a href="#how">How it works</a>
         <a href="#verification">Verification</a>
         <a href="#request">Request</a>
+        <a href="#safety">Safety</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -38,21 +41,36 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
     <!-- HERO -->
     <section class="section hero">
       <div class="container">
-        <h1>A verified network for borrowing and lending</h1>
+        <h1>Borrow and lend with a clear, verified process</h1>
 
         <p class="lead">
-          Amicbridge is a network bridge for serious people and business partners who want to borrow money,
-          lend money, or request general investment strategy guidance.
+          Amicbridge is a network bridge for serious people and business partners.
+          Borrowers submit a request, lenders submit an offer, and we require manual ID verification before granting access to the network.
         </p>
 
         <div class="actions">
           <a class="btn primary" href="#request">Send a request</a>
           <a class="btn" href="#verification">Manual verification</a>
         </div>
+
+        <div class="mini-grid">
+          <div class="mini-card">
+            <div class="mini-title">Manual ID verification</div>
+            <div class="muted">Identity is checked before network access.</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-title">Direct agreements</div>
+            <div class="muted">Parties agree terms directly and keep everything in writing.</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-title">Safety-first</div>
+            <div class="muted">Clear requests, clear terms, and careful checks.</div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- HOW IT WORKS -->
+    <!-- HOW -->
     <section class="section" id="how">
       <div class="container">
         <h2>How it works</h2>
@@ -60,21 +78,25 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
         <ol class="steps">
           <li>
             <strong>Submit a request</strong>
-            <span>You explain what you need: borrowing, lending, or investment strategy.</span>
+            <span>Borrowers provide amount, duration, and repayment plan. Lenders provide amount, duration, and conditions.</span>
           </li>
           <li>
-            <strong>Review for clarity</strong>
-            <span>Each request is reviewed manually for seriousness and completeness.</span>
+            <strong>Clarity review</strong>
+            <span>We review submissions for completeness and may ask follow-up questions.</span>
           </li>
           <li>
             <strong>Manual ID verification</strong>
-            <span>Identity is verified manually before access to the network.</span>
+            <span>Users verify identity before being granted access to the network.</span>
           </li>
           <li>
-            <strong>Direct agreement</strong>
-            <span>Borrowers and lenders communicate directly and agree on terms.</span>
+            <strong>Connect and agree</strong>
+            <span>Parties communicate directly and agree terms. Use a written contract and do your own due diligence.</span>
           </li>
         </ol>
+
+        <div class="notice subtle">
+          <strong>Safety note:</strong> Never share passwords, bank logins, private keys, or full ID numbers in public messages.
+        </div>
       </div>
     </section>
 
@@ -84,44 +106,61 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
         <h2>Manual ID verification</h2>
 
         <p class="muted">
-          To reduce fraud and improve trust, Amicbridge requires manual identity verification
-          before users are granted access to the network.
+          To reduce fraud and improve trust, Amicbridge requires manual identity verification before network access.
+          Verification is reviewed by a person (not an automated system).
         </p>
 
         <div class="box">
+          <h3 class="box-title">What we verify</h3>
           <ul class="clean-list">
-            <li>Identity is reviewed manually by the CEO</li>
-            <li>Basic document consistency and authenticity checks</li>
-            <li>Email and contact confirmation</li>
-            <li>No automated systems or third-party profiling</li>
+            <li><strong>Identity consistency:</strong> name and basic details match the submitted request.</li>
+            <li><strong>Document review:</strong> we check an ID document for common signs of tampering.</li>
+            <li><strong>Contact verification:</strong> we confirm a working email and may request additional confirmation if needed.</li>
           </ul>
 
-          <p class="muted">
-            Verification improves trust but does not guarantee repayment or remove financial risk.
-            All parties must perform their own due diligence.
-          </p>
+          <h3 class="box-title" style="margin-top:1rem;">What verification is not</h3>
+          <ul class="clean-list">
+            <li>It is not a guarantee of repayment or a guarantee that a deal is risk-free.</li>
+            <li>It is not a credit score, underwriting, or bank-level financial assessment.</li>
+            <li>It does not replace your own checks and a written contract.</li>
+          </ul>
+
+          <div class="notice subtle">
+            <strong>Important:</strong> Verification reduces risk but does not remove financial risk.
+            Always use written agreements and consider professional advice for large amounts.
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- REQUEST FORM -->
+    <!-- REQUEST -->
     <section class="section" id="request">
       <div class="container">
         <h2>Send a request</h2>
+        <p class="muted">
+          One form. Choose the request type and add the important information. We respond by email after review.
+        </p>
 
         <div class="box">
-          <form action={FORM_ENDPOINT} method="POST" class="form">
+          <form class="form" action={FORM_ENDPOINT} method="POST" id="amic-form">
             <input type="hidden" name="source" value="amicbridge.com" />
+
+            <!-- Honeypot anti-spam -->
+            <div class="hp" aria-hidden="true">
+              <label>Leave this field empty
+                <input name="website" tabindex="-1" autocomplete="off" />
+              </label>
+            </div>
 
             <div class="grid2">
               <label>
                 Full name / Company
-                <input name="name" required />
+                <input name="name" autocomplete="name" required />
               </label>
 
               <label>
                 Email
-                <input type="email" name="email" required />
+                <input type="email" name="email" autocomplete="email" required />
               </label>
             </div>
 
@@ -135,125 +174,283 @@ const CEO_EMAIL = "robertamicolsen@gmail.com";
               </select>
             </label>
 
-            <div id="borrowFields" hidden>
-              <label>Amount (NOK)
-                <input name="borrow_amount" />
-              </label>
-              <label>Repayment plan
-                <textarea name="borrow_plan" rows="4"></textarea>
-              </label>
-            </div>
-
-            <div id="lendFields" hidden>
-              <label>Amount available (NOK)
-                <input name="lend_amount" />
-              </label>
-              <label>Conditions
-                <textarea name="lend_conditions" rows="4"></textarea>
+            <!-- Borrow -->
+            <div id="borrowFields" class="section-fields" hidden>
+              <div class="grid2">
+                <label>Amount needed (NOK)
+                  <input name="borrow_amount_nok" inputmode="numeric" placeholder="e.g. 50,000" />
+                </label>
+                <label>Duration
+                  <input name="borrow_duration" placeholder="e.g. 12 months" />
+                </label>
+              </div>
+              <label>Repayment plan (important)
+                <textarea name="borrow_repayment_plan" rows="4" placeholder="How you repay, income source, schedule, and any collateral (optional)."></textarea>
               </label>
             </div>
 
-            <div id="investFields" hidden>
-              <label>Investment goal
-                <textarea name="invest_goal" rows="4"></textarea>
+            <!-- Lend -->
+            <div id="lendFields" class="section-fields" hidden>
+              <div class="grid2">
+                <label>Amount available (NOK)
+                  <input name="lend_amount_nok" inputmode="numeric" placeholder="e.g. 100,000" />
+                </label>
+                <label>Preferred duration
+                  <input name="lend_duration" placeholder="e.g. 6–12 months" />
+                </label>
+              </div>
+              <label>Conditions (important)
+                <textarea name="lend_conditions" rows="4" placeholder="Documentation required, collateral, interest expectations, repayment schedule, communication."></textarea>
+              </label>
+            </div>
+
+            <!-- Investment -->
+            <div id="investFields" class="section-fields" hidden>
+              <div class="grid2">
+                <label>Monthly amount (optional)
+                  <input name="invest_monthly_amount" placeholder="e.g. 2,000 NOK" />
+                </label>
+                <label>Timeline
+                  <input name="invest_timeline" placeholder="e.g. 5 years" />
+                </label>
+              </div>
+              <label>Goal and constraints (important)
+                <textarea name="invest_goal" rows="4" placeholder="Goal, time horizon, risk comfort, and any restrictions."></textarea>
               </label>
             </div>
 
             <label>
-              Additional details
-              <textarea name="message" rows="6" required></textarea>
+              Details (important)
+              <textarea
+                name="message"
+                rows="6"
+                placeholder="Write clearly. Avoid sensitive data. The clearer you are, the faster the process."
+                required></textarea>
             </label>
 
             <label class="checkbox">
               <input type="checkbox" required />
               <span>
-                I understand identity is verified manually and agreements are made directly between parties.
+                I understand manual ID verification reduces risk but does not guarantee outcomes. I will use written agreements.
               </span>
             </label>
 
             <button class="btn primary" type="submit">Send request</button>
+
+            <p class="fineprint">
+              Next steps: We review your request and respond by email. Manual ID verification is required before network access.
+            </p>
           </form>
         </div>
       </div>
     </section>
 
+    <!-- SAFETY -->
+    <section class="section alt" id="safety">
+      <div class="container">
+        <h2>Trust & safety</h2>
+
+        <div class="notice">
+          <strong>Be careful:</strong> Use written terms and consider professional advice for large amounts.
+          Manual verification reduces fraud but does not remove financial risk.
+        </div>
+
+        <ul class="clean-list">
+          <li><strong>Use a written contract:</strong> amount, interest, duration, schedule, late fees, dispute process.</li>
+          <li><strong>Verify repayment ability:</strong> documentation, references, collateral where appropriate.</li>
+          <li><strong>Keep records:</strong> agreements and communication in writing.</li>
+          <li><strong>Report abuse:</strong> email <a href={`mailto:${ABUSE_EMAIL}`}>{ABUSE_EMAIL}</a>.</li>
+        </ul>
+      </div>
+    </section>
+
     <!-- CONTACT -->
-    <section class="section alt" id="contact">
+    <section class="section" id="contact">
       <div class="container">
         <h2>Contact</h2>
 
         <div class="contact-box">
           <strong>{CEO_NAME}</strong>
-          <div class="muted">Founder & CEO — Amicbridge</div>
+          <div class="muted">CEO — Amicbridge</div>
           <p>Email: <a href={`mailto:${CEO_EMAIL}`}>{CEO_EMAIL}</a></p>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer">
       <div class="container footer-inner">
         <div>
           <strong>Amicbridge</strong>
-          <div class="muted">Personally verified network</div>
+          <div class="muted">Verified network bridge</div>
         </div>
-
-        <div class="muted">
-          © {new Date().getFullYear()} Amicbridge
-        </div>
+        <div class="muted">© {new Date().getFullYear()} Amicbridge</div>
       </div>
     </footer>
   </main>
 
   <script>
-    const type = document.getElementById("requestType");
-    const borrow = document.getElementById("borrowFields");
-    const lend = document.getElementById("lendFields");
-    const invest = document.getElementById("investFields");
+    (function () {
+      const type = document.getElementById("requestType");
+      const borrow = document.getElementById("borrowFields");
+      const lend = document.getElementById("lendFields");
+      const invest = document.getElementById("investFields");
 
-    type.addEventListener("change", () => {
-      borrow.hidden = type.value !== "Borrow request";
-      lend.hidden = type.value !== "Lending request";
-      invest.hidden = type.value !== "Investment strategy request";
-    });
+      function update() {
+        const v = type.value;
+        borrow.hidden = v !== "Borrow request";
+        lend.hidden = v !== "Lending request";
+        invest.hidden = v !== "Investment strategy request";
+      }
+
+      type.addEventListener("change", update);
+      update();
+    })();
   </script>
 
   <style>
-    body {
-      margin: 0;
+    :root{
+      --text:#111827;
+      --muted:#4b5563;
+      --border:#e5e7eb;
+      --soft:#f9fafb;
+      --radius:10px;
+    }
+    body{
+      margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      background: #fff;
-      color: #111827;
+      background:#fff;
+      color:var(--text);
+      line-height:1.55;
     }
-    .container { max-width: 900px; margin: auto; padding: 0 1rem; }
-    .header { border-bottom: 1px solid #e5e7eb; }
-    .header-inner { display: flex; justify-content: space-between; padding: 1rem 0; }
-    .nav a { margin-left: 1rem; text-decoration: none; color: #4b5563; font-weight: 600; }
-    .section { padding: 2.2rem 0; }
-    .section.alt { background: #f9fafb; }
-    .box { border: 1px solid #e5e7eb; padding: 1rem; border-radius: 8px; background: #fff; }
-    label { display: block; margin-top: .8rem; font-weight: 600; }
-    input, textarea, select {
-      width: 100%;
-      padding: .6rem;
-      border-radius: 6px;
-      border: 1px solid #e5e7eb;
+    .container{max-width:980px;margin:auto;padding:0 1rem}
+    a{color:inherit}
+
+    .header{
+      border-bottom:1px solid var(--border);
+      background:#fff;
+      position:sticky;
+      top:0;
+      z-index:10;
     }
-    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .btn {
+    .header-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:baseline;
+      padding:1rem 0;
+      gap:1rem;
+    }
+    .brand{display:flex;flex-direction:column}
+    .muted{color:var(--muted)}
+    .nav a{
+      margin-left:1rem;
+      color:var(--muted);
+      text-decoration:none;
+      font-weight:700;
+    }
+    .nav a:hover{color:var(--text);text-decoration:underline}
+
+    .section{padding:2.4rem 0}
+    .section.alt{
+      background:var(--soft);
+      border-top:1px solid var(--border);
+      border-bottom:1px solid var(--border);
+    }
+
+    h1{font-size:2rem;margin:0 0 .8rem}
+    h2{font-size:1.35rem;margin:0 0 .7rem}
+    h3{font-size:1.05rem;margin:0 0 .6rem}
+    .lead{color:var(--muted);max-width:85ch}
+
+    .actions{margin-top:1rem;display:flex;gap:.7rem;flex-wrap:wrap}
+    .btn{
+      padding:.65rem 1rem;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      background:#fff;
+      text-decoration:none;
+      font-weight:800;
+      display:inline-block;
+      cursor:pointer;
+    }
+    .btn.primary{background:#111827;color:#fff;border-color:#111827}
+
+    .mini-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .9rem;
+      margin-top: 1.3rem;
+    }
+    .mini-card{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding: .9rem;
+      background:#fff;
+    }
+    .mini-title{font-weight:900;margin-bottom:.2rem}
+
+    .steps{padding-left:1.2rem}
+    .steps li{margin:.85rem 0}
+    .steps span{display:block;color:var(--muted);margin-top:.2rem}
+
+    .notice{
+      border:1px solid var(--border);
+      background:#fff;
+      padding:.9rem;
+      border-radius:var(--radius);
+      color:var(--muted);
       margin-top: 1rem;
-      padding: .6rem 1rem;
-      border: 1px solid #111827;
-      background: #111827;
-      color: #fff;
-      border-radius: 6px;
-      font-weight: 700;
     }
-    .checkbox { display: flex; gap: .5rem; margin-top: 1rem; color: #4b5563; }
-    .footer { border-top: 1px solid #e5e7eb; padding: 1.4rem 0; }
-    .footer-inner { display: flex; justify-content: space-between; color: #4b5563; }
-    .muted { color: #4b5563; }
-    @media(max-width:720px){ .nav{display:none} .grid2{grid-template-columns:1fr} }
+    .notice.subtle{background:var(--soft)}
+
+    .box{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:1rem;
+      background:#fff;
+      margin-top: 1rem;
+    }
+    .box-title{margin:0 0 .7rem}
+
+    .form label{display:block;margin-top:.85rem;font-weight:800}
+    input,textarea,select{
+      width:100%;
+      padding:.65rem;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      margin-top:.35rem;
+      font:inherit;
+      background:#fff;
+    }
+    textarea{resize:vertical}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .checkbox{display:flex;gap:.55rem;margin-top:1rem;color:var(--muted)}
+    .checkbox input{width:auto;margin-top:.25rem}
+    .fineprint{color:var(--muted);font-size:.92rem;margin:.75rem 0 0}
+    .section-fields{margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--border)}
+
+    .clean-list{padding-left:1.15rem;color:var(--muted)}
+    .clean-list li{margin:.35rem 0}
+
+    .contact-box{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:1rem;
+      background:#fff;
+      margin-top: 1rem;
+    }
+
+    .footer{border-top:1px solid var(--border);padding:1.4rem 0}
+    .footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;color:var(--muted)}
+
+    .hp{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+
+    @media(max-width:900px){
+      .mini-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:720px){
+      .nav{display:none}
+      .grid2{grid-template-columns:1fr}
+    }
   </style>
 </body>
 </html>
