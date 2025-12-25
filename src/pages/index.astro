@@ -17,12 +17,12 @@
       body {
         margin: 0;
         padding: 0;
-        background: #fafafa;
+        background: #f5f5f7;
         color: #111;
       }
 
       .page {
-        max-width: 960px;
+        max-width: 980px;
         margin: 0 auto;
         padding: 32px 16px 80px;
       }
@@ -30,6 +30,7 @@
       h1 {
         font-size: 2.5rem;
         margin-bottom: 8px;
+        letter-spacing: -0.04em;
       }
 
       h2 {
@@ -43,10 +44,12 @@
 
       .card {
         background: #ffffff;
-        border-radius: 18px;
-        padding: 24px;
+        border-radius: 20px;
+        padding: 24px 20px;
         margin-top: 24px;
-        box-shadow: 0 0 0 1px #e5e5e5;
+        box-shadow:
+          0 18px 45px rgba(15, 23, 42, 0.06),
+          0 0 0 1px rgba(148, 163, 184, 0.18);
       }
 
       .row {
@@ -64,23 +67,23 @@
         cursor: pointer;
         font-weight: 500;
         transition: transform 0.05s ease, box-shadow 0.05s ease,
-          background 0.15s ease, color 0.15s ease;
+          background 0.15s ease, color 0.15s ease, opacity 0.15s ease;
       }
 
       .btn-primary {
-        background: #111;
+        background: #111827;
         color: #fff;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.28);
       }
 
       .btn-secondary {
-        background: #f3f3f3;
-        color: #111;
+        background: #e5e7eb;
+        color: #111827;
       }
 
       .btn:hover {
         transform: translateY(-1px);
-        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.25);
       }
 
       .btn:active {
@@ -100,8 +103,8 @@
         border-radius: 999px;
         padding: 4px 10px;
         font-size: 0.75rem;
-        background: #f5f5f5;
-        color: #555;
+        background: #eef2ff;
+        color: #4338ca;
         margin-top: 10px;
       }
 
@@ -114,14 +117,14 @@
 
       .section-title {
         font-weight: 600;
-        margin-bottom: 12px;
+        margin-bottom: 8px;
       }
 
       .tabs {
         display: inline-flex;
         padding: 4px;
         border-radius: 999px;
-        background: #f5f5f5;
+        background: #e5e7eb;
       }
 
       .tab {
@@ -134,7 +137,7 @@
       }
 
       .tab-active {
-        background: #111;
+        background: #111827;
         color: #fff;
       }
 
@@ -157,14 +160,24 @@
         font: inherit;
         padding: 8px 10px;
         border-radius: 10px;
-        border: 1px solid #ddd;
+        border: 1px solid #d4d4d8;
         width: 100%;
         box-sizing: border-box;
+        background: #f9fafb;
+      }
+
+      input:focus,
+      textarea:focus,
+      select:focus {
+        outline: none;
+        border-color: #4f46e5;
+        box-shadow: 0 0 0 1px #4f46e5;
+        background: #ffffff;
       }
 
       textarea {
         resize: vertical;
-        min-height: 60px;
+        min-height: 70px;
       }
 
       .two-col {
@@ -173,9 +186,15 @@
         gap: 12px;
       }
 
+      .three-col {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 12px;
+      }
+
       .subtle {
         font-size: 0.8rem;
-        color: #666;
+        color: #6b7280;
       }
 
       .list {
@@ -185,10 +204,10 @@
       }
 
       .item-card {
-        border-radius: 14px;
+        border-radius: 16px;
         padding: 12px 14px;
-        border: 1px solid #eee;
-        background: #fcfcfc;
+        border: 1px solid #e5e7eb;
+        background: #f9fafb;
       }
 
       .item-header {
@@ -207,35 +226,36 @@
         font-size: 0.75rem;
         padding: 2px 8px;
         border-radius: 999px;
-        border: 1px solid #e5e5e5;
-        background: #fff;
+        border: 1px solid #e5e7eb;
+        background: #fefefe;
       }
 
       .item-meta {
         font-size: 0.8rem;
-        color: #555;
-        margin-top: 4px;
+        color: #4b5563;
+        margin-top: 6px;
+        line-height: 1.4;
       }
 
       .item-footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 8px;
+        margin-top: 10px;
         gap: 8px;
         flex-wrap: wrap;
       }
 
       .fee-line {
         font-size: 0.8rem;
-        color: #555;
+        color: #4b5563;
       }
 
       .deal-card {
         border-radius: 14px;
         padding: 12px 14px;
-        border: 1px dashed #d4d4d4;
-        background: #f9fafb;
+        border: 1px dashed #cbd5f5;
+        background: #eef2ff;
         font-size: 0.85rem;
       }
 
@@ -282,7 +302,7 @@
           </button>
         </div>
         <p class="subtle" style="margin-top: 14px">
-          MVP note: No login, no payments, no KYC yet. This is the workflow
+          MVP note: No login, no payments, no KYC yet. This is only the workflow
           skeleton.
         </p>
 
@@ -296,11 +316,9 @@
       <section class="card">
         <h2>How it works</h2>
         <ol class="how-steps">
-          <li>Borrower submits a loan request.</li>
+          <li>Borrower submits a loan request with profile &amp; income.</li>
           <li>Lenders browse open requests and choose who to fund.</li>
-          <li>
-            When a lender funds a request, a deal is created automatically.
-          </li>
+          <li>When a lender funds a request, a deal is created automatically.</li>
           <li>
             AmicBridge takes
             <strong>5% platform fee</strong> from the loan amount per deal.
@@ -318,8 +336,8 @@
           <div>
             <div class="section-title">Play with the workflow</div>
             <p class="subtle">
-              Fill out a fake request, then switch to Lender mode and create a
-              deal.
+              Borrowers create requests with age, work, income &amp; currency.
+              Lenders pick one and create a deal.
             </p>
           </div>
           <div class="tabs" aria-label="Mode selector">
@@ -349,7 +367,49 @@
                 />
               </div>
               <div>
-                <label for="loanAmount">Loan amount (USD)</label>
+                <label for="borrowerAge">Age</label>
+                <input
+                  id="borrowerAge"
+                  name="borrowerAge"
+                  type="number"
+                  min="18"
+                  max="120"
+                  required
+                  placeholder="28"
+                />
+              </div>
+            </div>
+
+            <div class="two-col">
+              <div>
+                <label for="borrowerWork">Work / occupation</label>
+                <input
+                  id="borrowerWork"
+                  name="borrowerWork"
+                  type="text"
+                  required
+                  placeholder="Network administrator"
+                />
+              </div>
+              <div>
+                <label for="borrowerIncome">
+                  Monthly income (before tax, number)
+                </label>
+                <input
+                  id="borrowerIncome"
+                  name="borrowerIncome"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  required
+                  placeholder="45000"
+                />
+              </div>
+            </div>
+
+            <div class="two-col">
+              <div>
+                <label for="loanAmount">Loan amount</label>
                 <input
                   id="loanAmount"
                   name="loanAmount"
@@ -359,6 +419,16 @@
                   required
                   placeholder="5000"
                 />
+              </div>
+              <div>
+                <label for="loanCurrency">Currency</label>
+                <select id="loanCurrency" name="loanCurrency" required>
+                  <option value="">Choose currency</option>
+                  <option value="USD">USD</option>
+                  <option value="EUR">EUR</option>
+                  <option value="NOK">NOK</option>
+                  <option value="CRYPTO">Crypto</option>
+                </select>
               </div>
             </div>
 
@@ -397,7 +467,8 @@
 
             <div class="row" style="justify-content: space-between">
               <div class="subtle">
-                When a lender funds you, AmicBridge takes 5% as a platform fee.
+                When a lender funds you, AmicBridge takes 5% of the loan as a
+                platform fee.
               </div>
               <button class="btn btn-primary" type="submit">
                 Submit loan request
@@ -407,7 +478,8 @@
 
           <div style="margin-top: 18px">
             <div class="section-title" style="font-size: 0.95rem">
-              Your request will appear in the “Open requests” list for lenders.
+              Your request will appear in the “Open requests” list for lenders
+              with your profile, income and currency.
             </div>
           </div>
         </div>
@@ -416,8 +488,8 @@
         <div id="lenderSection" style="display: none; margin-top: 8px">
           <div class="section-title">Open loan requests</div>
           <p class="subtle">
-            Pick a borrower you want to lend money to. When you create a deal,
-            AmicBridge automatically takes a 5% fee from the loan amount.
+            Pick a borrower you want to fund. AmicBridge automatically takes a
+            5% fee from the loan amount.
           </p>
 
           <div id="requestsList" class="list"></div>
@@ -425,7 +497,7 @@
             No requests yet. Switch to the Borrower tab and create one.
           </p>
 
-          <hr style="margin: 24px 0; border: none; border-top: 1px solid #eee" />
+          <hr style="margin: 24px 0; border: none; border-top: 1px solid #e5e7eb" />
 
           <div class="section-title">Deals created during this session</div>
           <div id="dealsList" class="list"></div>
@@ -481,13 +553,34 @@
         window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
       });
 
+      function formatAmount(amount, currency) {
+        const rounded = Number(amount || 0);
+        const formatted = rounded.toLocaleString(undefined, {
+          maximumFractionDigits: 2,
+        });
+
+        let symbol = "";
+        if (currency === "USD") symbol = "$";
+        else if (currency === "EUR") symbol = "€";
+        else if (currency === "NOK") symbol = "kr";
+        else if (currency === "CRYPTO") symbol = "₿"; // just a fun generic crypto symbol
+
+        return `${formatted} ${currency === "CRYPTO" ? "Crypto" : currency}${
+          symbol ? " (" + symbol + ")" : ""
+        }`;
+      }
+
       // --- Borrower: handle form submit ---
       borrowerForm.addEventListener("submit", (event) => {
         event.preventDefault();
 
         const formData = new FormData(borrowerForm);
         const name = String(formData.get("borrowerName") || "").trim();
+        const age = Number(formData.get("borrowerAge") || 0);
+        const work = String(formData.get("borrowerWork") || "").trim();
+        const income = Number(formData.get("borrowerIncome") || 0);
         const amount = Number(formData.get("loanAmount") || 0);
+        const currency = String(formData.get("loanCurrency") || "").trim();
         const term = String(formData.get("loanTerm") || "").trim();
         const maxAprRaw = formData.get("maxApr");
         const maxApr =
@@ -496,8 +589,8 @@
             : Number(maxAprRaw);
         const purpose = String(formData.get("loanPurpose") || "").trim();
 
-        if (!name || !amount || !term) {
-          alert("Name, amount and term are required.");
+        if (!name || !age || !work || !income || !amount || !term || !currency) {
+          alert("Name, age, work, income, amount, currency and term are required.");
           return;
         }
 
@@ -508,7 +601,11 @@
         state.requests.push({
           id,
           name,
+          age,
+          work,
+          income,
           amount,
+          currency,
           term,
           maxApr,
           purpose,
@@ -542,7 +639,10 @@
 
           const title = document.createElement("div");
           title.className = "item-title";
-          title.textContent = `${req.name} requests $${req.amount.toLocaleString()}`;
+          title.textContent = `${req.name} wants ${formatAmount(
+            req.amount,
+            req.currency
+          )}`;
 
           const tag = document.createElement("div");
           tag.className = "tag";
@@ -553,14 +653,28 @@
 
           const meta = document.createElement("div");
           meta.className = "item-meta";
+
+          const lines = [];
+
+          lines.push(`Age: ${req.age}`);
+          lines.push(`Work: ${req.work}`);
+          lines.push(
+            `Monthly income: ${formatAmount(req.income, req.currency)}`
+          );
+
           const aprText =
             req.maxApr != null
-              ? `Max APR acceptable: ${req.maxApr}%`
+              ? `Max APR they accept: ${req.maxApr}%`
               : "Max APR not specified";
+          lines.push(aprText);
+
           const purposeText = req.purpose
             ? `Purpose: ${req.purpose}`
             : "No description given.";
-          meta.textContent = `${aprText} • ${purposeText}`;
+
+          lines.push(purposeText);
+
+          meta.textContent = lines.join(" • ");
 
           const footer = document.createElement("div");
           footer.className = "item-footer";
@@ -569,7 +683,13 @@
           feeInfo.className = "fee-line";
           const fee = (req.amount * PLATFORM_FEE_PERCENT) / 100;
           const borrowerGets = req.amount - fee;
-          feeInfo.textContent = `If you fund this: Borrower gets $${borrowerGets.toLocaleString()}, AmicBridge fee $${fee.toLocaleString()} (${PLATFORM_FEE_PERCENT}%)`;
+          feeInfo.textContent = `If you fund this: Borrower gets ${formatAmount(
+            borrowerGets,
+            req.currency
+          )}, AmicBridge fee ${formatAmount(
+            fee,
+            req.currency
+          )} (${PLATFORM_FEE_PERCENT}%)`;
 
           const actionArea = document.createElement("div");
           actionArea.className = "row";
@@ -626,11 +746,15 @@
           id: request.id,
           borrowerName: request.name,
           amount: request.amount,
+          currency: request.currency,
           term: request.term,
           lenderApr,
           fee,
           borrowerGets,
           createdAt: new Date(),
+          age: request.age,
+          work: request.work,
+          income: request.income,
         });
 
         // Remove from open requests
@@ -655,15 +779,33 @@
           card.className = "deal-card";
 
           const line1 = document.createElement("div");
-          line1.innerHTML = `<span class="deal-highlight">${deal.borrowerName}</span> borrowed <span class="deal-highlight">$${deal.amount.toLocaleString()}</span> for ${deal.term} at <span class="deal-highlight">${deal.lenderApr}% APR</span>.`;
+          line1.innerHTML = `<span class="deal-highlight">${deal.borrowerName}</span> borrowed <span class="deal-highlight">${formatAmount(
+            deal.amount,
+            deal.currency
+          )}</span> for ${deal.term} at <span class="deal-highlight">${
+            deal.lenderApr
+          }% APR</span>.`;
+
+          const lineProfile = document.createElement("div");
+          lineProfile.style.marginTop = "4px";
+          lineProfile.textContent = `Age ${deal.age}, work: ${deal.work}, monthly income: ${formatAmount(
+            deal.income,
+            deal.currency
+          )}.`;
 
           const line2 = document.createElement("div");
           line2.style.marginTop = "4px";
-          line2.textContent = `Borrower receives $${deal.borrowerGets.toLocaleString()} after fees.`;
+          line2.textContent = `Borrower receives ${formatAmount(
+            deal.borrowerGets,
+            deal.currency
+          )} after fees.`;
 
           const line3 = document.createElement("div");
           line3.style.marginTop = "4px";
-          line3.textContent = `AmicBridge platform fee: $${deal.fee.toLocaleString()} (${PLATFORM_FEE_PERCENT}% of deal size).`;
+          line3.textContent = `AmicBridge platform fee: ${formatAmount(
+            deal.fee,
+            deal.currency
+          )} (${PLATFORM_FEE_PERCENT}% of deal size).`;
 
           const line4 = document.createElement("div");
           line4.style.marginTop = "4px";
@@ -672,6 +814,7 @@
             "In a real app this would generate a contract to sign and store everything in a database.";
 
           card.appendChild(line1);
+          card.appendChild(lineProfile);
           card.appendChild(line2);
           card.appendChild(line3);
           card.appendChild(line4);
