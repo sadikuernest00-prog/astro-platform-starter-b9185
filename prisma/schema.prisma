@@ -1,0 +1,68 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum UserRole {
+  BORROWER
+  LENDER
+  BOTH
+  ADMIN
+}
+
+enum LoanStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  FUNDED
+}
+
+model User {
+  id             String        @id @default(cuid())
+  email          String        @unique
+  passwordHash   String
+  name           String
+  role           UserRole      @default(BORROWER)
+  membershipPaid Boolean       @default(false)
+
+  loanRequests   LoanRequest[]
+  dealsLent      Deal[]        @relation("DealsLent")
+}
+
+model LoanRequest {
+  id          String     @id @default(cuid())
+  borrowerId  String
+  borrower    User       @relation(fields: [borrowerId], references: [id])
+
+  age         Int
+  work        String
+  income      Float
+  amount      Float
+  currency    String      // "USD" | "EUR" | "NOK" | "CRYPTO"
+  term        String
+  maxApr      Float?
+  purpose     String?
+
+  status      LoanStatus @default(PENDING)
+  createdAt   DateTime   @default(now())
+
+  deal        Deal?
+}
+
+model Deal {
+  id           String     @id @default(cuid())
+  requestId    String     @unique
+  request      LoanRequest @relation(fields: [requestId], references: [id])
+
+  lenderId     String
+  lender       User       @relation("DealsLent", fields: [lenderId], references: [id])
+
+  lenderApr    Float
+  fee          Float
+  borrowerGets Float
+  createdAt    DateTime   @default(now())
+}
