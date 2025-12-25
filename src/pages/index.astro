@@ -1,739 +1,532 @@
 ---
-const siteTitle = "AmicBridge – Private Borrow & Lend Network";
-const siteDescription =
-  "AmicBridge is a private person–to–person network where verified members can request to borrow, lend, or collaborate on investments. AmicBridge never holds client funds.";
+const title = "AmicBridge | Private Borrow & Lend Network";
+const description =
+  "AmicBridge is a private person-to-person network where verified members can request to borrow, lend, or work together on investments. AmicBridge never holds client funds.";
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>{siteTitle}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={siteDescription} />
-    <style>
-      :root {
-        --bg: #0b1020;
-        --bg-alt: #111729;
-        --card: #171f33;
-        --accent: #2f81f7;
-        --accent-soft: rgba(47, 129, 247, 0.1);
-        --border: #263044;
-        --text: #f5f7ff;
-        --muted: #a9b3c7;
-        --danger: #ff4d4f;
-        --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-          sans-serif;
-      }
+<head>
+  <title>{title}</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={description} />
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --card: #ffffff;
+      --border: #d3d6de;
+      --text: #111827;
+      --muted: #4b5563;
+      --accent: #1f4fd8;
+      --danger: #b91c1c;
+      --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
 
-      * {
-        box-sizing: border-box;
-      }
+    * {
+      box-sizing: border-box;
+    }
 
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        background: radial-gradient(circle at top, #11192f 0, #050814 55%);
-        color: var(--text);
-        font-family: var(--font);
-      }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+    }
 
-      body {
-        display: flex;
-        justify-content: center;
-      }
+    main {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 32px 16px 40px;
+    }
 
-      main {
-        width: 100%;
-        max-width: 960px;
-        padding: 32px 16px 64px;
-      }
+    header {
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
 
-      header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 32px;
-      }
+    .brand {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
 
-      .logo {
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        font-size: 0.9rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-      }
+    .tagline {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: right;
+    }
 
-      .logo-mark {
-        width: 20px;
-        height: 20px;
-        border-radius: 999px;
-        border: 1px solid var(--accent);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 11px;
-      }
+    h1 {
+      font-size: 1.6rem;
+      margin: 0 0 8px;
+    }
 
+    h2 {
+      font-size: 1.2rem;
+      margin: 0 0 6px;
+    }
+
+    h3 {
+      font-size: 1rem;
+      margin: 0 0 4px;
+    }
+
+    p {
+      margin: 0 0 8px;
+      line-height: 1.5;
+    }
+
+    .intro {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 16px 14px;
+      border-radius: 6px;
+      margin-bottom: 18px;
+    }
+
+    .note {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .col {
+      flex: 1 1 260px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 14px 12px;
+      border-radius: 6px;
+    }
+
+    ul {
+      margin: 6px 0 0;
+      padding-left: 18px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    .form-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 16px 14px 18px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    form {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 10px 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.9rem;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-weight: 500;
+    }
+
+    label span {
+      color: var(--accent);
+    }
+
+    input,
+    select,
+    textarea {
+      font-family: var(--font);
+      font-size: 0.9rem;
+      padding: 7px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: #f9fafb;
+      color: var(--text);
+    }
+
+    textarea {
+      min-height: 70px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .hint {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.85rem;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      margin-top: 3px;
+    }
+
+    button {
+      margin-top: 8px;
+      padding: 8px 16px;
+      border-radius: 4px;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      grid-column: 1 / -1;
+      justify-self: flex-start;
+    }
+
+    button:hover {
+      filter: brightness(1.05);
+    }
+
+    footer {
+      margin-top: 20px;
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .warning {
+      color: var(--danger);
+      font-weight: 500;
+    }
+
+    @media (max-width: 600px) {
       .tagline {
-        font-size: 0.8rem;
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
+        text-align: left;
       }
+    }
+  </style>
+</head>
 
-      h1 {
-        font-size: clamp(1.8rem, 3vw, 2.4rem);
-        margin: 0 0 8px;
-      }
+<main>
+  <header>
+    <div class="brand">AmicBridge</div>
+    <div class="tagline">
+      Private borrow, lend &amp; invest<br />Person-to-person network
+    </div>
+  </header>
 
-      p {
-        margin: 0 0 10px;
-        line-height: 1.5;
-      }
+  <section class="intro">
+    <h1>Request to borrow, lend, or invest through AmicBridge</h1>
+    <p class="note">
+      AmicBridge is a private network bridge. Members can request to
+      <strong>borrow money</strong>, <strong>lend money</strong>, or work
+      together on <strong>investments</strong>. We carefully check members with
+      ID verification before matching them with others in the network.
+    </p>
+    <p class="note">
+      AmicBridge does <strong>not</strong> hold or move funds. All money is
+      transferred directly between members under their own agreements.
+      AmicBridge charges a <strong>5% fee</strong> on every deal made through
+      the network.
+    </p>
+  </section>
 
-      .hero {
-        background: linear-gradient(
-          135deg,
-          rgba(47, 129, 247, 0.18),
-          rgba(9, 12, 24, 0.9)
-        );
-        border-radius: 18px;
-        padding: 24px 20px;
-        border: 1px solid var(--border);
-        margin-bottom: 28px;
-      }
+  <section class="row">
+    <div class="col">
+      <h2>Borrowers</h2>
+      <p class="note">
+        Send a request if you want to borrow money using a private loan
+        agreement.
+      </p>
+      <ul>
+        <li>Choose currency: NOK, USD, EUR, or crypto.</li>
+        <li>Explain how much you need and for how long.</li>
+        <li>Describe your work, income and ability to repay.</li>
+      </ul>
+    </div>
 
-      .hero-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
-        gap: 16px;
-      }
+    <div class="col">
+      <h2>Lenders</h2>
+      <p class="note">
+        Send a request if you want to lend money to verified members.
+      </p>
+      <ul>
+        <li>Set what kind of borrowers you prefer.</li>
+        <li>Choose currencies and loan sizes you are open to.</li>
+        <li>Decide yourself which deals you accept.</li>
+      </ul>
+    </div>
 
-      .hero-subtitle {
-        color: var(--muted);
-        font-size: 0.95rem;
-        margin-bottom: 4px;
-      }
+    <div class="col">
+      <h2>Investments</h2>
+      <p class="note">
+        You can also ask for investment strategy help or co-investment
+        opportunities.
+      </p>
+      <ul>
+        <li>Describe your financial goals and risk level.</li>
+        <li>Ask for ideas to grow your money.</li>
+        <li>We only connect verified members; we never hold funds.</li>
+      </ul>
+    </div>
+  </section>
 
-      .hero-highlight {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 4px 9px;
-        background: rgba(1, 8, 27, 0.9);
-        border-radius: 999px;
-        border: 1px solid rgba(47, 129, 247, 0.3);
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--muted);
-      }
+  <section class="form-section">
+    <h2>Request to join the private network</h2>
+    <p class="note">
+      Fill in the form below to send a request to AmicBridge. We review your
+      details and then contact you for ID verification and follow-up. After
+      that we can try to match you with other verified members.
+    </p>
 
-      .hero-highlight span {
-        width: 4px;
-        height: 4px;
-        border-radius: 999px;
-        background: var(--accent);
-      }
+    <form action="https://formspree.io/f/xzznjkvd" method="POST">
+      <!-- Basic information -->
+      <div class="field">
+        <label for="fullName">Full name <span>*</span></label>
+        <input
+          id="fullName"
+          name="full_name"
+          type="text"
+          autocomplete="name"
+          required
+        />
+      </div>
 
-      .hero-mono {
-        font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas,
-          "Liberation Mono", "Courier New", monospace;
-        font-size: 0.8rem;
-        padding: 8px 10px;
-        border-radius: 10px;
-        background: rgba(3, 7, 18, 0.9);
-        border: 1px solid rgba(71, 85, 105, 0.6);
-        color: var(--muted);
-        margin-bottom: 6px;
-      }
+      <div class="field">
+        <label for="age">Age <span>*</span></label>
+        <input id="age" name="age" type="number" min="18" required />
+        <div class="hint">You must be at least 18 years old.</div>
+      </div>
 
-      .hero-list {
-        list-style: none;
-        padding: 0;
-        margin: 4px 0 0;
-        font-size: 0.85rem;
-        color: var(--muted);
-      }
+      <div class="field">
+        <label for="email">Email <span>*</span></label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          required
+        />
+      </div>
 
-      .hero-list li::before {
-        content: "•";
-        margin-right: 6px;
-        color: var(--accent);
-      }
+      <div class="field">
+        <label for="country">Country of residence <span>*</span></label>
+        <input id="country" name="country" type="text" required />
+      </div>
 
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 18px;
-        margin-bottom: 30px;
-      }
+      <!-- Purpose -->
+      <div class="field">
+        <label for="role">What do you want to do? <span>*</span></label>
+        <select id="role" name="role" required>
+          <option value="">Select one</option>
+          <option value="borrow">Request to borrow money</option>
+          <option value="lend">Offer to lend money</option>
+          <option value="both">Borrow and lend</option>
+          <option value="invest">Investment / strategy only</option>
+        </select>
+      </div>
 
-      .card {
-        background: var(--bg-alt);
-        border-radius: 14px;
-        border: 1px solid var(--border);
-        padding: 14px 16px;
-      }
-
-      .card h2 {
-        font-size: 1rem;
-        margin: 0 0 8px;
-      }
-
-      .card h3 {
-        font-size: 0.95rem;
-        margin: 0 0 6px;
-      }
-
-      .muted {
-        color: var(--muted);
-        font-size: 0.9rem;
-      }
-
-      ul {
-        padding-left: 18px;
-        margin: 6px 0 0;
-      }
-
-      li {
-        margin-bottom: 4px;
-      }
-
-      .pill-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        margin-top: 6px;
-      }
-
-      .pill {
-        padding: 4px 8px;
-        border-radius: 999px;
-        border: 1px solid var(--border);
-        font-size: 0.78rem;
-        color: var(--muted);
-        background: rgba(3, 7, 18, 0.9);
-      }
-
-      .section-title {
-        font-size: 1.1rem;
-        margin: 0 0 10px;
-      }
-
-      .form-wrapper {
-        background: var(--bg-alt);
-        border-radius: 16px;
-        border: 1px solid var(--border);
-        padding: 18px 16px 20px;
-        margin-bottom: 26px;
-      }
-
-      form {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 12px 14px;
-      }
-
-      .field {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-        font-size: 0.86rem;
-      }
-
-      label {
-        font-weight: 500;
-      }
-
-      label span {
-        color: var(--accent);
-      }
-
-      input,
-      select,
-      textarea {
-        background: #050814;
-        border-radius: 8px;
-        border: 1px solid #252f41;
-        padding: 7px 8px;
-        color: var(--text);
-        font-size: 0.86rem;
-        font-family: var(--font);
-      }
-
-      textarea {
-        min-height: 80px;
-        resize: vertical;
-      }
-
-      input:focus,
-      select:focus,
-      textarea:focus {
-        outline: none;
-        border-color: var(--accent);
-        box-shadow: 0 0 0 1px rgba(47, 129, 247, 0.4);
-      }
-
-      .field-inline {
-        display: flex;
-        gap: 10px;
-      }
-
-      .field-inline > div {
-        flex: 1;
-      }
-
-      .full-width {
-        grid-column: 1 / -1;
-      }
-
-      .hint {
-        font-size: 0.78rem;
-        color: var(--muted);
-      }
-
-      .checkbox-row {
-        display: flex;
-        align-items: flex-start;
-        gap: 7px;
-        font-size: 0.8rem;
-      }
-
-      .checkbox-row input[type="checkbox"] {
-        margin-top: 3px;
-        width: 14px;
-        height: 14px;
-      }
-
-      button {
-        margin-top: 6px;
-        padding: 9px 16px;
-        border-radius: 999px;
-        border: 1px solid var(--accent);
-        background: var(--accent);
-        color: white;
-        font-weight: 500;
-        font-size: 0.9rem;
-        cursor: pointer;
-        justify-self: flex-start;
-      }
-
-      button:hover {
-        filter: brightness(1.05);
-      }
-
-      button:active {
-        transform: translateY(1px);
-      }
-
-      footer {
-        border-top: 1px solid var(--border);
-        padding-top: 16px;
-        font-size: 0.78rem;
-        color: var(--muted);
-      }
-
-      footer p {
-        margin-bottom: 6px;
-      }
-
-      .warning {
-        color: var(--danger);
-        font-weight: 500;
-      }
-
-      @media (max-width: 720px) {
-        header {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 4px;
-        }
-
-        .hero {
-          padding: 18px 14px;
-        }
-
-        .hero-grid {
-          grid-template-columns: minmax(0, 1fr);
-        }
-
-        main {
-          padding: 24px 14px 40px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <header>
-        <div>
-          <div class="logo">
-            <div class="logo-mark">AB</div>
-            <span>AmicBridge</span>
-          </div>
+      <div class="field">
+        <label for="currency">Preferred currency <span>*</span></label>
+        <select id="currency" name="currency" required>
+          <option value="">Select currency</option>
+          <option value="NOK">NOK</option>
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+          <option value="CRYPTO">Crypto (specify below)</option>
+        </select>
+        <div class="hint">
+          If you choose crypto, add which asset in the message field.
         </div>
-        <div class="tagline">Private money network</div>
-      </header>
+      </div>
 
-      <section class="hero">
-        <div class="hero-grid">
-          <div>
-            <p class="hero-subtitle">Private, person–to–person finance</p>
-            <h1>Request to borrow, lend, or invest inside a verified network.</h1>
-            <p class="muted">
-              AmicBridge is a private matching network. Members can request to
-              borrow money, lend money, or work together on investments. We
-              match verified people – we do not hold any funds.
-            </p>
-            <div class="hero-highlight">
-              <span></span>
-              <strong>Request access:</strong> join the AmicBridge private
-              network
-            </div>
-          </div>
+      <!-- Work & income -->
+      <div class="field">
+        <label for="employment">Work situation <span>*</span></label>
+        <select id="employment" name="employment_status" required>
+          <option value="">Select one</option>
+          <option value="full_time">Employed – full time</option>
+          <option value="part_time">Employed – part time</option>
+          <option value="self_employed">Self-employed</option>
+          <option value="student">Student</option>
+          <option value="unemployed">Unemployed</option>
+          <option value="retired">Retired</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
 
-          <div>
-            <div class="hero-mono">
-              amicbridge.com is a network bridge.<br />
-              • No custody of assets.<br />
-              • No pooled accounts.<br />
-              • You control where your money moves.
-            </div>
-            <ul class="hero-list">
-              <li>We verify members with ID and basic income information.</li>
-              <li>
-                You decide your own terms with the other party and may use a
-                loan agreement contract.
-              </li>
-              <li>AmicBridge charges 5% on each successful deal in the network.</li>
-            </ul>
-          </div>
+      <div class="field">
+        <label for="income">
+          Monthly net income (approx.) <span>*</span>
+        </label>
+        <input
+          id="income"
+          name="monthly_income"
+          type="text"
+          placeholder="Example: 30 000 NOK"
+          required
+        />
+      </div>
+
+      <!-- Borrow details -->
+      <div class="field full">
+        <label for="loanDetails">If you want to borrow: loan details</label>
+        <textarea
+          id="loanDetails"
+          name="loan_details"
+          placeholder="Amount, purpose of the loan, how long, repayment plan, any collateral, etc."
+        ></textarea>
+      </div>
+
+      <!-- Lender preferences -->
+      <div class="field full">
+        <label for="lenderPreferences">
+          If you want to lend: preferred borrowers
+        </label>
+        <textarea
+          id="lenderPreferences"
+          name="lender_preferences"
+          placeholder="Income level, country, risk level, minimum/maximum amounts, purpose of loan you accept, etc."
+        ></textarea>
+      </div>
+
+      <!-- Investment strategy -->
+      <div class="field full">
+        <label for="investment">
+          Investment &amp; strategy requests
+        </label>
+        <textarea
+          id="investment"
+          name="investment_request"
+          placeholder="Describe if you want help with an investment strategy or to find co-investors."
+        ></textarea>
+      </div>
+
+      <!-- Extra information -->
+      <div class="field full">
+        <label for="extra">Anything else we should know?</label>
+        <textarea
+          id="extra"
+          name="extra_information"
+          placeholder="For example: experience with loans/investments, risk tolerance, how you heard about AmicBridge."
+        ></textarea>
+      </div>
+
+      <!-- Confirmations -->
+      <div class="field full">
+        <div class="checkbox-row">
+          <input
+            type="checkbox"
+            id="confirmNotBank"
+            name="confirm_not_bank"
+            required
+          />
+          <label for="confirmNotBank">
+            I understand that AmicBridge is a private matching network, not a
+            bank or broker, and that AmicBridge does not hold or control funds.
+          </label>
         </div>
-      </section>
+      </div>
 
-      <section class="grid">
-        <article class="card">
-          <h2>For borrowers</h2>
-          <p class="muted">
-            Submit a borrowing request and describe what kind of lender and
-            agreement you are looking for.
-          </p>
-          <ul>
-            <li>Choose currency: NOK, USD, EUR, or supported crypto.</li>
-            <li>Provide your age, work situation, and income level.</li>
-            <li>Explain loan purpose, amount, and duration you prefer.</li>
-          </ul>
-        </article>
+      <div class="field full">
+        <div class="checkbox-row">
+          <input
+            type="checkbox"
+            id="confirmRisk"
+            name="confirm_risk"
+            required
+          />
+          <label for="confirmRisk">
+            I understand that borrowing, lending and investing involve risk and
+            that I am responsible for my own decisions. Nothing from
+            AmicBridge is personal financial advice.
+          </label>
+        </div>
+      </div>
 
-        <article class="card">
-          <h2>For lenders</h2>
-          <p class="muted">
-            Describe what kind of borrowers you want to support and on what
-            terms.
-          </p>
-          <ul>
-            <li>
-              Define preferred loan sizes, currencies, and repayment horizons.
-            </li>
-            <li>
-              Choose borrower profile: income range, risk level, and purpose of
-              loan.
-            </li>
-            <li>
-              You always control if you accept or reject a suggested match.
-            </li>
-          </ul>
-        </article>
+      <div class="field full">
+        <div class="checkbox-row">
+          <input
+            type="checkbox"
+            id="confirmFee"
+            name="confirm_fee"
+            required
+          />
+          <label for="confirmFee">
+            I understand that AmicBridge takes a 5% fee on every deal that is
+            made with someone in the AmicBridge network.
+          </label>
+        </div>
+      </div>
 
-        <article class="card">
-          <h2>Investments & strategy</h2>
-          <p class="muted">
-            You can also send a request for investment cooperation and strategy
-            support.
-          </p>
-          <ul>
-            <li>
-              Ask for help with building an investment plan or strategy
-              description.
-            </li>
-            <li>
-              Connect with other verified members interested in co-investments.
-            </li>
-            <li>
-              AmicBridge takes 5&nbsp;% of every deal made through the network.
-            </li>
-          </ul>
-        </article>
-      </section>
+      <button type="submit">Send request</button>
+    </form>
+  </section>
 
-      <section class="form-wrapper">
-        <h2 class="section-title">Request to join AmicBridge</h2>
-        <p class="muted" style="margin-bottom: 12px;">
-          Use this form to apply for access to the private AmicBridge network
-          and describe what you want to do: borrow, lend, or invest. We will
-          review your details and contact you for ID verification and any
-          follow-up questions.
-        </p>
+  <section class="row">
+    <div class="col">
+      <h3>How matching works</h3>
+      <p class="note">
+        When we receive your request, we review the information, contact you
+        for ID verification, and then decide if we can approve you for the
+        private network. If approved, we will only match you with other
+        verified members whose profile fits your request.
+      </p>
+    </div>
 
-        <form
-          action="https://formspree.io/f/xzznjkvd"
-          method="POST"
-        >
-          <!-- Basic details -->
-          <div class="field">
-            <label for="fullName">Full name <span>*</span></label>
-            <input
-              id="fullName"
-              name="full_name"
-              type="text"
-              required
-              autocomplete="name"
-            />
-          </div>
+    <div class="col">
+      <h3>Agreements and funds</h3>
+      <p class="note">
+        Matches are introductions only. You and the other person agree on your
+        own contract and move funds directly between yourselves using the
+        payment methods you choose. AmicBridge never touches the money.
+      </p>
+    </div>
 
-          <div class="field">
-            <label for="age">Age <span>*</span></label>
-            <input
-              id="age"
-              name="age"
-              type="number"
-              min="18"
-              required
-            />
-            <div class="hint">You must be at least 18 years old.</div>
-          </div>
+    <div class="col">
+      <h3>Risk and responsibility</h3>
+      <p class="note">
+        Every deal carries risk, including the possibility of losing money.
+        Only enter into agreements you fully understand, follow the laws in
+        your country, and consider getting independent professional advice for
+        important financial decisions.
+      </p>
+    </div>
+  </section>
 
-          <div class="field">
-            <label for="email">Email <span>*</span></label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              autocomplete="email"
-            />
-          </div>
-
-          <div class="field">
-            <label for="country">Country of residence <span>*</span></label>
-            <input
-              id="country"
-              name="country"
-              type="text"
-              required
-            />
-          </div>
-
-          <!-- Role & request type -->
-          <div class="field">
-            <label for="role">What do you want to do? <span>*</span></label>
-            <select id="role" name="role" required>
-              <option value="">Select one</option>
-              <option value="borrow">Request to borrow money</option>
-              <option value="lend">Offer to lend money</option>
-              <option value="both">Both borrow and lend</option>
-              <option value="invest">Investment / strategy only</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="currency">Preferred currency <span>*</span></label>
-            <select id="currency" name="currency" required>
-              <option value="">Select currency</option>
-              <option value="NOK">NOK</option>
-              <option value="USD">USD</option>
-              <option value="EUR">EUR</option>
-              <option value="CRYPTO">Crypto (specify below)</option>
-            </select>
-            <div class="hint">
-              If you choose crypto, add which asset in the message field.
-            </div>
-          </div>
-
-          <!-- Work & income -->
-          <div class="field">
-            <label for="employment">Work situation <span>*</span></label>
-            <select id="employment" name="employment_status" required>
-              <option value="">Select one</option>
-              <option value="full_time">Employed – full time</option>
-              <option value="part_time">Employed – part time</option>
-              <option value="self_employed">Self-employed</option>
-              <option value="student">Student</option>
-              <option value="unemployed">Unemployed</option>
-              <option value="retired">Retired</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="income">
-              Monthly net income (approx.)
-              <span>*</span>
-            </label>
-            <input
-              id="income"
-              name="monthly_income"
-              type="text"
-              placeholder="Example: 30 000 NOK"
-              required
-            />
-          </div>
-
-          <!-- Loan / lender preferences -->
-          <div class="field full-width">
-            <label for="loanDetails">
-              If you want to borrow: loan details
-            </label>
-            <textarea
-              id="loanDetails"
-              name="loan_details"
-              placeholder="Amount, purpose of the loan, desired duration, repayment plan, any collateral, etc."
-            ></textarea>
-          </div>
-
-          <div class="field full-width">
-            <label for="lenderPreferences">
-              If you want to lend: what kind of borrowers do you prefer?
-            </label>
-            <textarea
-              id="lenderPreferences"
-              name="lender_preferences"
-              placeholder="Example: income level, country, risk tolerance, purpose of loan you are comfortable with, minimum/maximum amount, etc."
-            ></textarea>
-          </div>
-
-          <!-- Investment strategy -->
-          <div class="field full-width">
-            <label for="investment">
-              Investment & strategy requests
-            </label>
-            <textarea
-              id="investment"
-              name="investment_request"
-              placeholder="Describe if you want help with an investment strategy, co-investment, or other ways to grow your money."
-            ></textarea>
-          </div>
-
-          <!-- Extra info -->
-          <div class="field full-width">
-            <label for="extra">
-              Anything else we should know?
-            </label>
-            <textarea
-              id="extra"
-              name="extra_information"
-              placeholder="For example: experience with loans or investments, risk profile, how you heard about AmicBridge."
-            ></textarea>
-          </div>
-
-          <!-- Compliance / confirmations -->
-          <div class="field full-width">
-            <div class="checkbox-row">
-              <input
-                type="checkbox"
-                id="confirmNotBank"
-                name="confirm_not_bank"
-                required
-              />
-              <label for="confirmNotBank">
-                I understand that AmicBridge is a private matching network, is
-                not a bank or broker, and does not hold funds for me or for any
-                member.
-              </label>
-            </div>
-          </div>
-
-          <div class="field full-width">
-            <div class="checkbox-row">
-              <input
-                type="checkbox"
-                id="confirmRisk"
-                name="confirm_risk"
-                required
-              />
-              <label for="confirmRisk">
-                I understand that all loans and investments involve risk, that I
-                am responsible for my own decisions, and that nothing from
-                AmicBridge is personal financial advice.
-              </label>
-            </div>
-          </div>
-
-          <div class="field full-width">
-            <div class="checkbox-row">
-              <input
-                type="checkbox"
-                id="confirmFee"
-                name="confirm_fee"
-                required
-              />
-              <label for="confirmFee">
-                I understand that AmicBridge charges a 5&nbsp;% fee on every
-                deal that is made through the network.
-              </label>
-            </div>
-          </div>
-
-          <button type="submit">Send request</button>
-        </form>
-      </section>
-
-      <section class="grid">
-        <article class="card">
-          <h3>How matching works</h3>
-          <p class="muted">
-            After you send a request, we manually review your information and
-            may ask for ID documentation and additional verification. When you
-            are approved, we will try to match you with other verified members
-            whose preferences fit your profile and request.
-          </p>
-          <div class="pill-list">
-            <span class="pill">ID &amp; member checks</span>
-            <span class="pill">Profile-based matching</span>
-            <span class="pill">Direct agreements</span>
-          </div>
-        </article>
-
-        <article class="card">
-          <h3>Agreements and funds</h3>
-          <p class="muted">
-            When you agree on a loan or investment with another member, you
-            sign your own agreement together (for example a loan contract) and
-            transfer funds directly between yourselves using your chosen
-            channels. AmicBridge does not hold or move money between members.
-          </p>
-        </article>
-
-        <article class="card">
-          <h3>Risk & responsibility</h3>
-          <p class="muted">
-            Borrowing, lending, and investing all involve risk, including the
-            possible loss of your money. Make sure you understand the terms of
-            any deal, only work with people you trust, and follow the laws and
-            regulations in your country. Consider getting professional advice
-            before making big financial decisions.
-          </p>
-        </article>
-      </section>
-
-      <footer>
-        <p><strong>AmicBridge</strong> – a private network bridge for people who want to
-        borrow, lend, or invest directly with each other.</p>
-        <p class="warning">
-          AmicBridge is not a bank, broker, or financial adviser. We do not
-          guarantee returns, repayments, or the behavior of any member.
-        </p>
-        <p>
-          Availability of our service can depend on local rules and regulations.
-          By using this website and sending a request, you accept that any deal
-          you make is your own responsibility.
-        </p>
-      </footer>
-    </main>
-  </body>
-</html>
+  <footer>
+    <p>
+      <strong>AmicBridge</strong> is a private network bridge for people who
+      want to borrow, lend, or invest directly with each other.
+    </p>
+    <p class="warning">
+      AmicBridge is not a bank, investment firm, broker, or financial adviser.
+      We do not guarantee returns, repayments, or the behavior of any member.
+    </p>
+  </footer>
+</main>
