@@ -81,12 +81,24 @@
         color: #111827;
       }
 
-      .btn:hover {
+      .btn-danger {
+        background: #fee2e2;
+        color: #b91c1c;
+      }
+
+      .btn-muted {
+        background: #e5e7eb;
+        color: #6b7280;
+        cursor: default;
+        box-shadow: none;
+      }
+
+      .btn:hover:not(.btn-muted) {
         transform: translateY(-1px);
         box-shadow: 0 12px 30px rgba(15, 23, 42, 0.25);
       }
 
-      .btn:active {
+      .btn:active:not(.btn-muted) {
         transform: translateY(0);
         box-shadow: none;
       }
@@ -186,12 +198,6 @@
         gap: 12px;
       }
 
-      .three-col {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 12px;
-      }
-
       .subtle {
         font-size: 0.8rem;
         color: #6b7280;
@@ -228,6 +234,25 @@
         border-radius: 999px;
         border: 1px solid #e5e7eb;
         background: #fefefe;
+      }
+
+      .badge {
+        font-size: 0.7rem;
+        padding: 2px 6px;
+        border-radius: 999px;
+        background: #e5e7eb;
+        color: #374151;
+        margin-left: 6px;
+      }
+
+      .badge-pending {
+        background: #fef3c7;
+        color: #92400e;
+      }
+
+      .badge-approved {
+        background: #dcfce7;
+        color: #166534;
       }
 
       .item-meta {
@@ -269,6 +294,12 @@
         font-size: 0.9rem;
       }
 
+      .divider {
+        margin: 16px 0;
+        border: none;
+        border-top: 1px dashed #e5e7eb;
+      }
+
       @media (max-width: 640px) {
         .page {
           padding-top: 20px;
@@ -290,6 +321,77 @@
         </p>
       </header>
 
+      <!-- ACCOUNT / MEMBERSHIP -->
+      <section class="card">
+        <h2>Account &amp; membership</h2>
+        <p class="subtle">
+          Everyone must create a user and pay a <strong>$50</strong> membership
+          fee to be part of the network. In this demo, payment is simulated with
+          a button.
+        </p>
+
+        <form id="accountForm">
+          <div class="two-col">
+            <div>
+              <label for="accountName">Name</label>
+              <input
+                id="accountName"
+                name="accountName"
+                type="text"
+                required
+                placeholder="Your name"
+              />
+            </div>
+            <div>
+              <label for="accountEmail">Email</label>
+              <input
+                id="accountEmail"
+                name="accountEmail"
+                type="email"
+                required
+                placeholder="you@example.com"
+              />
+            </div>
+          </div>
+
+          <div class="two-col">
+            <div>
+              <label for="accountRole">Role in the network</label>
+              <select id="accountRole" name="accountRole" required>
+                <option value="">Choose role</option>
+                <option value="borrower">Borrower</option>
+                <option value="lender">Lender</option>
+                <option value="both">Borrower &amp; Lender</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row" style="justify-content: space-between">
+            <div class="subtle" id="accountStatus">
+              Not signed up yet.
+            </div>
+            <button class="btn btn-primary" type="submit">
+              Save account
+            </button>
+          </div>
+        </form>
+
+        <hr class="divider" />
+
+        <div class="row" style="justify-content: space-between">
+          <div>
+            <div class="section-title">Membership fee</div>
+            <p class="subtle">
+              Network access requires a one-time <strong>$50</strong> membership
+              payment.
+            </p>
+          </div>
+          <button class="btn btn-secondary" id="membershipButton" type="button">
+            Mark $50 as paid (demo)
+          </button>
+        </div>
+      </section>
+
       <!-- START CARD -->
       <section class="card">
         <h2>Start</h2>
@@ -302,13 +404,13 @@
           </button>
         </div>
         <p class="subtle" style="margin-top: 14px">
-          MVP note: No login, no payments, no KYC yet. This is only the workflow
-          skeleton.
+          MVP note: No real login or payments yet. You must have an active
+          membership (demo toggle above) before you can create or fund requests.
         </p>
 
         <div class="pill">
           <span class="pill-dot"></span>
-          Prototype &mdash; data is kept only in your browser
+          Prototype &mdash; all data lives only in your browser
         </div>
       </section>
 
@@ -316,14 +418,20 @@
       <section class="card">
         <h2>How it works</h2>
         <ol class="how-steps">
+          <li>User creates an account and pays a $50 membership fee.</li>
           <li>Borrower submits a loan request with profile &amp; income.</li>
-          <li>Lenders browse open requests and choose who to fund.</li>
-          <li>When a lender funds a request, a deal is created automatically.</li>
           <li>
-            AmicBridge takes
-            <strong>5% platform fee</strong> from the loan amount per deal.
+            Request goes into
+            <strong>pending</strong> state and must be approved by you (Admin).
           </li>
-          <li>Contract page can be generated (print / save as PDF).</li>
+          <li>
+            After approval, the request is visible to all lenders in the
+            network.
+          </li>
+          <li>
+            When a lender funds a request, a deal is created and
+            <strong>AmicBridge takes 5%</strong> of the loan amount as a fee.
+          </li>
         </ol>
       </section>
 
@@ -334,10 +442,10 @@
           style="justify-content: space-between; align-items: center"
         >
           <div>
-            <div class="section-title">Play with the workflow</div>
+            <div class="section-title">Workflow playground</div>
             <p class="subtle">
-              Borrowers create requests with age, work, income &amp; currency.
-              Lenders pick one and create a deal.
+              1) Create account &amp; membership. 2) Borrower creates a
+              request. 3) Admin approves. 4) Lender funds it.
             </p>
           </div>
           <div class="tabs" aria-label="Mode selector">
@@ -349,11 +457,15 @@
               Borrower
             </button>
             <button class="tab" id="tabLender" type="button">Lender</button>
+            <button class="tab" id="tabAdmin" type="button">
+              Admin (you)
+            </button>
           </div>
         </div>
 
         <!-- BORROWER MODE -->
         <div id="borrowerSection">
+          <p class="subtle" id="borrowerGateMessage"></p>
           <form id="borrowerForm">
             <div class="two-col">
               <div>
@@ -468,7 +580,7 @@
             <div class="row" style="justify-content: space-between">
               <div class="subtle">
                 When a lender funds you, AmicBridge takes 5% of the loan as a
-                platform fee.
+                platform fee. Your request must first be approved by the admin.
               </div>
               <button class="btn btn-primary" type="submit">
                 Submit loan request
@@ -478,31 +590,56 @@
 
           <div style="margin-top: 18px">
             <div class="section-title" style="font-size: 0.95rem">
-              Your request will appear in the “Open requests” list for lenders
-              with your profile, income and currency.
+              After submission your request will appear as
+              <strong>pending</strong> in the Admin tab.
             </div>
           </div>
         </div>
 
         <!-- LENDER MODE -->
         <div id="lenderSection" style="display: none; margin-top: 8px">
-          <div class="section-title">Open loan requests</div>
+          <p class="subtle" id="lenderGateMessage"></p>
+          <div class="section-title">Open loan requests (approved)</div>
           <p class="subtle">
-            Pick a borrower you want to fund. AmicBridge automatically takes a
-            5% fee from the loan amount.
+            Only admin-approved requests are visible here. Pick a borrower to
+            fund; AmicBridge automatically takes a 5% fee from the loan amount.
           </p>
 
           <div id="requestsList" class="list"></div>
           <p id="noRequestsMessage" class="subtle" style="margin-top: 12px">
-            No requests yet. Switch to the Borrower tab and create one.
+            No approved requests yet. Create one as a borrower and approve it in
+            the Admin tab.
           </p>
 
-          <hr style="margin: 24px 0; border: none; border-top: 1px solid #e5e7eb" />
+          <hr
+            style="margin: 24px 0; border: none; border-top: 1px solid #e5e7eb"
+          />
 
           <div class="section-title">Deals created during this session</div>
           <div id="dealsList" class="list"></div>
           <p id="noDealsMessage" class="subtle" style="margin-top: 12px">
             No deals yet. Fund a request to see the breakdown here.
+          </p>
+        </div>
+
+        <!-- ADMIN MODE -->
+        <div id="adminSection" style="display: none; margin-top: 8px">
+          <div class="section-title">Admin review (you)</div>
+          <p class="subtle">
+            You control which requests are visible to the network. Approve
+            (publish) or reject them here.
+          </p>
+
+          <h3 class="section-title" style="margin-top: 12px">Pending requests</h3>
+          <div id="pendingList" class="list"></div>
+          <p id="noPendingMessage" class="subtle" style="margin-top: 12px">
+            No pending requests.
+          </p>
+
+          <h3 class="section-title" style="margin-top: 20px">Approved requests</h3>
+          <div id="approvedList" class="list"></div>
+          <p id="noApprovedMessage" class="subtle" style="margin-top: 12px">
+            No approved requests yet.
           </p>
         </div>
       </section>
@@ -511,16 +648,31 @@
     <script type="module">
       // --- In-memory state (cleared on refresh) ---
       const state = {
+        account: null,
+        membershipPaid: false,
         requests: [],
         deals: [],
       };
 
+      const PLATFORM_FEE_PERCENT = 5;
+      const MEMBERSHIP_FEE = 50;
+
+      // DOM refs
+      const accountForm = document.getElementById("accountForm");
+      const accountStatus = document.getElementById("accountStatus");
+      const membershipButton = document.getElementById("membershipButton");
+
       const borrowerSection = document.getElementById("borrowerSection");
       const lenderSection = document.getElementById("lenderSection");
+      const adminSection = document.getElementById("adminSection");
       const tabBorrower = document.getElementById("tabBorrower");
       const tabLender = document.getElementById("tabLender");
+      const tabAdmin = document.getElementById("tabAdmin");
       const btnBorrowView = document.getElementById("btnBorrowView");
       const btnLendView = document.getElementById("btnLendView");
+
+      const borrowerGateMessage = document.getElementById("borrowerGateMessage");
+      const lenderGateMessage = document.getElementById("lenderGateMessage");
 
       const borrowerForm = document.getElementById("borrowerForm");
       const requestsList = document.getElementById("requestsList");
@@ -528,30 +680,10 @@
       const dealsList = document.getElementById("dealsList");
       const noDealsMessage = document.getElementById("noDealsMessage");
 
-      const PLATFORM_FEE_PERCENT = 5;
-
-      function switchMode(mode) {
-        const isBorrower = mode === "borrower";
-
-        borrowerSection.style.display = isBorrower ? "block" : "none";
-        lenderSection.style.display = isBorrower ? "none" : "block";
-
-        tabBorrower.classList.toggle("tab-active", isBorrower);
-        tabLender.classList.toggle("tab-active", !isBorrower);
-      }
-
-      tabBorrower.addEventListener("click", () => switchMode("borrower"));
-      tabLender.addEventListener("click", () => switchMode("lender"));
-
-      btnBorrowView.addEventListener("click", () => {
-        switchMode("borrower");
-        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-      });
-
-      btnLendView.addEventListener("click", () => {
-        switchMode("lender");
-        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-      });
+      const pendingList = document.getElementById("pendingList");
+      const approvedList = document.getElementById("approvedList");
+      const noPendingMessage = document.getElementById("noPendingMessage");
+      const noApprovedMessage = document.getElementById("noApprovedMessage");
 
       function formatAmount(amount, currency) {
         const rounded = Number(amount || 0);
@@ -563,16 +695,125 @@
         if (currency === "USD") symbol = "$";
         else if (currency === "EUR") symbol = "€";
         else if (currency === "NOK") symbol = "kr";
-        else if (currency === "CRYPTO") symbol = "₿"; // just a fun generic crypto symbol
+        else if (currency === "CRYPTO") symbol = "₿";
 
         return `${formatted} ${currency === "CRYPTO" ? "Crypto" : currency}${
           symbol ? " (" + symbol + ")" : ""
         }`;
       }
 
-      // --- Borrower: handle form submit ---
+      function updateAccountStatus() {
+        if (!state.account) {
+          accountStatus.textContent = "Not signed up yet.";
+          membershipButton.classList.add("btn-muted");
+          membershipButton.textContent = "Mark $50 as paid (demo)";
+          return;
+        }
+
+        const { name, email, role } = state.account;
+        const roleText =
+          role === "both" ? "Borrower & Lender" : role[0].toUpperCase() + role.slice(1);
+
+        let text = `Signed in as ${name} (${roleText}) – ${email}. `;
+        if (state.membershipPaid) {
+          text += "Membership active.";
+          membershipButton.classList.add("btn-muted");
+          membershipButton.textContent = "Membership paid ($50)";
+        } else {
+          text += "Membership not paid yet.";
+          membershipButton.classList.remove("btn-muted");
+          membershipButton.textContent = "Mark $50 as paid (demo)";
+        }
+        accountStatus.textContent = text;
+
+        updateGates();
+      }
+
+      function isNetworkActive() {
+        return !!state.account && state.membershipPaid;
+      }
+
+      function updateGates() {
+        if (!isNetworkActive()) {
+          borrowerGateMessage.textContent =
+            "You must create an account and pay the $50 membership fee before submitting a request. (Demo: use the card above.)";
+          lenderGateMessage.textContent =
+            "You must create an account and pay the $50 membership fee before you can lend.";
+        } else {
+          borrowerGateMessage.textContent = "";
+          lenderGateMessage.textContent = "";
+        }
+      }
+
+      // Account form
+      accountForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const data = new FormData(accountForm);
+        const name = String(data.get("accountName") || "").trim();
+        const email = String(data.get("accountEmail") || "").trim();
+        const role = String(data.get("accountRole") || "").trim();
+
+        if (!name || !email || !role) {
+          alert("Name, email and role are required.");
+          return;
+        }
+
+        state.account = { name, email, role };
+        updateAccountStatus();
+        alert("Account saved (demo). Now mark the $50 membership as paid.");
+      });
+
+      membershipButton.addEventListener("click", () => {
+        if (!state.account) {
+          alert("Create an account first.");
+          return;
+        }
+        if (state.membershipPaid) return;
+        // Demo: just flip the flag
+        state.membershipPaid = true;
+        updateAccountStatus();
+        alert("Membership marked as paid (demo). Network access unlocked.");
+      });
+
+      // Mode switching
+      function switchMode(mode) {
+        const isBorrower = mode === "borrower";
+        const isLender = mode === "lender";
+        const isAdmin = mode === "admin";
+
+        borrowerSection.style.display = isBorrower ? "block" : "none";
+        lenderSection.style.display = isLender ? "block" : "none";
+        adminSection.style.display = isAdmin ? "block" : "none";
+
+        tabBorrower.classList.toggle("tab-active", isBorrower);
+        tabLender.classList.toggle("tab-active", isLender);
+        tabAdmin.classList.toggle("tab-active", isAdmin);
+      }
+
+      tabBorrower.addEventListener("click", () => switchMode("borrower"));
+      tabLender.addEventListener("click", () => switchMode("lender"));
+      tabAdmin.addEventListener("click", () => switchMode("admin"));
+
+      btnBorrowView.addEventListener("click", () => {
+        switchMode("borrower");
+        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+      });
+
+      btnLendView.addEventListener("click", () => {
+        switchMode("lender");
+        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+      });
+
+      // Borrower: submit request
       borrowerForm.addEventListener("submit", (event) => {
         event.preventDefault();
+
+        if (!isNetworkActive()) {
+          alert(
+            "You must have an active membership ($50) and an account before submitting a request."
+          );
+          return;
+        }
 
         const formData = new FormData(borrowerForm);
         const name = String(formData.get("borrowerName") || "").trim();
@@ -590,7 +831,9 @@
         const purpose = String(formData.get("loanPurpose") || "").trim();
 
         if (!name || !age || !work || !income || !amount || !term || !currency) {
-          alert("Name, age, work, income, amount, currency and term are required.");
+          alert(
+            "Name, age, work, income, amount, currency and term are required."
+          );
           return;
         }
 
@@ -610,27 +853,30 @@
           maxApr,
           purpose,
           createdAt: new Date(),
+          status: "pending", // pending -> approved
         });
 
         borrowerForm.reset();
-        renderRequests();
+        renderAll();
         alert(
-          "Loan request submitted! Switch to the Lender tab to see how it looks."
+          "Loan request submitted! It is now pending and must be approved in the Admin tab."
         );
       });
 
-      // --- Lender: render open requests ---
-      function renderRequests() {
+      // Lender: render approved requests only
+      function renderLenderRequests() {
         requestsList.innerHTML = "";
 
-        if (state.requests.length === 0) {
+        const approved = state.requests.filter((r) => r.status === "approved");
+
+        if (approved.length === 0) {
           noRequestsMessage.style.display = "block";
           return;
         }
 
         noRequestsMessage.style.display = "none";
 
-        state.requests.forEach((req) => {
+        approved.forEach((req) => {
           const wrapper = document.createElement("div");
           wrapper.className = "item-card";
 
@@ -707,12 +953,18 @@
           createDealBtn.textContent = "Create deal";
 
           createDealBtn.addEventListener("click", () => {
+            if (!isNetworkActive()) {
+              alert(
+                "You must have an active membership ($50) and an account before lending."
+              );
+              return;
+            }
+
             const offerApr = Number(aprInput.value || 0);
             if (!offerApr && offerApr !== 0) {
               alert("Enter your APR offer first.");
               return;
             }
-            // Simple check: if borrower set a max APR, enforce it
             if (req.maxApr != null && offerApr > req.maxApr) {
               const proceed = confirm(
                 `Borrower set a max APR of ${req.maxApr}%. Your offer is ${offerApr}%.\n\nContinue anyway (for demo)?`
@@ -737,7 +989,129 @@
         });
       }
 
-      // --- Create deal & move from requests -> deals ---
+      // Admin: render pending & approved
+      function renderAdminLists() {
+        pendingList.innerHTML = "";
+        approvedList.innerHTML = "";
+
+        const pending = state.requests.filter((r) => r.status === "pending");
+        const approved = state.requests.filter((r) => r.status === "approved");
+
+        if (pending.length === 0) {
+          noPendingMessage.style.display = "block";
+        } else {
+          noPendingMessage.style.display = "none";
+        }
+
+        if (approved.length === 0) {
+          noApprovedMessage.style.display = "block";
+        } else {
+          noApprovedMessage.style.display = "none";
+        }
+
+        pending.forEach((req) => {
+          const card = document.createElement("div");
+          card.className = "item-card";
+
+          const header = document.createElement("div");
+          header.className = "item-header";
+
+          const title = document.createElement("div");
+          title.className = "item-title";
+          title.textContent = `${req.name} – ${formatAmount(
+            req.amount,
+            req.currency
+          )}`;
+          const statusBadge = document.createElement("span");
+          statusBadge.className = "badge badge-pending";
+          statusBadge.textContent = "Pending";
+          title.appendChild(statusBadge);
+
+          header.appendChild(title);
+
+          const meta = document.createElement("div");
+          meta.className = "item-meta";
+          meta.textContent = `Age ${req.age}, work: ${req.work}, monthly income: ${formatAmount(
+            req.income,
+            req.currency
+          )} • Term: ${req.term} • ${
+            req.maxApr != null
+              ? "Max APR: " + req.maxApr + "%"
+              : "Max APR not specified"
+          } • Purpose: ${req.purpose || "No description."}`;
+
+          const footer = document.createElement("div");
+          footer.className = "item-footer";
+
+          const approveBtn = document.createElement("button");
+          approveBtn.type = "button";
+          approveBtn.className = "btn btn-primary btn-small";
+          approveBtn.textContent = "Approve & publish";
+
+          approveBtn.addEventListener("click", () => {
+            req.status = "approved";
+            renderAll();
+          });
+
+          const rejectBtn = document.createElement("button");
+          rejectBtn.type = "button";
+          rejectBtn.className = "btn btn-danger btn-small";
+          rejectBtn.textContent = "Reject";
+
+          rejectBtn.addEventListener("click", () => {
+            state.requests = state.requests.filter((r) => r.id !== req.id);
+            renderAll();
+          });
+
+          footer.appendChild(approveBtn);
+          footer.appendChild(rejectBtn);
+
+          card.appendChild(header);
+          card.appendChild(meta);
+          card.appendChild(footer);
+
+          pendingList.appendChild(card);
+        });
+
+        approved.forEach((req) => {
+          const card = document.createElement("div");
+          card.className = "item-card";
+
+          const header = document.createElement("div");
+          header.className = "item-header";
+
+          const title = document.createElement("div");
+          title.className = "item-title";
+          title.textContent = `${req.name} – ${formatAmount(
+            req.amount,
+            req.currency
+          )}`;
+          const statusBadge = document.createElement("span");
+          statusBadge.className = "badge badge-approved";
+          statusBadge.textContent = "Approved";
+          title.appendChild(statusBadge);
+
+          header.appendChild(title);
+
+          const meta = document.createElement("div");
+          meta.className = "item-meta";
+          meta.textContent = `Age ${req.age}, work: ${req.work}, monthly income: ${formatAmount(
+            req.income,
+            req.currency
+          )} • Term: ${req.term} • ${
+            req.maxApr != null
+              ? "Max APR: " + req.maxApr + "%"
+              : "Max APR not specified"
+          } • Purpose: ${req.purpose || "No description."}`;
+
+          card.appendChild(header);
+          card.appendChild(meta);
+
+          approvedList.appendChild(card);
+        });
+      }
+
+      // Deals
       function createDealFromRequest(request, lenderApr) {
         const fee = (request.amount * PLATFORM_FEE_PERCENT) / 100;
         const borrowerGets = request.amount - fee;
@@ -760,8 +1134,7 @@
         // Remove from open requests
         state.requests = state.requests.filter((r) => r.id !== request.id);
 
-        renderRequests();
-        renderDeals();
+        renderAll();
       }
 
       function renderDeals() {
@@ -811,7 +1184,7 @@
           line4.style.marginTop = "4px";
           line4.className = "subtle";
           line4.textContent =
-            "In a real app this would generate a contract to sign and store everything in a database.";
+            "In a real app this would generate a contract to sign, process payments and store everything in a database.";
 
           card.appendChild(line1);
           card.appendChild(lineProfile);
@@ -823,9 +1196,16 @@
         });
       }
 
+      function renderAll() {
+        updateGates();
+        renderLenderRequests();
+        renderDeals();
+        renderAdminLists();
+      }
+
       // Initial render
-      renderRequests();
-      renderDeals();
+      updateAccountStatus();
+      renderAll();
     </script>
   </body>
 </html>
