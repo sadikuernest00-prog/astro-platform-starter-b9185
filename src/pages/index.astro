@@ -1,532 +1,688 @@
 ---
-const title = "AmicBridge | Private Borrow & Lend Network";
-const description =
-  "AmicBridge is a private person-to-person network where verified members can request to borrow, lend, or work together on investments. AmicBridge never holds client funds.";
+/* AmicBridge MVP – no backend, just in-memory demo */
 ---
 
-<head>
-  <title>{title}</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content={description} />
-  <style>
-    :root {
-      --bg: #f5f5f7;
-      --card: #ffffff;
-      --border: #d3d6de;
-      --text: #111827;
-      --muted: #4b5563;
-      --accent: #1f4fd8;
-      --danger: #b91c1c;
-      --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: var(--font);
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    main {
-      max-width: 880px;
-      margin: 0 auto;
-      padding: 32px 16px 40px;
-    }
-
-    header {
-      margin-bottom: 24px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand {
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    .tagline {
-      font-size: 0.85rem;
-      color: var(--muted);
-      text-align: right;
-    }
-
-    h1 {
-      font-size: 1.6rem;
-      margin: 0 0 8px;
-    }
-
-    h2 {
-      font-size: 1.2rem;
-      margin: 0 0 6px;
-    }
-
-    h3 {
-      font-size: 1rem;
-      margin: 0 0 4px;
-    }
-
-    p {
-      margin: 0 0 8px;
-      line-height: 1.5;
-    }
-
-    .intro {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 16px 14px;
-      border-radius: 6px;
-      margin-bottom: 18px;
-    }
-
-    .note {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .row {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-
-    .col {
-      flex: 1 1 260px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 14px 12px;
-      border-radius: 6px;
-    }
-
-    ul {
-      margin: 6px 0 0;
-      padding-left: 18px;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    li {
-      margin-bottom: 4px;
-    }
-
-    .form-section {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 16px 14px 18px;
-      border-radius: 6px;
-      margin-bottom: 20px;
-    }
-
-    form {
-      margin-top: 8px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 10px 16px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      font-size: 0.9rem;
-    }
-
-    .field.full {
-      grid-column: 1 / -1;
-    }
-
-    label {
-      font-weight: 500;
-    }
-
-    label span {
-      color: var(--accent);
-    }
-
-    input,
-    select,
-    textarea {
-      font-family: var(--font);
-      font-size: 0.9rem;
-      padding: 7px 8px;
-      border-radius: 4px;
-      border: 1px solid var(--border);
-      background: #f9fafb;
-      color: var(--text);
-    }
-
-    textarea {
-      min-height: 70px;
-      resize: vertical;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-
-    .hint {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .checkbox-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      font-size: 0.85rem;
-    }
-
-    .checkbox-row input[type="checkbox"] {
-      margin-top: 3px;
-    }
-
-    button {
-      margin-top: 8px;
-      padding: 8px 16px;
-      border-radius: 4px;
-      border: 1px solid var(--accent);
-      background: var(--accent);
-      color: #ffffff;
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
-      grid-column: 1 / -1;
-      justify-self: flex-start;
-    }
-
-    button:hover {
-      filter: brightness(1.05);
-    }
-
-    footer {
-      margin-top: 20px;
-      border-top: 1px solid var(--border);
-      padding-top: 10px;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .warning {
-      color: var(--danger);
-      font-weight: 500;
-    }
-
-    @media (max-width: 600px) {
-      .tagline {
-        text-align: left;
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AmicBridge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        color-scheme: light;
       }
-    }
-  </style>
-</head>
 
-<main>
-  <header>
-    <div class="brand">AmicBridge</div>
-    <div class="tagline">
-      Private borrow, lend &amp; invest<br />Person-to-person network
-    </div>
-  </header>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #fafafa;
+        color: #111;
+      }
 
-  <section class="intro">
-    <h1>Request to borrow, lend, or invest through AmicBridge</h1>
-    <p class="note">
-      AmicBridge is a private network bridge. Members can request to
-      <strong>borrow money</strong>, <strong>lend money</strong>, or work
-      together on <strong>investments</strong>. We carefully check members with
-      ID verification before matching them with others in the network.
-    </p>
-    <p class="note">
-      AmicBridge does <strong>not</strong> hold or move funds. All money is
-      transferred directly between members under their own agreements.
-      AmicBridge charges a <strong>5% fee</strong> on every deal made through
-      the network.
-    </p>
-  </section>
+      .page {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 32px 16px 80px;
+      }
 
-  <section class="row">
-    <div class="col">
-      <h2>Borrowers</h2>
-      <p class="note">
-        Send a request if you want to borrow money using a private loan
-        agreement.
-      </p>
-      <ul>
-        <li>Choose currency: NOK, USD, EUR, or crypto.</li>
-        <li>Explain how much you need and for how long.</li>
-        <li>Describe your work, income and ability to repay.</li>
-      </ul>
-    </div>
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 8px;
+      }
 
-    <div class="col">
-      <h2>Lenders</h2>
-      <p class="note">
-        Send a request if you want to lend money to verified members.
-      </p>
-      <ul>
-        <li>Set what kind of borrowers you prefer.</li>
-        <li>Choose currencies and loan sizes you are open to.</li>
-        <li>Decide yourself which deals you accept.</li>
-      </ul>
-    </div>
+      h2 {
+        font-size: 1.5rem;
+        margin-bottom: 16px;
+      }
 
-    <div class="col">
-      <h2>Investments</h2>
-      <p class="note">
-        You can also ask for investment strategy help or co-investment
-        opportunities.
-      </p>
-      <ul>
-        <li>Describe your financial goals and risk level.</li>
-        <li>Ask for ideas to grow your money.</li>
-        <li>We only connect verified members; we never hold funds.</li>
-      </ul>
-    </div>
-  </section>
+      p {
+        margin: 0 0 8px;
+      }
 
-  <section class="form-section">
-    <h2>Request to join the private network</h2>
-    <p class="note">
-      Fill in the form below to send a request to AmicBridge. We review your
-      details and then contact you for ID verification and follow-up. After
-      that we can try to match you with other verified members.
-    </p>
+      .card {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 24px;
+        margin-top: 24px;
+        box-shadow: 0 0 0 1px #e5e5e5;
+      }
 
-    <form action="https://formspree.io/f/xzznjkvd" method="POST">
-      <!-- Basic information -->
-      <div class="field">
-        <label for="fullName">Full name <span>*</span></label>
-        <input
-          id="fullName"
-          name="full_name"
-          type="text"
-          autocomplete="name"
-          required
-        />
-      </div>
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
 
-      <div class="field">
-        <label for="age">Age <span>*</span></label>
-        <input id="age" name="age" type="number" min="18" required />
-        <div class="hint">You must be at least 18 years old.</div>
-      </div>
+      .btn {
+        border: none;
+        border-radius: 999px;
+        padding: 10px 22px;
+        font-size: 0.95rem;
+        cursor: pointer;
+        font-weight: 500;
+        transition: transform 0.05s ease, box-shadow 0.05s ease,
+          background 0.15s ease, color 0.15s ease;
+      }
 
-      <div class="field">
-        <label for="email">Email <span>*</span></label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          autocomplete="email"
-          required
-        />
-      </div>
+      .btn-primary {
+        background: #111;
+        color: #fff;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
 
-      <div class="field">
-        <label for="country">Country of residence <span>*</span></label>
-        <input id="country" name="country" type="text" required />
-      </div>
+      .btn-secondary {
+        background: #f3f3f3;
+        color: #111;
+      }
 
-      <!-- Purpose -->
-      <div class="field">
-        <label for="role">What do you want to do? <span>*</span></label>
-        <select id="role" name="role" required>
-          <option value="">Select one</option>
-          <option value="borrow">Request to borrow money</option>
-          <option value="lend">Offer to lend money</option>
-          <option value="both">Borrow and lend</option>
-          <option value="invest">Investment / strategy only</option>
-        </select>
-      </div>
+      .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+      }
 
-      <div class="field">
-        <label for="currency">Preferred currency <span>*</span></label>
-        <select id="currency" name="currency" required>
-          <option value="">Select currency</option>
-          <option value="NOK">NOK</option>
-          <option value="USD">USD</option>
-          <option value="EUR">EUR</option>
-          <option value="CRYPTO">Crypto (specify below)</option>
-        </select>
-        <div class="hint">
-          If you choose crypto, add which asset in the message field.
+      .btn:active {
+        transform: translateY(0);
+        box-shadow: none;
+      }
+
+      .btn-small {
+        padding: 6px 14px;
+        font-size: 0.85rem;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border-radius: 999px;
+        padding: 4px 10px;
+        font-size: 0.75rem;
+        background: #f5f5f5;
+        color: #555;
+        margin-top: 10px;
+      }
+
+      .pill-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: #4ade80;
+      }
+
+      .section-title {
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+
+      .tabs {
+        display: inline-flex;
+        padding: 4px;
+        border-radius: 999px;
+        background: #f5f5f5;
+      }
+
+      .tab {
+        border-radius: 999px;
+        padding: 6px 14px;
+        font-size: 0.85rem;
+        cursor: pointer;
+        border: none;
+        background: transparent;
+      }
+
+      .tab-active {
+        background: #111;
+        color: #fff;
+      }
+
+      form {
+        display: grid;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      label {
+        font-size: 0.85rem;
+        font-weight: 500;
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      input,
+      textarea,
+      select {
+        font: inherit;
+        padding: 8px 10px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 60px;
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 12px;
+      }
+
+      .subtle {
+        font-size: 0.8rem;
+        color: #666;
+      }
+
+      .list {
+        display: grid;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .item-card {
+        border-radius: 14px;
+        padding: 12px 14px;
+        border: 1px solid #eee;
+        background: #fcfcfc;
+      }
+
+      .item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .item-title {
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+
+      .tag {
+        font-size: 0.75rem;
+        padding: 2px 8px;
+        border-radius: 999px;
+        border: 1px solid #e5e5e5;
+        background: #fff;
+      }
+
+      .item-meta {
+        font-size: 0.8rem;
+        color: #555;
+        margin-top: 4px;
+      }
+
+      .item-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 8px;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .fee-line {
+        font-size: 0.8rem;
+        color: #555;
+      }
+
+      .deal-card {
+        border-radius: 14px;
+        padding: 12px 14px;
+        border: 1px dashed #d4d4d4;
+        background: #f9fafb;
+        font-size: 0.85rem;
+      }
+
+      .deal-highlight {
+        font-weight: 600;
+      }
+
+      .how-steps {
+        margin-top: 16px;
+        padding-left: 18px;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          padding-top: 20px;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header>
+        <h1>AmicBridge</h1>
+        <p>
+          A simple platform where borrowers request loans, lenders make offers,
+          and a contract is generated when a deal is accepted.
+        </p>
+      </header>
+
+      <!-- START CARD -->
+      <section class="card">
+        <h2>Start</h2>
+        <div class="row" style="margin-top: 8px">
+          <button class="btn btn-primary" id="btnBorrowView">
+            I want to borrow
+          </button>
+          <button class="btn btn-secondary" id="btnLendView">
+            I want to lend
+          </button>
         </div>
-      </div>
+        <p class="subtle" style="margin-top: 14px">
+          MVP note: No login, no payments, no KYC yet. This is the workflow
+          skeleton.
+        </p>
 
-      <!-- Work & income -->
-      <div class="field">
-        <label for="employment">Work situation <span>*</span></label>
-        <select id="employment" name="employment_status" required>
-          <option value="">Select one</option>
-          <option value="full_time">Employed – full time</option>
-          <option value="part_time">Employed – part time</option>
-          <option value="self_employed">Self-employed</option>
-          <option value="student">Student</option>
-          <option value="unemployed">Unemployed</option>
-          <option value="retired">Retired</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label for="income">
-          Monthly net income (approx.) <span>*</span>
-        </label>
-        <input
-          id="income"
-          name="monthly_income"
-          type="text"
-          placeholder="Example: 30 000 NOK"
-          required
-        />
-      </div>
-
-      <!-- Borrow details -->
-      <div class="field full">
-        <label for="loanDetails">If you want to borrow: loan details</label>
-        <textarea
-          id="loanDetails"
-          name="loan_details"
-          placeholder="Amount, purpose of the loan, how long, repayment plan, any collateral, etc."
-        ></textarea>
-      </div>
-
-      <!-- Lender preferences -->
-      <div class="field full">
-        <label for="lenderPreferences">
-          If you want to lend: preferred borrowers
-        </label>
-        <textarea
-          id="lenderPreferences"
-          name="lender_preferences"
-          placeholder="Income level, country, risk level, minimum/maximum amounts, purpose of loan you accept, etc."
-        ></textarea>
-      </div>
-
-      <!-- Investment strategy -->
-      <div class="field full">
-        <label for="investment">
-          Investment &amp; strategy requests
-        </label>
-        <textarea
-          id="investment"
-          name="investment_request"
-          placeholder="Describe if you want help with an investment strategy or to find co-investors."
-        ></textarea>
-      </div>
-
-      <!-- Extra information -->
-      <div class="field full">
-        <label for="extra">Anything else we should know?</label>
-        <textarea
-          id="extra"
-          name="extra_information"
-          placeholder="For example: experience with loans/investments, risk tolerance, how you heard about AmicBridge."
-        ></textarea>
-      </div>
-
-      <!-- Confirmations -->
-      <div class="field full">
-        <div class="checkbox-row">
-          <input
-            type="checkbox"
-            id="confirmNotBank"
-            name="confirm_not_bank"
-            required
-          />
-          <label for="confirmNotBank">
-            I understand that AmicBridge is a private matching network, not a
-            bank or broker, and that AmicBridge does not hold or control funds.
-          </label>
+        <div class="pill">
+          <span class="pill-dot"></span>
+          Prototype &mdash; data is kept only in your browser
         </div>
-      </div>
+      </section>
 
-      <div class="field full">
-        <div class="checkbox-row">
-          <input
-            type="checkbox"
-            id="confirmRisk"
-            name="confirm_risk"
-            required
-          />
-          <label for="confirmRisk">
-            I understand that borrowing, lending and investing involve risk and
-            that I am responsible for my own decisions. Nothing from
-            AmicBridge is personal financial advice.
-          </label>
+      <!-- HOW IT WORKS -->
+      <section class="card">
+        <h2>How it works</h2>
+        <ol class="how-steps">
+          <li>Borrower submits a loan request.</li>
+          <li>Lenders browse open requests and choose who to fund.</li>
+          <li>
+            When a lender funds a request, a deal is created automatically.
+          </li>
+          <li>
+            AmicBridge takes
+            <strong>5% platform fee</strong> from the loan amount per deal.
+          </li>
+          <li>Contract page can be generated (print / save as PDF).</li>
+        </ol>
+      </section>
+
+      <!-- MODE SWITCHER -->
+      <section class="card">
+        <div
+          class="row"
+          style="justify-content: space-between; align-items: center"
+        >
+          <div>
+            <div class="section-title">Play with the workflow</div>
+            <p class="subtle">
+              Fill out a fake request, then switch to Lender mode and create a
+              deal.
+            </p>
+          </div>
+          <div class="tabs" aria-label="Mode selector">
+            <button
+              class="tab tab-active"
+              id="tabBorrower"
+              type="button"
+            >
+              Borrower
+            </button>
+            <button class="tab" id="tabLender" type="button">Lender</button>
+          </div>
         </div>
-      </div>
 
-      <div class="field full">
-        <div class="checkbox-row">
-          <input
-            type="checkbox"
-            id="confirmFee"
-            name="confirm_fee"
-            required
-          />
-          <label for="confirmFee">
-            I understand that AmicBridge takes a 5% fee on every deal that is
-            made with someone in the AmicBridge network.
-          </label>
+        <!-- BORROWER MODE -->
+        <div id="borrowerSection">
+          <form id="borrowerForm">
+            <div class="two-col">
+              <div>
+                <label for="borrowerName">Your name</label>
+                <input
+                  id="borrowerName"
+                  name="borrowerName"
+                  type="text"
+                  required
+                  placeholder="Ada Lovelace"
+                />
+              </div>
+              <div>
+                <label for="loanAmount">Loan amount (USD)</label>
+                <input
+                  id="loanAmount"
+                  name="loanAmount"
+                  type="number"
+                  min="1"
+                  step="0.01"
+                  required
+                  placeholder="5000"
+                />
+              </div>
+            </div>
+
+            <div class="two-col">
+              <div>
+                <label for="loanTerm">Term</label>
+                <select id="loanTerm" name="loanTerm" required>
+                  <option value="">Select term</option>
+                  <option value="6 months">6 months</option>
+                  <option value="12 months">12 months</option>
+                  <option value="24 months">24 months</option>
+                  <option value="36 months">36 months</option>
+                </select>
+              </div>
+              <div>
+                <label for="maxApr">Max APR you accept (%)</label>
+                <input
+                  id="maxApr"
+                  name="maxApr"
+                  type="number"
+                  min="0"
+                  step="0.1"
+                  placeholder="10"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="loanPurpose">What is the loan for?</label>
+              <textarea
+                id="loanPurpose"
+                name="loanPurpose"
+                placeholder="Short description (equipment, invoice, project, etc.)"
+              ></textarea>
+            </div>
+
+            <div class="row" style="justify-content: space-between">
+              <div class="subtle">
+                When a lender funds you, AmicBridge takes 5% as a platform fee.
+              </div>
+              <button class="btn btn-primary" type="submit">
+                Submit loan request
+              </button>
+            </div>
+          </form>
+
+          <div style="margin-top: 18px">
+            <div class="section-title" style="font-size: 0.95rem">
+              Your request will appear in the “Open requests” list for lenders.
+            </div>
+          </div>
         </div>
-      </div>
 
-      <button type="submit">Send request</button>
-    </form>
-  </section>
+        <!-- LENDER MODE -->
+        <div id="lenderSection" style="display: none; margin-top: 8px">
+          <div class="section-title">Open loan requests</div>
+          <p class="subtle">
+            Pick a borrower you want to lend money to. When you create a deal,
+            AmicBridge automatically takes a 5% fee from the loan amount.
+          </p>
 
-  <section class="row">
-    <div class="col">
-      <h3>How matching works</h3>
-      <p class="note">
-        When we receive your request, we review the information, contact you
-        for ID verification, and then decide if we can approve you for the
-        private network. If approved, we will only match you with other
-        verified members whose profile fits your request.
-      </p>
-    </div>
+          <div id="requestsList" class="list"></div>
+          <p id="noRequestsMessage" class="subtle" style="margin-top: 12px">
+            No requests yet. Switch to the Borrower tab and create one.
+          </p>
 
-    <div class="col">
-      <h3>Agreements and funds</h3>
-      <p class="note">
-        Matches are introductions only. You and the other person agree on your
-        own contract and move funds directly between yourselves using the
-        payment methods you choose. AmicBridge never touches the money.
-      </p>
-    </div>
+          <hr style="margin: 24px 0; border: none; border-top: 1px solid #eee" />
 
-    <div class="col">
-      <h3>Risk and responsibility</h3>
-      <p class="note">
-        Every deal carries risk, including the possibility of losing money.
-        Only enter into agreements you fully understand, follow the laws in
-        your country, and consider getting independent professional advice for
-        important financial decisions.
-      </p>
-    </div>
-  </section>
+          <div class="section-title">Deals created during this session</div>
+          <div id="dealsList" class="list"></div>
+          <p id="noDealsMessage" class="subtle" style="margin-top: 12px">
+            No deals yet. Fund a request to see the breakdown here.
+          </p>
+        </div>
+      </section>
+    </main>
 
-  <footer>
-    <p>
-      <strong>AmicBridge</strong> is a private network bridge for people who
-      want to borrow, lend, or invest directly with each other.
-    </p>
-    <p class="warning">
-      AmicBridge is not a bank, investment firm, broker, or financial adviser.
-      We do not guarantee returns, repayments, or the behavior of any member.
-    </p>
-  </footer>
-</main>
+    <script type="module">
+      // --- In-memory state (cleared on refresh) ---
+      const state = {
+        requests: [],
+        deals: [],
+      };
+
+      const borrowerSection = document.getElementById("borrowerSection");
+      const lenderSection = document.getElementById("lenderSection");
+      const tabBorrower = document.getElementById("tabBorrower");
+      const tabLender = document.getElementById("tabLender");
+      const btnBorrowView = document.getElementById("btnBorrowView");
+      const btnLendView = document.getElementById("btnLendView");
+
+      const borrowerForm = document.getElementById("borrowerForm");
+      const requestsList = document.getElementById("requestsList");
+      const noRequestsMessage = document.getElementById("noRequestsMessage");
+      const dealsList = document.getElementById("dealsList");
+      const noDealsMessage = document.getElementById("noDealsMessage");
+
+      const PLATFORM_FEE_PERCENT = 5;
+
+      function switchMode(mode) {
+        const isBorrower = mode === "borrower";
+
+        borrowerSection.style.display = isBorrower ? "block" : "none";
+        lenderSection.style.display = isBorrower ? "none" : "block";
+
+        tabBorrower.classList.toggle("tab-active", isBorrower);
+        tabLender.classList.toggle("tab-active", !isBorrower);
+      }
+
+      tabBorrower.addEventListener("click", () => switchMode("borrower"));
+      tabLender.addEventListener("click", () => switchMode("lender"));
+
+      btnBorrowView.addEventListener("click", () => {
+        switchMode("borrower");
+        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+      });
+
+      btnLendView.addEventListener("click", () => {
+        switchMode("lender");
+        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+      });
+
+      // --- Borrower: handle form submit ---
+      borrowerForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(borrowerForm);
+        const name = String(formData.get("borrowerName") || "").trim();
+        const amount = Number(formData.get("loanAmount") || 0);
+        const term = String(formData.get("loanTerm") || "").trim();
+        const maxAprRaw = formData.get("maxApr");
+        const maxApr =
+          maxAprRaw === null || maxAprRaw === ""
+            ? null
+            : Number(maxAprRaw);
+        const purpose = String(formData.get("loanPurpose") || "").trim();
+
+        if (!name || !amount || !term) {
+          alert("Name, amount and term are required.");
+          return;
+        }
+
+        const id = crypto.randomUUID
+          ? crypto.randomUUID()
+          : String(Date.now()) + Math.random().toString(16).slice(2);
+
+        state.requests.push({
+          id,
+          name,
+          amount,
+          term,
+          maxApr,
+          purpose,
+          createdAt: new Date(),
+        });
+
+        borrowerForm.reset();
+        renderRequests();
+        alert(
+          "Loan request submitted! Switch to the Lender tab to see how it looks."
+        );
+      });
+
+      // --- Lender: render open requests ---
+      function renderRequests() {
+        requestsList.innerHTML = "";
+
+        if (state.requests.length === 0) {
+          noRequestsMessage.style.display = "block";
+          return;
+        }
+
+        noRequestsMessage.style.display = "none";
+
+        state.requests.forEach((req) => {
+          const wrapper = document.createElement("div");
+          wrapper.className = "item-card";
+
+          const header = document.createElement("div");
+          header.className = "item-header";
+
+          const title = document.createElement("div");
+          title.className = "item-title";
+          title.textContent = `${req.name} requests $${req.amount.toLocaleString()}`;
+
+          const tag = document.createElement("div");
+          tag.className = "tag";
+          tag.textContent = req.term;
+
+          header.appendChild(title);
+          header.appendChild(tag);
+
+          const meta = document.createElement("div");
+          meta.className = "item-meta";
+          const aprText =
+            req.maxApr != null
+              ? `Max APR acceptable: ${req.maxApr}%`
+              : "Max APR not specified";
+          const purposeText = req.purpose
+            ? `Purpose: ${req.purpose}`
+            : "No description given.";
+          meta.textContent = `${aprText} • ${purposeText}`;
+
+          const footer = document.createElement("div");
+          footer.className = "item-footer";
+
+          const feeInfo = document.createElement("div");
+          feeInfo.className = "fee-line";
+          const fee = (req.amount * PLATFORM_FEE_PERCENT) / 100;
+          const borrowerGets = req.amount - fee;
+          feeInfo.textContent = `If you fund this: Borrower gets $${borrowerGets.toLocaleString()}, AmicBridge fee $${fee.toLocaleString()} (${PLATFORM_FEE_PERCENT}%)`;
+
+          const actionArea = document.createElement("div");
+          actionArea.className = "row";
+
+          const aprInput = document.createElement("input");
+          aprInput.type = "number";
+          aprInput.placeholder = "Your APR offer %";
+          aprInput.min = "0";
+          aprInput.step = "0.1";
+          aprInput.style.maxWidth = "140px";
+
+          const createDealBtn = document.createElement("button");
+          createDealBtn.type = "button";
+          createDealBtn.className = "btn btn-primary btn-small";
+          createDealBtn.textContent = "Create deal";
+
+          createDealBtn.addEventListener("click", () => {
+            const offerApr = Number(aprInput.value || 0);
+            if (!offerApr && offerApr !== 0) {
+              alert("Enter your APR offer first.");
+              return;
+            }
+            // Simple check: if borrower set a max APR, enforce it
+            if (req.maxApr != null && offerApr > req.maxApr) {
+              const proceed = confirm(
+                `Borrower set a max APR of ${req.maxApr}%. Your offer is ${offerApr}%.\n\nContinue anyway (for demo)?`
+              );
+              if (!proceed) return;
+            }
+
+            createDealFromRequest(req, offerApr);
+          });
+
+          actionArea.appendChild(aprInput);
+          actionArea.appendChild(createDealBtn);
+
+          footer.appendChild(feeInfo);
+          footer.appendChild(actionArea);
+
+          wrapper.appendChild(header);
+          wrapper.appendChild(meta);
+          wrapper.appendChild(footer);
+
+          requestsList.appendChild(wrapper);
+        });
+      }
+
+      // --- Create deal & move from requests -> deals ---
+      function createDealFromRequest(request, lenderApr) {
+        const fee = (request.amount * PLATFORM_FEE_PERCENT) / 100;
+        const borrowerGets = request.amount - fee;
+
+        state.deals.push({
+          id: request.id,
+          borrowerName: request.name,
+          amount: request.amount,
+          term: request.term,
+          lenderApr,
+          fee,
+          borrowerGets,
+          createdAt: new Date(),
+        });
+
+        // Remove from open requests
+        state.requests = state.requests.filter((r) => r.id !== request.id);
+
+        renderRequests();
+        renderDeals();
+      }
+
+      function renderDeals() {
+        dealsList.innerHTML = "";
+
+        if (state.deals.length === 0) {
+          noDealsMessage.style.display = "block";
+          return;
+        }
+
+        noDealsMessage.style.display = "none";
+
+        state.deals.forEach((deal) => {
+          const card = document.createElement("div");
+          card.className = "deal-card";
+
+          const line1 = document.createElement("div");
+          line1.innerHTML = `<span class="deal-highlight">${deal.borrowerName}</span> borrowed <span class="deal-highlight">$${deal.amount.toLocaleString()}</span> for ${deal.term} at <span class="deal-highlight">${deal.lenderApr}% APR</span>.`;
+
+          const line2 = document.createElement("div");
+          line2.style.marginTop = "4px";
+          line2.textContent = `Borrower receives $${deal.borrowerGets.toLocaleString()} after fees.`;
+
+          const line3 = document.createElement("div");
+          line3.style.marginTop = "4px";
+          line3.textContent = `AmicBridge platform fee: $${deal.fee.toLocaleString()} (${PLATFORM_FEE_PERCENT}% of deal size).`;
+
+          const line4 = document.createElement("div");
+          line4.style.marginTop = "4px";
+          line4.className = "subtle";
+          line4.textContent =
+            "In a real app this would generate a contract to sign and store everything in a database.";
+
+          card.appendChild(line1);
+          card.appendChild(line2);
+          card.appendChild(line3);
+          card.appendChild(line4);
+
+          dealsList.appendChild(card);
+        });
+      }
+
+      // Initial render
+      renderRequests();
+      renderDeals();
+    </script>
+  </body>
+</html>
