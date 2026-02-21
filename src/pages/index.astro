@@ -1,1211 +1,257 @@
----
-/* AmicBridge MVP – no backend, just in-memory demo */
----
-
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>AmicBridge</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      :root {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-          sans-serif;
-        color-scheme: light;
-      }
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AmicBridge — Private Capital Network</title>
 
-      body {
-        margin: 0;
-        padding: 0;
-        background: #f5f5f7;
-        color: #111;
-      }
+<meta name="description"
+content="AmicBridge is a private lending and investing network based in Norway. Trust before money. Structured agreements and defined 4-week repayment terms." />
 
-      .page {
-        max-width: 980px;
-        margin: 0 auto;
-        padding: 32px 16px 80px;
-      }
+<style>
+:root{
+  --bg:#f3f4f6;
+  --white:#ffffff;
+  --border:#d1d5db;
+  --text:#111827;
+  --muted:#6b7280;
+  --primary:#1d4ed8;
+  --primary-dark:#1e3a8a;
+  --soft:#e6f0ea;
+}
 
-      h1 {
-        font-size: 2.5rem;
-        margin-bottom: 8px;
-        letter-spacing: -0.04em;
-      }
+*{box-sizing:border-box}
 
-      h2 {
-        font-size: 1.5rem;
-        margin-bottom: 16px;
-      }
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
 
-      p {
-        margin: 0 0 8px;
-      }
+/* Header */
+header{
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+  padding:18px 28px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+}
 
-      .card {
-        background: #ffffff;
-        border-radius: 20px;
-        padding: 24px 20px;
-        margin-top: 24px;
-        box-shadow:
-          0 18px 45px rgba(15, 23, 42, 0.06),
-          0 0 0 1px rgba(148, 163, 184, 0.18);
-      }
+.logo{font-weight:800;font-size:24px;letter-spacing:.5px}
+.tagline{font-size:13px;color:var(--muted);margin-top:4px}
 
-      .row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        align-items: center;
-      }
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{
+  text-decoration:none;
+  font-weight:600;
+  font-size:14px;
+  color:var(--text);
+}
+nav a:hover{text-decoration:underline}
 
-      .btn {
-        border: none;
-        border-radius: 999px;
-        padding: 10px 22px;
-        font-size: 0.95rem;
-        cursor: pointer;
-        font-weight: 500;
-        transition: transform 0.05s ease, box-shadow 0.05s ease,
-          background 0.15s ease, color 0.15s ease, opacity 0.15s ease;
-      }
+/* Layout */
+.container{max-width:1000px;margin:auto;padding:40px 24px 60px}
+.pill-top{
+  display:inline-block;
+  padding:6px 12px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:#fff;
+  font-size:12px;
+  font-weight:800;
+  color:var(--primary-dark);
+}
+h1{font-size:42px;margin:12px 0}
+.lead{color:var(--muted);font-size:17px;max-width:750px;line-height:1.5}
+.section{margin-top:40px}
+.section-title{font-size:22px;margin-bottom:14px}
 
-      .btn-primary {
-        background: #111827;
-        color: #fff;
-        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.28);
-      }
+/* Offer Cards */
+.offers{display:grid;gap:18px}
+.offer{
+  background:var(--soft);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:24px;
+}
+.offer-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+  margin-bottom:10px;
+}
+.offer-header h3{
+  margin:0;
+  font-size:20px;
+  line-height:1.3;
+}
+.badge{
+  border:1px solid var(--border);
+  background:#fff;
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:900;
+}
+.offer-text{
+  margin:0;
+  color:var(--muted);
+  font-size:15px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:14px;
+}
+.box{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px;
+}
+.label{font-size:12px;color:var(--muted);font-weight:800}
+.value{font-size:20px;font-weight:900;margin-top:4px}
+.small{font-size:12px;color:var(--muted);margin-top:12px}
 
-      .btn-secondary {
-        background: #e5e7eb;
-        color: #111827;
-      }
+/* Contact */
+.card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:22px;
+}
+.button{
+  display:inline-block;
+  margin-top:14px;
+  padding:12px 18px;
+  background:var(--primary);
+  color:#fff;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:800;
+}
+.button:hover{background:var(--primary-dark)}
 
-      .btn-danger {
-        background: #fee2e2;
-        color: #b91c1c;
-      }
+footer{margin-top:60px;font-size:13px;color:var(--muted)}
 
-      .btn-muted {
-        background: #e5e7eb;
-        color: #6b7280;
-        cursor: default;
-        box-shadow: none;
-      }
+/* Mobile */
+@media(max-width:800px){
+  h1{font-size:32px}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
 
-      .btn:hover:not(.btn-muted) {
-        transform: translateY(-1px);
-        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.25);
-      }
+<body>
 
-      .btn:active:not(.btn-muted) {
-        transform: translateY(0);
-        box-shadow: none;
-      }
+<header>
+  <div>
+    <div class="logo">AMICBRIDGE</div>
+    <div class="tagline">Based in Norway · Private lending & investing network</div>
+  </div>
+  <nav>
+    <a href="#offers">Offers</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-      .btn-small {
-        padding: 6px 14px;
-        font-size: 0.85rem;
-      }
+<main class="container">
 
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        border-radius: 999px;
-        padding: 4px 10px;
-        font-size: 0.75rem;
-        background: #eef2ff;
-        color: #4338ca;
-        margin-top: 10px;
-      }
+  <span class="pill-top">✓ TRUST BEFORE MONEY</span>
 
-      .pill-dot {
-        width: 6px;
-        height: 6px;
-        border-radius: 999px;
-        background: #4ade80;
-      }
+  <h1>Structured 4-week capital opportunities.</h1>
+  <p class="lead">
+    AmicBridge connects private capital with verified short-term funding needs.
+    All offers operate on a defined 4-week repayment term.
+    Repayment amounts, timing, and obligations are defined in written agreements.
+  </p>
 
-      .section-title {
-        font-weight: 600;
-        margin-bottom: 8px;
-      }
+  <section class="section" id="offers">
+    <h2 class="section-title">Current Offers (4 weeks)</h2>
 
-      .tabs {
-        display: inline-flex;
-        padding: 4px;
-        border-radius: 999px;
-        background: #e5e7eb;
-      }
+    <div class="offers">
 
-      .tab {
-        border-radius: 999px;
-        padding: 6px 14px;
-        font-size: 0.85rem;
-        cursor: pointer;
-        border: none;
-        background: transparent;
-      }
-
-      .tab-active {
-        background: #111827;
-        color: #fff;
-      }
-
-      form {
-        display: grid;
-        gap: 12px;
-        margin-top: 16px;
-      }
-
-      label {
-        font-size: 0.85rem;
-        font-weight: 500;
-        display: block;
-        margin-bottom: 4px;
-      }
-
-      input,
-      textarea,
-      select {
-        font: inherit;
-        padding: 8px 10px;
-        border-radius: 10px;
-        border: 1px solid #d4d4d8;
-        width: 100%;
-        box-sizing: border-box;
-        background: #f9fafb;
-      }
-
-      input:focus,
-      textarea:focus,
-      select:focus {
-        outline: none;
-        border-color: #4f46e5;
-        box-shadow: 0 0 0 1px #4f46e5;
-        background: #ffffff;
-      }
-
-      textarea {
-        resize: vertical;
-        min-height: 70px;
-      }
-
-      .two-col {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        gap: 12px;
-      }
-
-      .subtle {
-        font-size: 0.8rem;
-        color: #6b7280;
-      }
-
-      .list {
-        display: grid;
-        gap: 10px;
-        margin-top: 12px;
-      }
-
-      .item-card {
-        border-radius: 16px;
-        padding: 12px 14px;
-        border: 1px solid #e5e7eb;
-        background: #f9fafb;
-      }
-
-      .item-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 6px;
-      }
-
-      .item-title {
-        font-size: 0.95rem;
-        font-weight: 600;
-      }
-
-      .tag {
-        font-size: 0.75rem;
-        padding: 2px 8px;
-        border-radius: 999px;
-        border: 1px solid #e5e7eb;
-        background: #fefefe;
-      }
-
-      .badge {
-        font-size: 0.7rem;
-        padding: 2px 6px;
-        border-radius: 999px;
-        background: #e5e7eb;
-        color: #374151;
-        margin-left: 6px;
-      }
-
-      .badge-pending {
-        background: #fef3c7;
-        color: #92400e;
-      }
-
-      .badge-approved {
-        background: #dcfce7;
-        color: #166534;
-      }
-
-      .item-meta {
-        font-size: 0.8rem;
-        color: #4b5563;
-        margin-top: 6px;
-        line-height: 1.4;
-      }
-
-      .item-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 10px;
-        gap: 8px;
-        flex-wrap: wrap;
-      }
-
-      .fee-line {
-        font-size: 0.8rem;
-        color: #4b5563;
-      }
-
-      .deal-card {
-        border-radius: 14px;
-        padding: 12px 14px;
-        border: 1px dashed #cbd5f5;
-        background: #eef2ff;
-        font-size: 0.85rem;
-      }
-
-      .deal-highlight {
-        font-weight: 600;
-      }
-
-      .how-steps {
-        margin-top: 16px;
-        padding-left: 18px;
-        font-size: 0.9rem;
-      }
-
-      .divider {
-        margin: 16px 0;
-        border: none;
-        border-top: 1px dashed #e5e7eb;
-      }
-
-      @media (max-width: 640px) {
-        .page {
-          padding-top: 20px;
-        }
-
-        h1 {
-          font-size: 2rem;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <main class="page">
-      <header>
-        <h1>AmicBridge</h1>
-        <p>
-          A simple platform where borrowers request loans, lenders make offers,
-          and a contract is generated when a deal is accepted.
+      <!-- Tier A -->
+      <div class="offer">
+        <div class="offer-header">
+          <h3>Tier A (Secured) — Invest 10,000 → Receive 11,000 in 4 weeks</h3>
+          <span class="badge">Profit 1,000 · Lower risk</span>
+        </div>
+        <p class="offer-text">
+          Secured structure with defined collateral. Repayment scheduled 4 weeks after funding.
         </p>
-      </header>
+        <div class="grid">
+          <div class="box"><div class="label">Investment</div><div class="value">10,000</div></div>
+          <div class="box"><div class="label">Return</div><div class="value">11,000</div></div>
+          <div class="box"><div class="label">Profit</div><div class="value">1,000</div></div>
+        </div>
+        <p class="small">Capital involves risk. Terms are defined in the written agreement.</p>
+      </div>
 
-      <!-- ACCOUNT / MEMBERSHIP -->
-      <section class="card">
-        <h2>Account &amp; membership</h2>
-        <p class="subtle">
-          Everyone must create a user and pay a <strong>$50</strong> membership
-          fee to be part of the network. In this demo, payment is simulated with
-          a button.
+      <!-- Tier B -->
+      <div class="offer">
+        <div class="offer-header">
+          <h3>Tier B (Verified Source) — Invest 25,000 → Receive 28,000 in 4 weeks</h3>
+          <span class="badge">Profit 3,000 · Medium risk</span>
+        </div>
+        <p class="offer-text">
+          Verified repayment source (contract / invoice / closing). Repayment scheduled 4 weeks after funding.
         </p>
-
-        <form id="accountForm">
-          <div class="two-col">
-            <div>
-              <label for="accountName">Name</label>
-              <input
-                id="accountName"
-                name="accountName"
-                type="text"
-                required
-                placeholder="Your name"
-              />
-            </div>
-            <div>
-              <label for="accountEmail">Email</label>
-              <input
-                id="accountEmail"
-                name="accountEmail"
-                type="email"
-                required
-                placeholder="you@example.com"
-              />
-            </div>
-          </div>
-
-          <div class="two-col">
-            <div>
-              <label for="accountRole">Role in the network</label>
-              <select id="accountRole" name="accountRole" required>
-                <option value="">Choose role</option>
-                <option value="borrower">Borrower</option>
-                <option value="lender">Lender</option>
-                <option value="both">Borrower &amp; Lender</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="row" style="justify-content: space-between">
-            <div class="subtle" id="accountStatus">
-              Not signed up yet.
-            </div>
-            <button class="btn btn-primary" type="submit">
-              Save account
-            </button>
-          </div>
-        </form>
-
-        <hr class="divider" />
-
-        <div class="row" style="justify-content: space-between">
-          <div>
-            <div class="section-title">Membership fee</div>
-            <p class="subtle">
-              Network access requires a one-time <strong>$50</strong> membership
-              payment.
-            </p>
-          </div>
-          <button class="btn btn-secondary" id="membershipButton" type="button">
-            Mark $50 as paid (demo)
-          </button>
+        <div class="grid">
+          <div class="box"><div class="label">Investment</div><div class="value">25,000</div></div>
+          <div class="box"><div class="label">Return</div><div class="value">28,000</div></div>
+          <div class="box"><div class="label">Profit</div><div class="value">3,000</div></div>
         </div>
-      </section>
+        <p class="small">Capital involves risk. Terms are defined in the written agreement.</p>
+      </div>
 
-      <!-- START CARD -->
-      <section class="card">
-        <h2>Start</h2>
-        <div class="row" style="margin-top: 8px">
-          <button class="btn btn-primary" id="btnBorrowView">
-            I want to borrow
-          </button>
-          <button class="btn btn-secondary" id="btnLendView">
-            I want to lend
-          </button>
+      <!-- Tier C -->
+      <div class="offer">
+        <div class="offer-header">
+          <h3>Tier C (Special Situation) — Invest 45,000 → Receive 52,000 in 4 weeks</h3>
+          <span class="badge">Profit 7,000 · Higher risk</span>
         </div>
-        <p class="subtle" style="margin-top: 14px">
-          MVP note: No real login or payments yet. You must have an active
-          membership (demo toggle above) before you can create or fund requests.
+        <p class="offer-text">
+          Higher-yield opportunity. Repayment scheduled 4 weeks after funding under written agreement.
         </p>
-
-        <div class="pill">
-          <span class="pill-dot"></span>
-          Prototype &mdash; all data lives only in your browser
+        <div class="grid">
+          <div class="box"><div class="label">Investment</div><div class="value">45,000</div></div>
+          <div class="box"><div class="label">Return</div><div class="value">52,000</div></div>
+          <div class="box"><div class="label">Profit</div><div class="value">7,000</div></div>
         </div>
-      </section>
-
-      <!-- HOW IT WORKS -->
-      <section class="card">
-        <h2>How it works</h2>
-        <ol class="how-steps">
-          <li>User creates an account and pays a $50 membership fee.</li>
-          <li>Borrower submits a loan request with profile &amp; income.</li>
-          <li>
-            Request goes into
-            <strong>pending</strong> state and must be approved by you (Admin).
-          </li>
-          <li>
-            After approval, the request is visible to all lenders in the
-            network.
-          </li>
-          <li>
-            When a lender funds a request, a deal is created and
-            <strong>AmicBridge takes 5%</strong> of the loan amount as a fee.
-          </li>
-        </ol>
-      </section>
-
-      <!-- MODE SWITCHER -->
-      <section class="card">
-        <div
-          class="row"
-          style="justify-content: space-between; align-items: center"
-        >
-          <div>
-            <div class="section-title">Workflow playground</div>
-            <p class="subtle">
-              1) Create account &amp; membership. 2) Borrower creates a
-              request. 3) Admin approves. 4) Lender funds it.
-            </p>
-          </div>
-          <div class="tabs" aria-label="Mode selector">
-            <button
-              class="tab tab-active"
-              id="tabBorrower"
-              type="button"
-            >
-              Borrower
-            </button>
-            <button class="tab" id="tabLender" type="button">Lender</button>
-            <button class="tab" id="tabAdmin" type="button">
-              Admin (you)
-            </button>
-          </div>
-        </div>
-
-        <!-- BORROWER MODE -->
-        <div id="borrowerSection">
-          <p class="subtle" id="borrowerGateMessage"></p>
-          <form id="borrowerForm">
-            <div class="two-col">
-              <div>
-                <label for="borrowerName">Your name</label>
-                <input
-                  id="borrowerName"
-                  name="borrowerName"
-                  type="text"
-                  required
-                  placeholder="Ada Lovelace"
-                />
-              </div>
-              <div>
-                <label for="borrowerAge">Age</label>
-                <input
-                  id="borrowerAge"
-                  name="borrowerAge"
-                  type="number"
-                  min="18"
-                  max="120"
-                  required
-                  placeholder="28"
-                />
-              </div>
-            </div>
-
-            <div class="two-col">
-              <div>
-                <label for="borrowerWork">Work / occupation</label>
-                <input
-                  id="borrowerWork"
-                  name="borrowerWork"
-                  type="text"
-                  required
-                  placeholder="Network administrator"
-                />
-              </div>
-              <div>
-                <label for="borrowerIncome">
-                  Monthly income (before tax, number)
-                </label>
-                <input
-                  id="borrowerIncome"
-                  name="borrowerIncome"
-                  type="number"
-                  min="0"
-                  step="0.01"
-                  required
-                  placeholder="45000"
-                />
-              </div>
-            </div>
-
-            <div class="two-col">
-              <div>
-                <label for="loanAmount">Loan amount</label>
-                <input
-                  id="loanAmount"
-                  name="loanAmount"
-                  type="number"
-                  min="1"
-                  step="0.01"
-                  required
-                  placeholder="5000"
-                />
-              </div>
-              <div>
-                <label for="loanCurrency">Currency</label>
-                <select id="loanCurrency" name="loanCurrency" required>
-                  <option value="">Choose currency</option>
-                  <option value="USD">USD</option>
-                  <option value="EUR">EUR</option>
-                  <option value="NOK">NOK</option>
-                  <option value="CRYPTO">Crypto</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="two-col">
-              <div>
-                <label for="loanTerm">Term</label>
-                <select id="loanTerm" name="loanTerm" required>
-                  <option value="">Select term</option>
-                  <option value="6 months">6 months</option>
-                  <option value="12 months">12 months</option>
-                  <option value="24 months">24 months</option>
-                  <option value="36 months">36 months</option>
-                </select>
-              </div>
-              <div>
-                <label for="maxApr">Max APR you accept (%)</label>
-                <input
-                  id="maxApr"
-                  name="maxApr"
-                  type="number"
-                  min="0"
-                  step="0.1"
-                  placeholder="10"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label for="loanPurpose">What is the loan for?</label>
-              <textarea
-                id="loanPurpose"
-                name="loanPurpose"
-                placeholder="Short description (equipment, invoice, project, etc.)"
-              ></textarea>
-            </div>
-
-            <div class="row" style="justify-content: space-between">
-              <div class="subtle">
-                When a lender funds you, AmicBridge takes 5% of the loan as a
-                platform fee. Your request must first be approved by the admin.
-              </div>
-              <button class="btn btn-primary" type="submit">
-                Submit loan request
-              </button>
-            </div>
-          </form>
-
-          <div style="margin-top: 18px">
-            <div class="section-title" style="font-size: 0.95rem">
-              After submission your request will appear as
-              <strong>pending</strong> in the Admin tab.
-            </div>
-          </div>
-        </div>
-
-        <!-- LENDER MODE -->
-        <div id="lenderSection" style="display: none; margin-top: 8px">
-          <p class="subtle" id="lenderGateMessage"></p>
-          <div class="section-title">Open loan requests (approved)</div>
-          <p class="subtle">
-            Only admin-approved requests are visible here. Pick a borrower to
-            fund; AmicBridge automatically takes a 5% fee from the loan amount.
-          </p>
-
-          <div id="requestsList" class="list"></div>
-          <p id="noRequestsMessage" class="subtle" style="margin-top: 12px">
-            No approved requests yet. Create one as a borrower and approve it in
-            the Admin tab.
-          </p>
-
-          <hr
-            style="margin: 24px 0; border: none; border-top: 1px solid #e5e7eb"
-          />
-
-          <div class="section-title">Deals created during this session</div>
-          <div id="dealsList" class="list"></div>
-          <p id="noDealsMessage" class="subtle" style="margin-top: 12px">
-            No deals yet. Fund a request to see the breakdown here.
-          </p>
-        </div>
-
-        <!-- ADMIN MODE -->
-        <div id="adminSection" style="display: none; margin-top: 8px">
-          <div class="section-title">Admin review (you)</div>
-          <p class="subtle">
-            You control which requests are visible to the network. Approve
-            (publish) or reject them here.
-          </p>
-
-          <h3 class="section-title" style="margin-top: 12px">Pending requests</h3>
-          <div id="pendingList" class="list"></div>
-          <p id="noPendingMessage" class="subtle" style="margin-top: 12px">
-            No pending requests.
-          </p>
-
-          <h3 class="section-title" style="margin-top: 20px">Approved requests</h3>
-          <div id="approvedList" class="list"></div>
-          <p id="noApprovedMessage" class="subtle" style="margin-top: 12px">
-            No approved requests yet.
-          </p>
-        </div>
-      </section>
-    </main>
-
-    <script type="module">
-      // --- In-memory state (cleared on refresh) ---
-      const state = {
-        account: null,
-        membershipPaid: false,
-        requests: [],
-        deals: [],
-      };
-
-      const PLATFORM_FEE_PERCENT = 5;
-      const MEMBERSHIP_FEE = 50;
-
-      // DOM refs
-      const accountForm = document.getElementById("accountForm");
-      const accountStatus = document.getElementById("accountStatus");
-      const membershipButton = document.getElementById("membershipButton");
-
-      const borrowerSection = document.getElementById("borrowerSection");
-      const lenderSection = document.getElementById("lenderSection");
-      const adminSection = document.getElementById("adminSection");
-      const tabBorrower = document.getElementById("tabBorrower");
-      const tabLender = document.getElementById("tabLender");
-      const tabAdmin = document.getElementById("tabAdmin");
-      const btnBorrowView = document.getElementById("btnBorrowView");
-      const btnLendView = document.getElementById("btnLendView");
-
-      const borrowerGateMessage = document.getElementById("borrowerGateMessage");
-      const lenderGateMessage = document.getElementById("lenderGateMessage");
-
-      const borrowerForm = document.getElementById("borrowerForm");
-      const requestsList = document.getElementById("requestsList");
-      const noRequestsMessage = document.getElementById("noRequestsMessage");
-      const dealsList = document.getElementById("dealsList");
-      const noDealsMessage = document.getElementById("noDealsMessage");
-
-      const pendingList = document.getElementById("pendingList");
-      const approvedList = document.getElementById("approvedList");
-      const noPendingMessage = document.getElementById("noPendingMessage");
-      const noApprovedMessage = document.getElementById("noApprovedMessage");
-
-      function formatAmount(amount, currency) {
-        const rounded = Number(amount || 0);
-        const formatted = rounded.toLocaleString(undefined, {
-          maximumFractionDigits: 2,
-        });
-
-        let symbol = "";
-        if (currency === "USD") symbol = "$";
-        else if (currency === "EUR") symbol = "€";
-        else if (currency === "NOK") symbol = "kr";
-        else if (currency === "CRYPTO") symbol = "₿";
-
-        return `${formatted} ${currency === "CRYPTO" ? "Crypto" : currency}${
-          symbol ? " (" + symbol + ")" : ""
-        }`;
-      }
-
-      function updateAccountStatus() {
-        if (!state.account) {
-          accountStatus.textContent = "Not signed up yet.";
-          membershipButton.classList.add("btn-muted");
-          membershipButton.textContent = "Mark $50 as paid (demo)";
-          return;
-        }
-
-        const { name, email, role } = state.account;
-        const roleText =
-          role === "both" ? "Borrower & Lender" : role[0].toUpperCase() + role.slice(1);
-
-        let text = `Signed in as ${name} (${roleText}) – ${email}. `;
-        if (state.membershipPaid) {
-          text += "Membership active.";
-          membershipButton.classList.add("btn-muted");
-          membershipButton.textContent = "Membership paid ($50)";
-        } else {
-          text += "Membership not paid yet.";
-          membershipButton.classList.remove("btn-muted");
-          membershipButton.textContent = "Mark $50 as paid (demo)";
-        }
-        accountStatus.textContent = text;
-
-        updateGates();
-      }
-
-      function isNetworkActive() {
-        return !!state.account && state.membershipPaid;
-      }
-
-      function updateGates() {
-        if (!isNetworkActive()) {
-          borrowerGateMessage.textContent =
-            "You must create an account and pay the $50 membership fee before submitting a request. (Demo: use the card above.)";
-          lenderGateMessage.textContent =
-            "You must create an account and pay the $50 membership fee before you can lend.";
-        } else {
-          borrowerGateMessage.textContent = "";
-          lenderGateMessage.textContent = "";
-        }
-      }
-
-      // Account form
-      accountForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const data = new FormData(accountForm);
-        const name = String(data.get("accountName") || "").trim();
-        const email = String(data.get("accountEmail") || "").trim();
-        const role = String(data.get("accountRole") || "").trim();
-
-        if (!name || !email || !role) {
-          alert("Name, email and role are required.");
-          return;
-        }
-
-        state.account = { name, email, role };
-        updateAccountStatus();
-        alert("Account saved (demo). Now mark the $50 membership as paid.");
-      });
-
-      membershipButton.addEventListener("click", () => {
-        if (!state.account) {
-          alert("Create an account first.");
-          return;
-        }
-        if (state.membershipPaid) return;
-        // Demo: just flip the flag
-        state.membershipPaid = true;
-        updateAccountStatus();
-        alert("Membership marked as paid (demo). Network access unlocked.");
-      });
-
-      // Mode switching
-      function switchMode(mode) {
-        const isBorrower = mode === "borrower";
-        const isLender = mode === "lender";
-        const isAdmin = mode === "admin";
-
-        borrowerSection.style.display = isBorrower ? "block" : "none";
-        lenderSection.style.display = isLender ? "block" : "none";
-        adminSection.style.display = isAdmin ? "block" : "none";
-
-        tabBorrower.classList.toggle("tab-active", isBorrower);
-        tabLender.classList.toggle("tab-active", isLender);
-        tabAdmin.classList.toggle("tab-active", isAdmin);
-      }
-
-      tabBorrower.addEventListener("click", () => switchMode("borrower"));
-      tabLender.addEventListener("click", () => switchMode("lender"));
-      tabAdmin.addEventListener("click", () => switchMode("admin"));
-
-      btnBorrowView.addEventListener("click", () => {
-        switchMode("borrower");
-        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-      });
-
-      btnLendView.addEventListener("click", () => {
-        switchMode("lender");
-        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-      });
-
-      // Borrower: submit request
-      borrowerForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-
-        if (!isNetworkActive()) {
-          alert(
-            "You must have an active membership ($50) and an account before submitting a request."
-          );
-          return;
-        }
-
-        const formData = new FormData(borrowerForm);
-        const name = String(formData.get("borrowerName") || "").trim();
-        const age = Number(formData.get("borrowerAge") || 0);
-        const work = String(formData.get("borrowerWork") || "").trim();
-        const income = Number(formData.get("borrowerIncome") || 0);
-        const amount = Number(formData.get("loanAmount") || 0);
-        const currency = String(formData.get("loanCurrency") || "").trim();
-        const term = String(formData.get("loanTerm") || "").trim();
-        const maxAprRaw = formData.get("maxApr");
-        const maxApr =
-          maxAprRaw === null || maxAprRaw === ""
-            ? null
-            : Number(maxAprRaw);
-        const purpose = String(formData.get("loanPurpose") || "").trim();
-
-        if (!name || !age || !work || !income || !amount || !term || !currency) {
-          alert(
-            "Name, age, work, income, amount, currency and term are required."
-          );
-          return;
-        }
-
-        const id = crypto.randomUUID
-          ? crypto.randomUUID()
-          : String(Date.now()) + Math.random().toString(16).slice(2);
-
-        state.requests.push({
-          id,
-          name,
-          age,
-          work,
-          income,
-          amount,
-          currency,
-          term,
-          maxApr,
-          purpose,
-          createdAt: new Date(),
-          status: "pending", // pending -> approved
-        });
-
-        borrowerForm.reset();
-        renderAll();
-        alert(
-          "Loan request submitted! It is now pending and must be approved in the Admin tab."
-        );
-      });
-
-      // Lender: render approved requests only
-      function renderLenderRequests() {
-        requestsList.innerHTML = "";
-
-        const approved = state.requests.filter((r) => r.status === "approved");
-
-        if (approved.length === 0) {
-          noRequestsMessage.style.display = "block";
-          return;
-        }
-
-        noRequestsMessage.style.display = "none";
-
-        approved.forEach((req) => {
-          const wrapper = document.createElement("div");
-          wrapper.className = "item-card";
-
-          const header = document.createElement("div");
-          header.className = "item-header";
-
-          const title = document.createElement("div");
-          title.className = "item-title";
-          title.textContent = `${req.name} wants ${formatAmount(
-            req.amount,
-            req.currency
-          )}`;
-
-          const tag = document.createElement("div");
-          tag.className = "tag";
-          tag.textContent = req.term;
-
-          header.appendChild(title);
-          header.appendChild(tag);
-
-          const meta = document.createElement("div");
-          meta.className = "item-meta";
-
-          const lines = [];
-
-          lines.push(`Age: ${req.age}`);
-          lines.push(`Work: ${req.work}`);
-          lines.push(
-            `Monthly income: ${formatAmount(req.income, req.currency)}`
-          );
-
-          const aprText =
-            req.maxApr != null
-              ? `Max APR they accept: ${req.maxApr}%`
-              : "Max APR not specified";
-          lines.push(aprText);
-
-          const purposeText = req.purpose
-            ? `Purpose: ${req.purpose}`
-            : "No description given.";
-
-          lines.push(purposeText);
-
-          meta.textContent = lines.join(" • ");
-
-          const footer = document.createElement("div");
-          footer.className = "item-footer";
-
-          const feeInfo = document.createElement("div");
-          feeInfo.className = "fee-line";
-          const fee = (req.amount * PLATFORM_FEE_PERCENT) / 100;
-          const borrowerGets = req.amount - fee;
-          feeInfo.textContent = `If you fund this: Borrower gets ${formatAmount(
-            borrowerGets,
-            req.currency
-          )}, AmicBridge fee ${formatAmount(
-            fee,
-            req.currency
-          )} (${PLATFORM_FEE_PERCENT}%)`;
-
-          const actionArea = document.createElement("div");
-          actionArea.className = "row";
-
-          const aprInput = document.createElement("input");
-          aprInput.type = "number";
-          aprInput.placeholder = "Your APR offer %";
-          aprInput.min = "0";
-          aprInput.step = "0.1";
-          aprInput.style.maxWidth = "140px";
-
-          const createDealBtn = document.createElement("button");
-          createDealBtn.type = "button";
-          createDealBtn.className = "btn btn-primary btn-small";
-          createDealBtn.textContent = "Create deal";
-
-          createDealBtn.addEventListener("click", () => {
-            if (!isNetworkActive()) {
-              alert(
-                "You must have an active membership ($50) and an account before lending."
-              );
-              return;
-            }
-
-            const offerApr = Number(aprInput.value || 0);
-            if (!offerApr && offerApr !== 0) {
-              alert("Enter your APR offer first.");
-              return;
-            }
-            if (req.maxApr != null && offerApr > req.maxApr) {
-              const proceed = confirm(
-                `Borrower set a max APR of ${req.maxApr}%. Your offer is ${offerApr}%.\n\nContinue anyway (for demo)?`
-              );
-              if (!proceed) return;
-            }
-
-            createDealFromRequest(req, offerApr);
-          });
-
-          actionArea.appendChild(aprInput);
-          actionArea.appendChild(createDealBtn);
-
-          footer.appendChild(feeInfo);
-          footer.appendChild(actionArea);
-
-          wrapper.appendChild(header);
-          wrapper.appendChild(meta);
-          wrapper.appendChild(footer);
-
-          requestsList.appendChild(wrapper);
-        });
-      }
-
-      // Admin: render pending & approved
-      function renderAdminLists() {
-        pendingList.innerHTML = "";
-        approvedList.innerHTML = "";
-
-        const pending = state.requests.filter((r) => r.status === "pending");
-        const approved = state.requests.filter((r) => r.status === "approved");
-
-        if (pending.length === 0) {
-          noPendingMessage.style.display = "block";
-        } else {
-          noPendingMessage.style.display = "none";
-        }
-
-        if (approved.length === 0) {
-          noApprovedMessage.style.display = "block";
-        } else {
-          noApprovedMessage.style.display = "none";
-        }
-
-        pending.forEach((req) => {
-          const card = document.createElement("div");
-          card.className = "item-card";
-
-          const header = document.createElement("div");
-          header.className = "item-header";
-
-          const title = document.createElement("div");
-          title.className = "item-title";
-          title.textContent = `${req.name} – ${formatAmount(
-            req.amount,
-            req.currency
-          )}`;
-          const statusBadge = document.createElement("span");
-          statusBadge.className = "badge badge-pending";
-          statusBadge.textContent = "Pending";
-          title.appendChild(statusBadge);
-
-          header.appendChild(title);
-
-          const meta = document.createElement("div");
-          meta.className = "item-meta";
-          meta.textContent = `Age ${req.age}, work: ${req.work}, monthly income: ${formatAmount(
-            req.income,
-            req.currency
-          )} • Term: ${req.term} • ${
-            req.maxApr != null
-              ? "Max APR: " + req.maxApr + "%"
-              : "Max APR not specified"
-          } • Purpose: ${req.purpose || "No description."}`;
-
-          const footer = document.createElement("div");
-          footer.className = "item-footer";
-
-          const approveBtn = document.createElement("button");
-          approveBtn.type = "button";
-          approveBtn.className = "btn btn-primary btn-small";
-          approveBtn.textContent = "Approve & publish";
-
-          approveBtn.addEventListener("click", () => {
-            req.status = "approved";
-            renderAll();
-          });
-
-          const rejectBtn = document.createElement("button");
-          rejectBtn.type = "button";
-          rejectBtn.className = "btn btn-danger btn-small";
-          rejectBtn.textContent = "Reject";
-
-          rejectBtn.addEventListener("click", () => {
-            state.requests = state.requests.filter((r) => r.id !== req.id);
-            renderAll();
-          });
-
-          footer.appendChild(approveBtn);
-          footer.appendChild(rejectBtn);
-
-          card.appendChild(header);
-          card.appendChild(meta);
-          card.appendChild(footer);
-
-          pendingList.appendChild(card);
-        });
-
-        approved.forEach((req) => {
-          const card = document.createElement("div");
-          card.className = "item-card";
-
-          const header = document.createElement("div");
-          header.className = "item-header";
-
-          const title = document.createElement("div");
-          title.className = "item-title";
-          title.textContent = `${req.name} – ${formatAmount(
-            req.amount,
-            req.currency
-          )}`;
-          const statusBadge = document.createElement("span");
-          statusBadge.className = "badge badge-approved";
-          statusBadge.textContent = "Approved";
-          title.appendChild(statusBadge);
-
-          header.appendChild(title);
-
-          const meta = document.createElement("div");
-          meta.className = "item-meta";
-          meta.textContent = `Age ${req.age}, work: ${req.work}, monthly income: ${formatAmount(
-            req.income,
-            req.currency
-          )} • Term: ${req.term} • ${
-            req.maxApr != null
-              ? "Max APR: " + req.maxApr + "%"
-              : "Max APR not specified"
-          } • Purpose: ${req.purpose || "No description."}`;
-
-          card.appendChild(header);
-          card.appendChild(meta);
-
-          approvedList.appendChild(card);
-        });
-      }
-
-      // Deals
-      function createDealFromRequest(request, lenderApr) {
-        const fee = (request.amount * PLATFORM_FEE_PERCENT) / 100;
-        const borrowerGets = request.amount - fee;
-
-        state.deals.push({
-          id: request.id,
-          borrowerName: request.name,
-          amount: request.amount,
-          currency: request.currency,
-          term: request.term,
-          lenderApr,
-          fee,
-          borrowerGets,
-          createdAt: new Date(),
-          age: request.age,
-          work: request.work,
-          income: request.income,
-        });
-
-        // Remove from open requests
-        state.requests = state.requests.filter((r) => r.id !== request.id);
-
-        renderAll();
-      }
-
-      function renderDeals() {
-        dealsList.innerHTML = "";
-
-        if (state.deals.length === 0) {
-          noDealsMessage.style.display = "block";
-          return;
-        }
-
-        noDealsMessage.style.display = "none";
-
-        state.deals.forEach((deal) => {
-          const card = document.createElement("div");
-          card.className = "deal-card";
-
-          const line1 = document.createElement("div");
-          line1.innerHTML = `<span class="deal-highlight">${deal.borrowerName}</span> borrowed <span class="deal-highlight">${formatAmount(
-            deal.amount,
-            deal.currency
-          )}</span> for ${deal.term} at <span class="deal-highlight">${
-            deal.lenderApr
-          }% APR</span>.`;
-
-          const lineProfile = document.createElement("div");
-          lineProfile.style.marginTop = "4px";
-          lineProfile.textContent = `Age ${deal.age}, work: ${deal.work}, monthly income: ${formatAmount(
-            deal.income,
-            deal.currency
-          )}.`;
-
-          const line2 = document.createElement("div");
-          line2.style.marginTop = "4px";
-          line2.textContent = `Borrower receives ${formatAmount(
-            deal.borrowerGets,
-            deal.currency
-          )} after fees.`;
-
-          const line3 = document.createElement("div");
-          line3.style.marginTop = "4px";
-          line3.textContent = `AmicBridge platform fee: ${formatAmount(
-            deal.fee,
-            deal.currency
-          )} (${PLATFORM_FEE_PERCENT}% of deal size).`;
-
-          const line4 = document.createElement("div");
-          line4.style.marginTop = "4px";
-          line4.className = "subtle";
-          line4.textContent =
-            "In a real app this would generate a contract to sign, process payments and store everything in a database.";
-
-          card.appendChild(line1);
-          card.appendChild(lineProfile);
-          card.appendChild(line2);
-          card.appendChild(line3);
-          card.appendChild(line4);
-
-          dealsList.appendChild(card);
-        });
-      }
-
-      function renderAll() {
-        updateGates();
-        renderLenderRequests();
-        renderDeals();
-        renderAdminLists();
-      }
-
-      // Initial render
-      updateAccountStatus();
-      renderAll();
-    </script>
-  </body>
+        <p class="small">Capital involves risk. Terms are defined in the written agreement.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="card">
+      <h2>Contact CEO Ernest</h2>
+      <p class="lead">
+        For participation in current offers or to discuss capital opportunities,
+        please contact AmicBridge directly.
+      </p>
+      <a class="button" href="mailto:amicbridgecontact@gmail.com?subject=AmicBridge Inquiry">
+        Email: amicbridgecontact@gmail.com
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> AmicBridge. All rights reserved.
+  </footer>
+
+</main>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
 </html>
