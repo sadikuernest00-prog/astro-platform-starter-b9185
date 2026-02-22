@@ -6,10 +6,10 @@
 <title>AmicBridge — Private Capital Network</title>
 
 <meta name="description"
-content="AmicBridge is a private lending and investing network based in Norway. Trust before money. Structured agreements and defined short-term repayment terms." />
+content="AmicBridge is a private lending and capital network based in Norway. Trust before money. Structured agreements and defined returns." />
 
 <style>
-:root{
+:root {
   --bg:#f3f4f6;
   --white:#ffffff;
   --border:#d1d5db;
@@ -19,7 +19,9 @@ content="AmicBridge is a private lending and investing network based in Norway. 
   --primary-dark:#1e3a8a;
   --soft:#e6f0ea;
 }
+
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
@@ -35,109 +37,150 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  flex-wrap:wrap;
 }
-.logo{font-weight:800;font-size:24px;letter-spacing:.5px}
-.tagline{font-size:13px;color:var(--muted);margin-top:4px}
-nav{display:flex;gap:18px;flex-wrap:wrap}
+
+.logo{
+  font-weight:800;
+  font-size:24px;
+  letter-spacing:.5px;
+}
+
+.tagline{
+  font-size:13px;
+  color:var(--muted);
+}
+
 nav a{
+  margin-left:18px;
   text-decoration:none;
   font-weight:600;
   font-size:14px;
   color:var(--text);
 }
-nav a:hover{text-decoration:underline}
+
+nav a:hover{ text-decoration:underline; }
 
 /* Layout */
-.container{max-width:1000px;margin:auto;padding:40px 24px 60px}
-.pill-top{
-  display:inline-block;
-  padding:6px 12px;
-  border-radius:999px;
-  border:1px solid var(--border);
-  background:#fff;
-  font-size:12px;
-  font-weight:800;
-  color:var(--primary-dark);
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:40px 24px 60px;
 }
-h1{font-size:42px;margin:12px 0}
-.lead{color:var(--muted);font-size:17px;max-width:750px;line-height:1.5}
-.section{margin-top:40px}
-.section-title{font-size:22px;margin-bottom:14px}
 
-/* Offers */
-.offers{display:grid;gap:18px}
-.offer{
-  background:var(--soft);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:24px;
+h1{
+  font-size:42px;
+  margin:10px 0;
 }
-.offer-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  gap:12px;
-  margin-bottom:10px;
-}
-.offer-header h3{
-  margin:0;
-  font-size:20px;
-  line-height:1.3;
-}
-.badge{
-  border:1px solid var(--border);
-  background:#fff;
-  padding:6px 12px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:900;
-}
-.offer-text{
-  margin:0;
+
+p.lead{
   color:var(--muted);
-  font-size:15px;
+  font-size:17px;
+  max-width:700px;
 }
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin-top:14px;
-}
-.box{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:14px;
-}
-.label{font-size:12px;color:var(--muted);font-weight:800}
-.value{font-size:20px;font-weight:900;margin-top:4px}
-.small{font-size:12px;color:var(--muted);margin-top:12px}
 
-/* Contact */
+.section{
+  margin-top:40px;
+}
+
 .card{
   background:var(--white);
   border:1px solid var(--border);
   border-radius:14px;
   padding:22px;
 }
+
+/* Offer */
+.offer{
+  background:var(--soft);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:24px;
+  margin-top:14px;
+}
+
+.offer-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:14px;
+  gap:12px;
+}
+
+.offer-header h2{
+  margin:0;
+  font-size:20px;
+  line-height:1.2;
+}
+
+.badge{
+  border:1px solid var(--border);
+  background:#fff;
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:16px;
+}
+
+.box{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px;
+}
+
+.label{
+  font-size:12px;
+  color:var(--muted);
+  font-weight:700;
+}
+
+.value{
+  font-size:20px;
+  font-weight:800;
+  margin-top:4px;
+}
+
+.small{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:12px;
+}
+
 .button{
   display:inline-block;
-  margin-top:14px;
+  margin-top:16px;
   padding:12px 18px;
   background:var(--primary);
   color:#fff;
   border-radius:10px;
   text-decoration:none;
-  font-weight:800;
+  font-weight:700;
 }
-.button:hover{background:var(--primary-dark)}
 
-footer{margin-top:60px;font-size:13px;color:var(--muted)}
+.button:hover{
+  background:var(--primary-dark);
+}
 
+footer{
+  margin-top:60px;
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* Mobile */
 @media(max-width:800px){
-  h1{font-size:32px}
-  .grid{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr;}
+  h1{font-size:32px;}
+  header{flex-direction:column;align-items:flex-start}
+  nav{margin-top:10px}
 }
 </style>
 </head>
@@ -150,84 +193,108 @@ footer{margin-top:60px;font-size:13px;color:var(--muted)}
     <div class="tagline">Based in Norway · Private lending & investing network</div>
   </div>
   <nav>
-    <a href="#offers">Offers</a>
+    <a href="#offer">Current Offers</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
 
-<main class="container">
+<div class="container">
 
-  <span class="pill-top">✓ TRUST BEFORE MONEY</span>
-
-  <h1>Structured short-term capital opportunities.</h1>
+  <h1>Trust before money.</h1>
   <p class="lead">
-    AmicBridge connects private capital with verified short-term funding needs.
-    Repayment terms, duration, and profit are clearly defined in written agreements.
+    AmicBridge connects private capital with businesses and individuals seeking growth.
+    We structure transparent agreements with defined repayment terms.
+    Returns depend on the active offer and the written agreement.
   </p>
 
-  <section class="section" id="offers">
-    <h2 class="section-title">Current Offers</h2>
+  <div class="section" id="offer">
+    <h2>Current Offers</h2>
 
-    <div class="offers">
-
-      <!-- Updated High Yield Offer -->
-      <div class="offer">
-        <div class="offer-header">
-          <h3>Lend 10,000 → Receive 13,500 in 3 weeks</h3>
-          <span class="badge">Profit 3,500 · Higher risk</span>
-        </div>
-        <p class="offer-text">
-          Repayment scheduled 3 weeks after funding as defined in the written agreement.
-          Structured short-term opportunity with higher risk profile.
-        </p>
-        <div class="grid">
-          <div class="box"><div class="label">Investment</div><div class="value">10,000</div></div>
-          <div class="box"><div class="label">Return</div><div class="value">13,500</div></div>
-          <div class="box"><div class="label">Profit</div><div class="value">3,500</div></div>
-        </div>
-        <p class="small">
-          Capital involves risk. Repayment, timing, and performance are defined in the written agreement.
-        </p>
+    <!-- Offer 1 -->
+    <div class="offer">
+      <div class="offer-header">
+        <h2>Lend 45,000 → Receive 52,000 in 4 weeks</h2>
+        <span class="badge">Profit 7,000</span>
       </div>
 
-      <!-- Other Offers -->
-      <div class="offer">
-        <div class="offer-header">
-          <h3>Invest 25,000 → Receive 28,000 in 4 weeks</h3>
-          <span class="badge">Profit 3,000 · Medium risk</span>
-        </div>
-        <p class="offer-text">
-          Verified repayment source. Repayment scheduled 4 weeks after funding.
-        </p>
-        <div class="grid">
-          <div class="box"><div class="label">Investment</div><div class="value">25,000</div></div>
-          <div class="box"><div class="label">Return</div><div class="value">28,000</div></div>
-          <div class="box"><div class="label">Profit</div><div class="value">3,000</div></div>
-        </div>
-        <p class="small">Capital involves risk. Terms are defined in the written agreement.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section" id="contact">
-    <div class="card">
-      <h2>Contact CEO Ernest</h2>
-      <p class="lead">
-        For participation in current offers or further details,
-        please contact AmicBridge directly.
+      <p class="lead" style="margin:0;">
+        This is the current active offer available through AmicBridge.
+        Repayment is scheduled 4 weeks after funding, as defined in the written agreement.
       </p>
-      <a class="button" href="mailto:amicbridgecontact@gmail.com?subject=AmicBridge Inquiry">
+
+      <div class="grid">
+        <div class="box">
+          <div class="label">Lend</div>
+          <div class="value">45,000</div>
+        </div>
+        <div class="box">
+          <div class="label">Return (repayment)</div>
+          <div class="value">52,000</div>
+        </div>
+        <div class="box">
+          <div class="label">Profit</div>
+          <div class="value">7,000</div>
+        </div>
+      </div>
+
+      <p class="small">
+        Capital involves risk. Repayment, timing and performance are defined in the written agreement.
+      </p>
+    </div>
+
+    <!-- Offer 2 (new) -->
+    <div class="offer">
+      <div class="offer-header">
+        <h2>Lend 10,000 → Receive 13,000 in 4 weeks</h2>
+        <span class="badge">Profit 3,000</span>
+      </div>
+
+      <p class="lead" style="margin:0;">
+        This is an additional active offer available through AmicBridge.
+        Repayment is scheduled 4 weeks after funding, as defined in the written agreement.
+      </p>
+
+      <div class="grid">
+        <div class="box">
+          <div class="label">Lend</div>
+          <div class="value">10,000</div>
+        </div>
+        <div class="box">
+          <div class="label">Return (repayment)</div>
+          <div class="value">13,000</div>
+        </div>
+        <div class="box">
+          <div class="label">Profit</div>
+          <div class="value">3,000</div>
+        </div>
+      </div>
+
+      <p class="small">
+        Capital involves risk. Repayment, timing and performance are defined in the written agreement.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="section" id="contact">
+    <div class="card">
+      <h2>Contact CEO Robert</h2>
+      <p class="lead">
+        For more information about these offers or future capital opportunities,
+        please contact us directly.
+      </p>
+
+      <a class="button" href="mailto:amicbridgecontact@gmail.com?subject=AmicBridge%20Inquiry">
         Email: amicbridgecontact@gmail.com
       </a>
     </div>
-  </section>
+  </div>
 
   <footer>
     © <span id="year"></span> AmicBridge. All rights reserved.
   </footer>
 
-</main>
+</div>
 
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
