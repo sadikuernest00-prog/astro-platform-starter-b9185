@@ -1,53 +1,46 @@
-import Stripe from "stripe";
 
-const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2024-04-10",
-});
+import Stripe from 'stripe';
 
-export async function POST() {
-  try {
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
+export const prerender = false;
 
-      line_items: [
-        {
-          price_data: {
-            currency: "nok",
-            product_data: {
-              name: "AmicUnderwear Product",
-            },
-            unit_amount: 59900,
+const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);
+
+export async function POST({ request }) {
+
+  const formData = await request.formData();
+
+  const price = formData.get('price');
+  const product = formData.get('product');
+
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+
+    shipping_address_collection: {
+      allowed_countries: ['NO', 'SE', 'DK', 'GB', 'US']
+    },
+
+    line_items: [
+      {
+        price_data: {
+          currency: 'nok',
+
+          product_data: {
+            name: String(product)
           },
-          quantity: 1,
+
+          unit_amount: Number(price) * 100
         },
-      ],
 
-      mode: "payment",
-
-      shipping_address_collection: {
-        allowed_countries: ["NO", "SE", "DK", "GB", "US"],
-      },
-
-      success_url: "https://your-site.netlify.app/success",
-      cancel_url: "https://your-site.netlify.app/cancel",
-    });
-
-    return new Response(
-      JSON.stringify({
-        id: session.id,
-      }),
-      {
-        status: 200,
+        quantity: 1
       }
-    );
-  } catch (err) {
-    return new Response(
-      JSON.stringify({
-        error: "Stripe error",
-      }),
-      {
-        status: 500,
-      }
-    );
-  }
+    ],
+
+    mode: 'payment',
+
+    success_url: 'https://YOUR-NETLIFY-URL.netlify.app/success',
+
+    cancel_url: 'https://YOUR-NETLIFY-URL.netlify.app/cancel'
+  });
+
+  return Response.redirect(session.url, 303);
 }
