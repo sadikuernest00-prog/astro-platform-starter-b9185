@@ -4,328 +4,361 @@ const products = [
     name: "Elegant Lace Set",
     price: 599,
     image: "/images/white-lace.jpg",
-    badge: "Best Seller",
-    stripePrice: "price_1"
+    badge: "Best Seller"
   },
   {
     name: "Midnight Black Collection",
     price: 549,
     image: "/images/black-set.jpg",
-    badge: "New",
-    stripePrice: "price_2"
+    badge: "New"
   },
   {
     name: "Luxury Satin Sleepwear",
     price: 599,
     image: "/images/white-bra.jpg",
-    badge: "Luxury",
-    stripePrice: "price_3"
+    badge: "Luxury"
   },
   {
     name: "Comfort Seamless Bra",
     price: 399,
     image: "/images/black-bra.jpg",
-    badge: "Popular",
-    stripePrice: "price_4"
+    badge: "Popular"
   },
   {
     name: "Black Comfort Bra",
     price: 399,
     image: "/images/nude-bra.jpg",
-    badge: "Trending",
-    stripePrice: "price_5"
+    badge: "Trending"
   },
   {
     name: "Soft Fit Satin Set",
     price: 699,
     image: "/images/satin-set.jpg",
-    badge: "Soft Fit",
-    stripePrice: "price_6"
+    badge: "Soft Fit"
   }
 ];
 ---
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>AmicUnderwear</title>
+<title>AmicUnderwear</title>
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial, Helvetica, sans-serif;
-    }
+<style>
 
-    body{
-      background:#ece8e6;
-      color:#000;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
 
-    nav{
-      width:100%;
-      background:white;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:30px 60px;
-      position:sticky;
-      top:0;
-      z-index:999;
-    }
+body{
+background:#ece8e6;
+color:#000;
+}
 
-    .logo{
-      font-size:60px;
-      font-weight:800;
-    }
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:30px 60px;
+background:#fff;
+position:sticky;
+top:0;
+z-index:1000;
+}
 
-    .logo span{
-      color:#d8a56c;
-    }
+.logo{
+font-size:60px;
+font-weight:900;
+}
 
-    .shop-btn{
-      background:black;
-      color:white;
-      border:none;
-      padding:22px 45px;
-      border-radius:50px;
-      font-size:28px;
-      font-weight:700;
-      cursor:pointer;
-    }
+.logo span{
+color:#d8a56c;
+}
 
-    .hero{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      align-items:center;
-      gap:50px;
-      padding:80px 60px;
-    }
+.shop-btn{
+background:black;
+color:white;
+border:none;
+padding:20px 40px;
+border-radius:50px;
+font-size:26px;
+font-weight:700;
+cursor:pointer;
+}
 
-    .hero h1{
-      font-size:120px;
-      line-height:0.9;
-      margin-bottom:30px;
-    }
+.hero{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
+padding:80px 60px;
+}
 
-    .hero p{
-      font-size:32px;
-      margin-bottom:30px;
-    }
+.hero h1{
+font-size:120px;
+line-height:0.9;
+margin-bottom:30px;
+}
 
-    .hero button{
-      background:black;
-      color:white;
-      border:none;
-      padding:20px 40px;
-      border-radius:50px;
-      font-size:28px;
-      font-weight:700;
-      cursor:pointer;
-    }
+.hero p{
+font-size:30px;
+margin-bottom:30px;
+}
 
-    .hero img{
-      width:100%;
-      border-radius:40px;
-      object-fit:cover;
-    }
+.hero-button{
+background:black;
+color:white;
+border:none;
+padding:20px 40px;
+border-radius:50px;
+font-size:28px;
+font-weight:700;
+cursor:pointer;
+}
 
-    .section-title{
-      text-align:center;
-      font-size:110px;
-      font-weight:900;
-      margin:40px 0;
-    }
+.hero img{
+width:100%;
+border-radius:40px;
+}
 
-    .products{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:40px;
-      padding:40px;
-    }
+.section-title{
+font-size:110px;
+font-weight:900;
+text-align:center;
+margin:50px 0;
+}
 
-    .card{
-      background:white;
-      border-radius:40px;
-      overflow:hidden;
-      padding-bottom:30px;
-    }
+.products{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:40px;
+padding:40px;
+}
 
-    .card-image{
-      position:relative;
-    }
+.card{
+background:white;
+border-radius:40px;
+overflow:hidden;
+}
 
-    .card img{
-      width:100%;
-      height:650px;
-      object-fit:cover;
-      display:block;
-    }
+.card-image{
+position:relative;
+}
 
-    .badge{
-      position:absolute;
-      top:25px;
-      left:25px;
-      background:white;
-      padding:14px 24px;
-      border-radius:40px;
-      font-size:24px;
-      font-weight:700;
-    }
+.card-image img{
+width:100%;
+height:650px;
+object-fit:cover;
+display:block;
+}
 
-    .card-content{
-      padding:30px;
-    }
+.badge{
+position:absolute;
+top:25px;
+left:25px;
+background:white;
+padding:14px 22px;
+border-radius:40px;
+font-size:24px;
+font-weight:700;
+}
 
-    .card h2{
-      font-size:50px;
-      margin-bottom:20px;
-      line-height:1.1;
-    }
+.card-content{
+padding:30px;
+}
 
-    .price{
-      color:#d8a56c;
-      font-size:70px;
-      font-weight:800;
-      margin-bottom:25px;
-    }
+.card h2{
+font-size:48px;
+line-height:1.1;
+margin-bottom:20px;
+}
 
-    .buy-btn{
-      background:black;
-      color:white;
-      border:none;
-      padding:18px 40px;
-      border-radius:50px;
-      font-size:28px;
-      font-weight:700;
-      cursor:pointer;
-    }
+.price{
+font-size:70px;
+font-weight:900;
+color:#d8a56c;
+margin-bottom:25px;
+}
 
-    @media(max-width:1100px){
+.buy-btn{
+background:black;
+color:white;
+border:none;
+padding:18px 38px;
+border-radius:50px;
+font-size:28px;
+font-weight:700;
+cursor:pointer;
+}
 
-      .products{
-        grid-template-columns:1fr;
-      }
+@media(max-width:1100px){
 
-      .hero{
-        grid-template-columns:1fr;
-      }
+.hero{
+grid-template-columns:1fr;
+}
 
-      .hero h1{
-        font-size:70px;
-      }
+.products{
+grid-template-columns:1fr;
+}
 
-      .section-title{
-        font-size:60px;
-      }
+.hero h1{
+font-size:70px;
+}
 
-      .logo{
-        font-size:36px;
-      }
-    }
-  </style>
+.section-title{
+font-size:60px;
+}
+
+.logo{
+font-size:38px;
+}
+
+}
+
+</style>
+
 </head>
 
 <body>
 
 <nav>
-  <div class="logo">
-    Amic<span>Underwear</span>
-  </div>
 
-  <button class="shop-btn">
-    Shop Now
-  </button>
+<div class="logo">
+Amic<span>Underwear</span>
+</div>
+
+<button class="shop-btn">
+Shop Now
+</button>
+
 </nav>
 
 <section class="hero">
 
-  <div>
-    <h1>
-      Underwear designed to feel beautiful.
-    </h1>
+<div>
 
-    <p>
-      Luxury underwear made for confidence and comfort.
-    </p>
+<h1>
+Underwear designed to feel beautiful.
+</h1>
 
-    <button>
-      Explore Collection
-    </button>
-  </div>
+<p>
+Luxury underwear made for confidence and comfort.
+</p>
 
-  <img src="/images/hero.jpg" alt="Hero" />
+<button class="hero-button">
+Explore Collection
+</button>
+
+</div>
+
+<img src="/images/hero.jpg" alt="Hero"/>
 
 </section>
 
 <h1 class="section-title">
-  Featured Collection
+Featured Collection
 </h1>
 
 <section class="products">
 
-  {
-    products.map((product) => (
+{
+products.map((product) => (
 
-      <div class="card">
+<div class="card">
 
-        <div class="card-image">
-          <img src={product.image} alt={product.name} />
+<div class="card-image">
 
-          <div class="badge">
-            {product.badge}
-          </div>
-        </div>
+<img src={product.image} alt={product.name} />
 
-        <div class="card-content">
+<div class="badge">
+{product.badge}
+</div>
 
-          <h2>
-            {product.name}
-          </h2>
+</div>
 
-          <div class="price">
-            {product.price} NOK
-          </div>
+<div class="card-content">
 
-          <button
-            class="buy-btn"
-            onclick={`checkout('${product.name}', ${product.price})`}
-          >
-            Buy Now
-          </button>
+<h2>
+{product.name}
+</h2>
 
-        </div>
+<div class="price">
+{product.price} NOK
+</div>
 
-      </div>
+<button
+class="buy-btn"
+data-name={product.name}
+data-price={product.price}
+>
+Buy Now
+</button>
 
-    ))
-  }
+</div>
+
+</div>
+
+))
+}
 
 </section>
 
 <script>
-async function checkout(name, price){
 
-  const response = await fetch('/api/create-checkout-session', {
-    method:'POST',
-    headers:{
-      'Content-Type':'application/json'
-    },
-    body:JSON.stringify({
-      name,
-      price
-    })
-  });
+const buttons = document.querySelectorAll('.buy-btn');
 
-  const data = await response.json();
+buttons.forEach((button) => {
 
-  if(data.url){
-    window.location.href = data.url;
-  }
+button.addEventListener('click', async () => {
+
+const name = button.dataset.name;
+const price = button.dataset.price;
+
+try {
+
+const response = await fetch('/api/create-checkout-session', {
+
+method:'POST',
+
+headers:{
+'Content-Type':'application/json'
+},
+
+body:JSON.stringify({
+name,
+price
+})
+
+});
+
+const data = await response.json();
+
+if(data.url){
+
+window.location.href = data.url;
+
+}else{
+
+alert('Stripe checkout failed');
+
 }
+
+}catch(error){
+
+console.error(error);
+alert('Checkout error');
+
+}
+
+});
+
+});
+
 </script>
 
 </body>
