@@ -13,6 +13,7 @@
 
   "dependencies": {
     "stripe": "^16.5.0",
+    "unique-names-generator": "^4.7.1",
     "@astrojs/netlify": "^6.6.0",
     "@astrojs/react": "^4.4.0",
     "@fontsource-variable/inter": "^5.2.5",
