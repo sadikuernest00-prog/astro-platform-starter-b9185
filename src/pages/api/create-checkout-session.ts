@@ -1,64 +1,59 @@
-import Stripe from "stripe";
+<script>
 
-export async function POST({ request }) {
-  try {
+const buttons = document.querySelectorAll('.buy-btn');
 
-    const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);
+buttons.forEach((button) => {
 
-    const body = await request.json();
+button.addEventListener('click', async () => {
 
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
+const card = button.closest('.card');
 
-      mode: "payment",
+const size = card.querySelector('.size-select').value;
 
-      line_items: [
-        {
-          price_data: {
-            currency: "nok",
+const name = button.dataset.name + ' - Size ' + size;
 
-            product_data: {
-              name: body.name,
-            },
+const price = button.dataset.price;
 
-            unit_amount: Number(body.price) * 100,
-          },
+try {
 
-          quantity: 1,
-        },
-      ],
+const response = await fetch('/api/create-checkout-session', {
 
-      shipping_address_collection: {
-        allowed_countries: ["NO", "SE", "DK", "GB", "US"],
-      },
+method:'POST',
 
-      success_url: `${new URL(request.url).origin}/success`,
+headers:{
+'Content-Type':'application/json'
+},
 
-      cancel_url: `${new URL(request.url).origin}/cancel`,
-    });
+body:JSON.stringify({
+name,
+price,
+size
+})
 
-    return new Response(
-      JSON.stringify({
-        url: session.url,
-      }),
-      {
-        status: 200,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+});
 
-  } catch (error) {
+const data = await response.json();
 
-    return new Response(
-      JSON.stringify({
-        error: error.message,
-      }),
-      {
-        status: 500,
-      }
-    );
+if(data.url){
 
-  }
+window.location.href = data.url;
+
+}else{
+
+alert('Stripe checkout failed');
+
 }
+
+}catch(error){
+
+console.error(error);
+
+alert('Checkout error');
+
+}
+
+});
+
+});
+
+</script>
