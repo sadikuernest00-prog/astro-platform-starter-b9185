@@ -1,59 +1,69 @@
-<script>
 
-const buttons = document.querySelectorAll('.buy-btn');
+import Stripe from 'stripe';
 
-buttons.forEach((button) => {
+const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);
 
-button.addEventListener('click', async () => {
+export async function POST({ request }) {
 
-const card = button.closest('.card');
+  try {
 
-const size = card.querySelector('.size-select').value;
+    const body = await request.json();
 
-const name = button.dataset.name + ' - Size ' + size;
+    const session = await stripe.checkout.sessions.create({
 
-const price = button.dataset.price;
+      payment_method_types: ['card'],
 
-try {
+      mode: 'payment',
 
-const response = await fetch('/api/create-checkout-session', {
+      shipping_address_collection: {
+        allowed_countries: ['NO', 'SE', 'DK', 'US', 'GB']
+      },
 
-method:'POST',
+      line_items: [
+        {
+          price_data: {
+            currency: 'nok',
 
-headers:{
-'Content-Type':'application/json'
-},
+            product_data: {
+              name: body.name
+            },
 
-body:JSON.stringify({
-name,
-price,
-size
-})
+            unit_amount: Number(body.price) * 100
+          },
 
-});
+          quantity: 1
+        }
+      ],
 
-const data = await response.json();
+      success_url: 'https://amicbridge.com/success',
 
-if(data.url){
+      cancel_url: 'https://amicbridge.com/cancel'
 
-window.location.href = data.url;
+    });
 
-}else{
+    return new Response(
+      JSON.stringify({
+        url: session.url
+      }),
+      {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    );
 
-alert('Stripe checkout failed');
+  } catch (error) {
+
+    return new Response(
+      JSON.stringify({
+        error: error.message
+      }),
+      {
+        status: 500
+      }
+    );
+
+  }
 
 }
-
-}catch(error){
-
-console.error(error);
-
-alert('Checkout error');
-
-}
-
-});
-
-});
-
-</script>
