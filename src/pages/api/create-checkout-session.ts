@@ -1,48 +1,76 @@
 import Stripe from "stripe";
 
-const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);
+const stripe = new Stripe(
+  import.meta.env.STRIPE_SECRET_KEY,
+  {
+    apiVersion: "2024-04-10",
+  }
+);
 
 export async function POST() {
 
-  const session = await stripe.checkout.sessions.create({
+  try {
 
-    payment_method_types: ["card"],
+    const session = await stripe.checkout.sessions.create({
 
-    mode: "payment",
+      payment_method_types: ["card"],
 
-    shipping_address_collection: {
-      allowed_countries: ["NO", "SE", "DK", "GB", "US"],
-    },
+      mode: "payment",
 
-    line_items: [
-      {
-        price_data: {
-          currency: "nok",
+      shipping_address_collection: {
+        allowed_countries: ["NO", "SE", "DK", "GB", "US"],
+      },
 
-          product_data: {
-            name: "AmicUnderwear Product",
+      line_items: [
+        {
+          price_data: {
+
+            currency: "nok",
+
+            product_data: {
+              name: "AmicUnderwear Product",
+            },
+
+            unit_amount: 59900,
+
           },
 
-          unit_amount: 59900,
+          quantity: 1,
         },
+      ],
 
-        quantity: 1,
-      },
-    ],
+      success_url: "https://amicbridge.com/success",
 
-    success_url: "https://amicbridge.com/success",
-    cancel_url: "https://amicbridge.com/cancel",
+      cancel_url: "https://amicbridge.com/cancel",
 
-  });
+    });
 
-  return new Response(
-    JSON.stringify({
-      id: session.id,
-    }),
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+    return new Response(
+      JSON.stringify({
+        id: session.id,
+      }),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+  } catch (error) {
+
+    return new Response(
+      JSON.stringify({
+        error: "Stripe session failed",
+      }),
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+  }
+
 }
