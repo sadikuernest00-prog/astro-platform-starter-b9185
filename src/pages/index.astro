@@ -1,298 +1,332 @@
 ---
+const products = [
+  {
+    name: "Elegant Lace Set",
+    price: 599,
+    image: "/images/white-lace.jpg",
+    badge: "Best Seller",
+    stripePrice: "price_1"
+  },
+  {
+    name: "Midnight Black Collection",
+    price: 549,
+    image: "/images/black-set.jpg",
+    badge: "New",
+    stripePrice: "price_2"
+  },
+  {
+    name: "Luxury Satin Sleepwear",
+    price: 599,
+    image: "/images/white-bra.jpg",
+    badge: "Luxury",
+    stripePrice: "price_3"
+  },
+  {
+    name: "Comfort Seamless Bra",
+    price: 399,
+    image: "/images/black-bra.jpg",
+    badge: "Popular",
+    stripePrice: "price_4"
+  },
+  {
+    name: "Black Comfort Bra",
+    price: 399,
+    image: "/images/nude-bra.jpg",
+    badge: "Trending",
+    stripePrice: "price_5"
+  },
+  {
+    name: "Soft Fit Satin Set",
+    price: 699,
+    image: "/images/satin-set.jpg",
+    badge: "Soft Fit",
+    stripePrice: "price_6"
+  }
+];
 ---
 
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AmicUnderwear</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+  <title>AmicUnderwear</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#ece8e6;
+      color:#000;
+    }
+
+    nav{
+      width:100%;
+      background:white;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:30px 60px;
+      position:sticky;
+      top:0;
+      z-index:999;
+    }
+
+    .logo{
+      font-size:60px;
+      font-weight:800;
+    }
+
+    .logo span{
+      color:#d8a56c;
+    }
+
+    .shop-btn{
+      background:black;
+      color:white;
+      border:none;
+      padding:22px 45px;
+      border-radius:50px;
+      font-size:28px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      align-items:center;
+      gap:50px;
+      padding:80px 60px;
+    }
+
+    .hero h1{
+      font-size:120px;
+      line-height:0.9;
+      margin-bottom:30px;
+    }
+
+    .hero p{
+      font-size:32px;
+      margin-bottom:30px;
+    }
+
+    .hero button{
+      background:black;
+      color:white;
+      border:none;
+      padding:20px 40px;
+      border-radius:50px;
+      font-size:28px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .hero img{
+      width:100%;
+      border-radius:40px;
+      object-fit:cover;
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:110px;
+      font-weight:900;
+      margin:40px 0;
+    }
+
+    .products{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:40px;
+      padding:40px;
+    }
+
+    .card{
+      background:white;
+      border-radius:40px;
+      overflow:hidden;
+      padding-bottom:30px;
+    }
+
+    .card-image{
+      position:relative;
+    }
+
+    .card img{
+      width:100%;
+      height:650px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .badge{
+      position:absolute;
+      top:25px;
+      left:25px;
+      background:white;
+      padding:14px 24px;
+      border-radius:40px;
+      font-size:24px;
+      font-weight:700;
+    }
+
+    .card-content{
+      padding:30px;
+    }
+
+    .card h2{
+      font-size:50px;
+      margin-bottom:20px;
+      line-height:1.1;
+    }
+
+    .price{
+      color:#d8a56c;
+      font-size:70px;
+      font-weight:800;
+      margin-bottom:25px;
+    }
+
+    .buy-btn{
+      background:black;
+      color:white;
+      border:none;
+      padding:18px 40px;
+      border-radius:50px;
+      font-size:28px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    @media(max-width:1100px){
+
+      .products{
+        grid-template-columns:1fr;
       }
 
-      body {
-        font-family: Arial, sans-serif;
-        background: #f4f1ef;
-        color: #111;
+      .hero{
+        grid-template-columns:1fr;
       }
 
-      header {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        background: white;
-        padding: 24px 50px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      .hero h1{
+        font-size:70px;
       }
 
-      .logo {
-        font-size: 58px;
-        font-weight: 800;
+      .section-title{
+        font-size:60px;
       }
 
-      .logo span {
-        color: #d6a36c;
+      .logo{
+        font-size:36px;
       }
+    }
+  </style>
+</head>
 
-      .shop-btn {
-        background: black;
-        color: white;
-        padding: 18px 40px;
-        border-radius: 999px;
-        text-decoration: none;
-        font-size: 24px;
-        font-weight: bold;
-      }
+<body>
 
-      .hero {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-        padding: 80px 60px;
-        gap: 50px;
-      }
+<nav>
+  <div class="logo">
+    Amic<span>Underwear</span>
+  </div>
 
-      .hero h1 {
-        font-size: 110px;
-        line-height: 0.9;
-        margin-bottom: 25px;
-      }
+  <button class="shop-btn">
+    Shop Now
+  </button>
+</nav>
 
-      .hero p {
-        font-size: 30px;
-        margin-bottom: 30px;
-      }
+<section class="hero">
 
-      .hero-button {
-        background: black;
-        color: white;
-        border: none;
-        padding: 18px 40px;
-        border-radius: 999px;
-        font-size: 24px;
-        font-weight: bold;
-      }
+  <div>
+    <h1>
+      Underwear designed to feel beautiful.
+    </h1>
 
-      .hero img {
-        width: 100%;
-        border-radius: 30px;
-      }
+    <p>
+      Luxury underwear made for confidence and comfort.
+    </p>
 
-      .featured-title {
-        text-align: center;
-        font-size: 96px;
-        font-weight: 900;
-        margin-bottom: 50px;
-      }
+    <button>
+      Explore Collection
+    </button>
+  </div>
 
-      .products {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 40px;
-        padding: 0 60px 80px;
-      }
+  <img src="/images/hero.jpg" alt="Hero" />
 
-      .card {
-        background: white;
-        border-radius: 25px;
-        overflow: hidden;
-      }
+</section>
 
-      .image-wrapper {
-        position: relative;
-      }
+<h1 class="section-title">
+  Featured Collection
+</h1>
 
-      .tag {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        background: white;
-        padding: 14px 24px;
-        border-radius: 999px;
-        font-size: 20px;
-        font-weight: bold;
-      }
+<section class="products">
 
-      .card img {
-        width: 100%;
-        height: 650px;
-        object-fit: cover;
-      }
+  {
+    products.map((product) => (
 
-      .card-content {
-        padding: 28px;
-      }
-
-      .card-content h2 {
-        font-size: 28px;
-        margin-bottom: 16px;
-      }
-
-      .price {
-        font-size: 42px;
-        font-weight: bold;
-        color: #d6a36c;
-        margin-bottom: 20px;
-      }
-
-      .buy-button {
-        background: black;
-        color: white;
-        border: none;
-        padding: 16px 34px;
-        border-radius: 999px;
-        font-size: 18px;
-        font-weight: bold;
-        cursor: pointer;
-      }
-
-      @media (max-width: 900px) {
-        .hero {
-          grid-template-columns: 1fr;
-        }
-
-        .products {
-          grid-template-columns: 1fr;
-        }
-
-        .hero h1 {
-          font-size: 60px;
-        }
-
-        .featured-title {
-          font-size: 52px;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-
-    <header>
-      <div class="logo">
-        Amic<span>Underwear</span>
-      </div>
-
-      <a href="#products" class="shop-btn">
-        Shop Now
-      </a>
-    </header>
-
-    <section class="hero">
-      <div>
-        <h1>
-          Underwear designed to feel beautiful.
-        </h1>
-
-        <p>
-          Luxury underwear made for confidence and comfort.
-        </p>
-
-        <button class="hero-button">
-          Explore Collection
-        </button>
-      </div>
-
-      <img
-        src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=1200&auto=format&fit=crop"
-        alt=""
-      />
-    </section>
-
-    <h2 class="featured-title">
-      Featured Collection
-    </h2>
-
-    <section class="products" id="products">
-
-      <!-- PRODUCT 1 -->
       <div class="card">
-        <div class="image-wrapper">
-          <div class="tag">Best Seller</div>
 
-          <img
-            src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?q=80&w=1200&auto=format&fit=crop"
-            alt=""
-          />
+        <div class="card-image">
+          <img src={product.image} alt={product.name} />
+
+          <div class="badge">
+            {product.badge}
+          </div>
         </div>
 
         <div class="card-content">
-          <h2>Elegant Lace Set</h2>
 
-          <div class="price">599 NOK</div>
+          <h2>
+            {product.name}
+          </h2>
 
-          <form action="/api/create-checkout-session" method="POST">
-            <input type="hidden" name="price" value="599" />
-            <input type="hidden" name="product" value="Elegant Lace Set" />
+          <div class="price">
+            {product.price} NOK
+          </div>
 
-            <button class="buy-button" type="submit">
-              Buy Now
-            </button>
-          </form>
+          <button
+            class="buy-btn"
+            onclick={`checkout('${product.name}', ${product.price})`}
+          >
+            Buy Now
+          </button>
+
         </div>
+
       </div>
 
-      <!-- PRODUCT 2 -->
-      <div class="card">
-        <div class="image-wrapper">
-          <div class="tag">New</div>
+    ))
+  }
 
-          <img
-            src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1200&auto=format&fit=crop"
-            alt=""
-          />
-        </div>
+</section>
 
-        <div class="card-content">
-          <h2>Midnight Black Collection</h2>
+<script>
+async function checkout(name, price){
 
-          <div class="price">549 NOK</div>
+  const response = await fetch('/api/create-checkout-session', {
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json'
+    },
+    body:JSON.stringify({
+      name,
+      price
+    })
+  });
 
-          <form action="/api/create-checkout-session" method="POST">
-            <input type="hidden" name="price" value="549" />
-            <input type="hidden" name="product" value="Midnight Black Collection" />
+  const data = await response.json();
 
-            <button class="buy-button" type="submit">
-              Buy Now
-            </button>
-          </form>
-        </div>
-      </div>
+  if(data.url){
+    window.location.href = data.url;
+  }
+}
+</script>
 
-      <!-- PRODUCT 3 -->
-      <div class="card">
-        <div class="image-wrapper">
-          <div class="tag">Luxury</div>
-
-          <img
-            src="https://images.unsplash.com/photo-1617331721458-bd3bd3f9c7f8?q=80&w=1200&auto=format&fit=crop"
-            alt=""
-          />
-        </div>
-
-        <div class="card-content">
-          <h2>Luxury Satin Sleepwear</h2>
-
-          <div class="price">599 NOK</div>
-
-          <form action="/api/create-checkout-session" method="POST">
-            <input type="hidden" name="price" value="599" />
-            <input type="hidden" name="product" value="Luxury Satin Sleepwear" />
-
-            <button class="buy-button" type="submit">
-              Buy Now
-            </button>
-          </form>
-        </div>
-      </div>
-
-    </section>
-
-  </body>
+</body>
 </html>
