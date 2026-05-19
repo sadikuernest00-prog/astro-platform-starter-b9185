@@ -1,7 +1,6 @@
 import Stripe from "stripe";
 
 export async function POST({ request }) {
-
   try {
 
     const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);
@@ -9,7 +8,6 @@ export async function POST({ request }) {
     const body = await request.json();
 
     const session = await stripe.checkout.sessions.create({
-
       payment_method_types: ["card"],
 
       mode: "payment",
@@ -53,8 +51,6 @@ export async function POST({ request }) {
 
   } catch (error) {
 
-    console.error(error);
-
     return new Response(
       JSON.stringify({
         error: error.message,
@@ -65,5 +61,4 @@ export async function POST({ request }) {
     );
 
   }
-
 }
