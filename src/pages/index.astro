@@ -19,13 +19,13 @@ const products = [
     badge: "Luxury"
   },
   {
-    name: "Comfort Seamless",
+    name: "Comfort Seamless Bra",
     price: 399,
     image: "/images/white-bra.jpg",
     badge: "Popular"
   },
   {
-    name: "Black Comfort",
+    name: "Black Comfort Bra",
     price: 399,
     image: "/images/black-bra.jpg",
     badge: "Trending"
@@ -40,13 +40,14 @@ const products = [
 ---
 
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8" />
 
 <meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
+name="viewport"
+content="width=device-width, initial-scale=1.0"
 />
 
 <title>AmicUnderwear</title>
@@ -203,6 +204,22 @@ color:#d8a56c;
 margin-bottom:18px;
 }
 
+.size-selector{
+display:flex;
+flex-direction:column;
+gap:14px;
+margin-bottom:14px;
+}
+
+.size-select{
+padding:14px;
+border-radius:14px;
+border:1px solid #ccc;
+font-size:16px;
+font-weight:600;
+background:white;
+}
+
 .buy-btn{
 background:black;
 color:white;
@@ -320,6 +337,16 @@ alt={product.name}
 {product.price} NOK
 </div>
 
+<div class="size-selector">
+
+<select class="size-select">
+<option value="XS">XS</option>
+<option value="S">S</option>
+<option value="M">M</option>
+<option value="L">L</option>
+<option value="XL">XL</option>
+</select>
+
 <button
 class="buy-btn"
 data-name={product.name}
@@ -327,6 +354,8 @@ data-price={product.price}
 >
 Buy Now
 </button>
+
+</div>
 
 </div>
 
@@ -349,7 +378,12 @@ buttons.forEach((button) => {
 
 button.addEventListener('click', async () => {
 
-const name = button.dataset.name;
+const card = button.closest('.card');
+
+const size = card.querySelector('.size-select').value;
+
+const name = button.dataset.name + ' - Size ' + size;
+
 const price = button.dataset.price;
 
 try {
@@ -364,7 +398,8 @@ headers:{
 
 body:JSON.stringify({
 name,
-price
+price,
+size
 })
 
 });
@@ -384,6 +419,7 @@ alert('Stripe checkout failed');
 }catch(error){
 
 console.error(error);
+
 alert('Checkout error');
 
 }
@@ -395,4 +431,5 @@ alert('Checkout error');
 </script>
 
 </body>
+
 </html>
