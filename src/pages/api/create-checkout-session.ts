@@ -1,23 +1,14 @@
-
 import Stripe from 'stripe';
-
-export const prerender = false;
 
 const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);
 
 export async function POST({ request }) {
 
-  const formData = await request.formData();
-
-  const price = formData.get('price');
-  const product = formData.get('product');
+  const body = await request.json();
 
   const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
 
-    shipping_address_collection: {
-      allowed_countries: ['NO', 'SE', 'DK', 'GB', 'US']
-    },
+    payment_method_types: ['card'],
 
     line_items: [
       {
@@ -25,10 +16,10 @@ export async function POST({ request }) {
           currency: 'nok',
 
           product_data: {
-            name: String(product)
+            name: body.name
           },
 
-          unit_amount: Number(price) * 100
+          unit_amount: body.price * 100
         },
 
         quantity: 1
@@ -37,10 +28,24 @@ export async function POST({ request }) {
 
     mode: 'payment',
 
-    success_url: 'https://YOUR-NETLIFY-URL.netlify.app/success',
+    shipping_address_collection: {
+      allowed_countries: ['NO','SE','DK','GB','US']
+    },
 
-    cancel_url: 'https://YOUR-NETLIFY-URL.netlify.app/cancel'
+    success_url: 'https://your-site.netlify.app/success',
+
+    cancel_url: 'https://your-site.netlify.app/cancel'
   });
 
-  return Response.redirect(session.url, 303);
+  return new Response(
+    JSON.stringify({
+      url: session.url
+    }),
+    {
+      status:200,
+      headers:{
+        'Content-Type':'application/json'
+      }
+    }
+  );
 }
