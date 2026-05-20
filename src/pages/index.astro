@@ -296,6 +296,17 @@ const products = [
         background: #444;
       }
 
+      .remove-btn {
+        margin-top: 10px;
+        background: #e53935;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
       .reviews-section {
         max-width: 1450px;
         margin: 80px auto;
@@ -507,10 +518,7 @@ const products = [
       <div class="reviews-grid">
 
         <div class="review-card">
-
-          <div class="stars">
-            ★★★★★
-          </div>
+          <div class="stars">★★★★★</div>
 
           <p class="review-text">
             “Absolutely the softest underwear I’ve ever worn.”
@@ -519,14 +527,10 @@ const products = [
           <div class="review-name">
             — Emma L.
           </div>
-
         </div>
 
         <div class="review-card">
-
-          <div class="stars">
-            ★★★★★
-          </div>
+          <div class="stars">★★★★★</div>
 
           <p class="review-text">
             “The luxury feeling is insane.
@@ -536,14 +540,10 @@ const products = [
           <div class="review-name">
             — Sophia K.
           </div>
-
         </div>
 
         <div class="review-card">
-
-          <div class="stars">
-            ★★★★★
-          </div>
+          <div class="stars">★★★★★</div>
 
           <p class="review-text">
             “Super comfortable and elegant design.”
@@ -552,7 +552,6 @@ const products = [
           <div class="review-name">
             — Olivia R.
           </div>
-
         </div>
 
       </div>
@@ -627,15 +626,25 @@ const products = [
         let total = 0;
         let count = 0;
 
-        cart.forEach((item) => {
+        cart.forEach((item, index) => {
 
           total += item.price * item.qty;
           count += item.qty;
 
           cartItems.innerHTML += `
             <div class="cart-item">
+
               <h4>${item.name}</h4>
+
               <p>${item.qty} × ${item.price} NOK</p>
+
+              <button
+                onclick="removeFromCart(${index})"
+                class="remove-btn"
+              >
+                Remove
+              </button>
+
             </div>
           `;
 
@@ -712,9 +721,18 @@ const products = [
 
       }
 
+      function removeFromCart(index) {
+
+        cart.splice(index, 1);
+
+        updateCart();
+
+      }
+
       window.toggleCart = toggleCart;
       window.checkoutStripe = checkoutStripe;
       window.checkoutMonero = checkoutMonero;
+      window.removeFromCart = removeFromCart;
 
     </script>
 
