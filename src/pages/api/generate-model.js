@@ -1,5 +1,3 @@
-// src/pages/api/generate-model.js
-
 export async function POST({ request }) {
 
 try {
@@ -10,29 +8,40 @@ await request.json();
 const prompt =
 body.prompt;
 
+/* CREATE PREDICTION */
+
 const response =
 await fetch(
-"https://api.replicate.com/v1/models/black-forest-labs/flux-dev/predictions",
+"https://api.replicate.com/v1/predictions",
 {
 
 method:"POST",
 
 headers:{
-"Authorization":
+
+Authorization:
 `Token ${import.meta.env.REPLICATE_API_TOKEN}`,
 
 "Content-Type":"application/json"
+
 },
 
 body:JSON.stringify({
+
+version:
+"black-forest-labs/flux-schnell",
 
 input:{
 
 prompt:prompt,
 
-go_fast:true,
+num_outputs:1,
 
-megapixels:"1"
+aspect_ratio:"3:4",
+
+output_format:"jpg",
+
+output_quality:90
 
 }
 
@@ -44,11 +53,16 @@ megapixels:"1"
 const prediction =
 await response.json();
 
+console.log(prediction);
+
+/* FAILED */
+
 if(!prediction?.urls?.get){
 
 return new Response(
 JSON.stringify({
-error:"Prediction failed"
+error:"Prediction failed",
+details:prediction
 }),
 {
 status:500
@@ -57,25 +71,29 @@ status:500
 
 }
 
+/* WAIT */
+
 let result = prediction;
 
-/* WAIT FOR AI IMAGE */
-
 while(
+
 result.status !== "succeeded" &&
 result.status !== "failed"
+
 ){
 
 await new Promise(resolve =>
-setTimeout(resolve,3000)
+setTimeout(resolve,2000)
 );
 
 const pollResponse =
 await fetch(result.urls.get,{
 
 headers:{
-"Authorization":
+
+Authorization:
 `Token ${import.meta.env.REPLICATE_API_TOKEN}`
+
 }
 
 });
@@ -92,7 +110,10 @@ if(result.status === "succeeded"){
 return new Response(
 JSON.stringify({
 
-image:result.output[0]
+image:
+Array.isArray(result.output)
+? result.output[0]
+: result.output
 
 }),
 {
@@ -106,18 +127,21 @@ headers:{
 
 }
 
-/* FAILED */
+/* ERROR */
 
 return new Response(
 JSON.stringify({
-error:"Generation failed"
+error:"Generation failed",
+details:result
 }),
 {
 status:500
 }
 );
 
-} catch(error){
+}catch(error){
+
+console.log(error);
 
 return new Response(
 JSON.stringify({
