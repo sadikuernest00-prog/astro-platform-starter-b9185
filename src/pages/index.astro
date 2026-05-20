@@ -75,8 +75,6 @@ color:#111;
 overflow-x:hidden;
 }
 
-/* HEADER */
-
 header{
 display:flex;
 justify-content:space-between;
@@ -85,17 +83,14 @@ padding:22px 50px;
 position:sticky;
 top:0;
 z-index:1000;
-
-background:rgba(255,255,255,0.8);
+background:rgba(255,255,255,0.85);
 backdrop-filter:blur(20px);
-
 border-bottom:1px solid rgba(255,255,255,0.3);
 }
 
 .logo{
 font-size:42px;
 font-weight:700;
-letter-spacing:1px;
 }
 
 .logo span{
@@ -114,14 +109,10 @@ transition:0.3s;
 
 .shop-btn:hover{
 background:#b58a56;
-transform:translateY(-3px);
 }
-
-/* HERO */
 
 .hero{
 height:85vh;
-position:relative;
 
 background:
 linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.35)),
@@ -137,10 +128,6 @@ text-align:center;
 padding:20px;
 }
 
-.hero-content{
-animation:fadeUp 1.2s ease;
-}
-
 .hero h1{
 font-size:72px;
 max-width:900px;
@@ -152,7 +139,6 @@ margin-bottom:25px;
 .hero p{
 font-size:22px;
 color:white;
-opacity:0.9;
 margin-bottom:35px;
 }
 
@@ -164,14 +150,7 @@ border-radius:100px;
 text-decoration:none;
 font-size:20px;
 font-weight:600;
-transition:0.3s;
 }
-
-.hero-btn:hover{
-transform:scale(1.05);
-}
-
-/* TITLE */
 
 .section-title{
 text-align:center;
@@ -179,8 +158,6 @@ font-size:54px;
 margin:90px 0 50px;
 font-weight:700;
 }
-
-/* PRODUCTS */
 
 .products{
 display:grid;
@@ -195,9 +172,7 @@ padding:0 50px 100px;
 .card{
 position:relative;
 
-background:rgba(255,255,255,0.75);
-
-backdrop-filter:blur(15px);
+background:white;
 
 border-radius:32px;
 overflow:hidden;
@@ -210,8 +185,7 @@ transition:0.45s;
 
 .card:hover{
 transform:
-translateY(-12px)
-scale(1.02);
+translateY(-12px);
 }
 
 .badge{
@@ -236,11 +210,6 @@ z-index:2;
 width:100%;
 height:430px;
 object-fit:cover;
-transition:0.5s;
-}
-
-.card:hover img{
-transform:scale(1.05);
 }
 
 .card-content{
@@ -259,17 +228,6 @@ color:#b58a56;
 margin-bottom:20px;
 }
 
-.select-group{
-margin-bottom:18px;
-}
-
-.select-label{
-font-size:16px;
-font-weight:600;
-margin-bottom:8px;
-display:block;
-}
-
 .size-select,
 .quantity-select{
 width:100%;
@@ -278,33 +236,27 @@ border-radius:16px;
 border:2px solid #eee;
 font-size:17px;
 background:white;
+margin-bottom:18px;
 }
 
 .buy-btn{
 width:100%;
-margin-top:15px;
-
 padding:18px;
-
 border:none;
 border-radius:100px;
-
 background:black;
 color:white;
-
 font-size:20px;
 font-weight:600;
-
 cursor:pointer;
 transition:0.3s;
 }
 
 .buy-btn:hover{
 background:#b58a56;
-transform:translateY(-2px);
 }
 
-/* AI MODEL GENERATOR */
+/* AI GENERATOR */
 
 .model-generator{
 padding:80px 40px;
@@ -320,12 +272,6 @@ margin-bottom:20px;
 font-size:22px;
 color:#666;
 margin-bottom:30px;
-}
-
-.upload-input{
-padding:16px;
-font-size:18px;
-margin-bottom:25px;
 }
 
 .generate-btn{
@@ -381,25 +327,11 @@ gap:30px;
 }
 
 .review-card{
-
-background:
-rgba(255,255,255,0.75);
-
-backdrop-filter:blur(15px);
-
+background:white;
 padding:35px;
-
 border-radius:30px;
-
 box-shadow:
 0 10px 30px rgba(0,0,0,0.08);
-
-transition:0.4s;
-}
-
-.review-card:hover{
-transform:
-translateY(-8px);
 }
 
 .stars{
@@ -418,28 +350,16 @@ margin-bottom:20px;
 .review-user{
 font-size:18px;
 font-weight:600;
-color:#111;
 }
 
-/* AI BOX */
+/* AI VOICE */
 
 .ai-box{
 margin:40px;
 padding:60px 30px;
-
 border-radius:40px;
-
-background:
-linear-gradient(
-135deg,
-rgba(255,255,255,0.85),
-rgba(255,255,255,0.65)
-);
-
-backdrop-filter:blur(18px);
-
+background:white;
 text-align:center;
-
 box-shadow:
 0 10px 40px rgba(0,0,0,0.08);
 }
@@ -452,22 +372,16 @@ margin-bottom:20px;
 .ai-text{
 font-size:22px;
 color:#666;
-max-width:700px;
-margin:auto auto 35px;
+margin-bottom:35px;
 }
-
-/* VOICE ANIMATION */
 
 .voice-animation{
 display:flex;
 justify-content:center;
 align-items:flex-end;
 gap:10px;
-
 height:90px;
-
 margin-bottom:30px;
-
 opacity:0;
 transition:0.3s;
 }
@@ -479,11 +393,8 @@ opacity:1;
 .voice-animation span{
 width:16px;
 height:20px;
-
 background:#b58a56;
-
 border-radius:100px;
-
 animation:wave 1s infinite ease-in-out;
 }
 
@@ -503,8 +414,6 @@ animation-delay:0.3s;
 animation-delay:0.4s;
 }
 
-/* BUTTONS */
-
 .ai-buttons{
 display:flex;
 justify-content:center;
@@ -514,26 +423,14 @@ flex-wrap:wrap;
 
 .ai-btn{
 padding:18px 38px;
-
 border:none;
 border-radius:100px;
-
 background:black;
 color:white;
-
 font-size:20px;
 font-weight:600;
-
 cursor:pointer;
-transition:0.3s;
 }
-
-.ai-btn:hover{
-background:#b58a56;
-transform:translateY(-2px);
-}
-
-/* FOOTER */
 
 footer{
 padding:50px;
@@ -541,8 +438,6 @@ text-align:center;
 font-size:18px;
 color:#777;
 }
-
-/* ANIMATIONS */
 
 @keyframes wave{
 
@@ -560,66 +455,25 @@ height:20px;
 
 }
 
-@keyframes fadeUp{
-
-from{
-opacity:0;
-transform:translateY(40px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
-
-}
-
-/* MOBILE */
-
 @media(max-width:768px){
 
 .hero h1{
 font-size:42px;
 }
 
-.hero p{
-font-size:18px;
-}
-
-.section-title{
-font-size:38px;
-}
-
 .products{
 padding:20px;
 }
 
-.reviews{
-padding:20px;
-}
-
-.reviews-title{
-font-size:38px;
-}
-
-.review-text{
-font-size:18px;
-}
-
-.card img{
-height:340px;
-}
-
+.section-title,
+.generator-title,
+.reviews-title,
 .ai-box h2{
 font-size:38px;
 }
 
-header{
-padding:18px 20px;
-}
-
-.logo{
-font-size:30px;
+.card img{
+height:340px;
 }
 
 }
@@ -644,7 +498,7 @@ Shop
 
 <section class="hero">
 
-<div class="hero-content">
+<div>
 
 <h1>
 Luxury Underwear Powered By Elegance & AI
@@ -687,12 +541,6 @@ products.map((product)=>(
 {product.price}
 </div>
 
-<div class="select-group">
-
-<label class="select-label">
-Select Size
-</label>
-
 <select class="size-select">
 
 {
@@ -707,24 +555,13 @@ product.sizes.map((size)=>(
 
 </select>
 
-</div>
-
-<div class="select-group">
-
-<label class="select-label">
-Quantity
-</label>
-
 <select class="quantity-select">
 
 <option>1</option>
 <option>2</option>
 <option>3</option>
-<option>4</option>
 
 </select>
-
-</div>
 
 <button
 class="buy-btn"
@@ -751,15 +588,8 @@ AI Fashion Model Generator
 </h2>
 
 <p class="generator-text">
-Upload your product and generate a luxury AI fashion model.
+Generate luxury AI models wearing your products.
 </p>
-
-<input
-type="file"
-id="imageInput"
-accept="image/*"
-class="upload-input"
-/>
 
 <button
 id="generateBtn"
@@ -768,8 +598,11 @@ class="generate-btn"
 Generate AI Model
 </button>
 
-<div class="loading" id="loading">
-Generating AI Model...
+<div
+class="loading"
+id="loading"
+>
+Generating AI Fashion Model...
 </div>
 
 <img
@@ -796,7 +629,7 @@ Customer Reviews
 </div>
 
 <p class="review-text">
-"The quality feels absolutely luxury. Soft fabric and perfect fit."
+"The quality feels absolutely luxury."
 </p>
 
 <div class="review-user">
@@ -812,7 +645,7 @@ Customer Reviews
 </div>
 
 <p class="review-text">
-"Best underwear I’ve ever bought online. Elegant packaging too."
+"Best underwear I’ve ever bought online."
 </p>
 
 <div class="review-user">
@@ -828,7 +661,7 @@ Customer Reviews
 </div>
 
 <p class="review-text">
-"The AI stylist voice made the shopping experience feel premium."
+"The AI stylist voice feels premium."
 </p>
 
 <div class="review-user">
@@ -837,27 +670,11 @@ Customer Reviews
 
 </div>
 
-<div class="review-card">
-
-<div class="stars">
-★★★★★
-</div>
-
-<p class="review-text">
-"Very comfortable and looks amazing. Will definitely order again."
-</p>
-
-<div class="review-user">
-— Isabella R.
-</div>
-
-</div>
-
 </div>
 
 </section>
 
-<!-- AI SECTION -->
+<!-- AI VOICE -->
 
 <section class="ai-box">
 
@@ -866,7 +683,7 @@ AI Luxury Stylist
 </h2>
 
 <div class="ai-text">
-Our AI voice assistant helps customers discover luxury collections with elegance.
+Our AI voice assistant helps customers discover luxury collections.
 </div>
 
 <div
@@ -903,7 +720,7 @@ id="stopVoiceBtn"
 </section>
 
 <footer>
-© 2026 AmicUnderwear — Luxury Redefined
+© 2026 AmicUnderwear
 </footer>
 
 <script>
@@ -913,9 +730,6 @@ id="stopVoiceBtn"
 const generateBtn =
 document.getElementById("generateBtn");
 
-const imageInput =
-document.getElementById("imageInput");
-
 const generatedImage =
 document.getElementById("generatedImage");
 
@@ -924,25 +738,11 @@ document.getElementById("loading");
 
 generateBtn.addEventListener("click", async()=>{
 
-const file =
-imageInput.files[0];
+loading.style.display =
+"block";
 
-if(!file){
-
-alert("Upload image first");
-
-return;
-
-}
-
-loading.style.display = "block";
-
-const reader =
-new FileReader();
-
-reader.readAsDataURL(file);
-
-reader.onload = async()=>{
+generatedImage.style.display =
+"none";
 
 try{
 
@@ -957,10 +757,8 @@ headers:{
 
 body:JSON.stringify({
 
-image:reader.result,
-
 prompt:
-"Luxury fashion model wearing elegant premium underwear, studio lighting, realistic ecommerce photography"
+"Ultra realistic luxury female fashion model wearing elegant luxury lingerie, studio lighting, luxury fashion campaign, photorealistic"
 
 })
 
@@ -969,13 +767,14 @@ prompt:
 const data =
 await response.json();
 
-loading.style.display = "none";
-
 if(data?.urls?.get){
 
 pollPrediction(data.urls.get);
 
 }else{
+
+loading.style.display =
+"none";
 
 alert("AI generation failed");
 
@@ -983,17 +782,14 @@ alert("AI generation failed");
 
 }catch(error){
 
-loading.style.display = "none";
+loading.style.display =
+"none";
 
 alert("AI generation failed");
 
 }
 
-};
-
 });
-
-/* POLL REPLICATE */
 
 async function pollPrediction(url){
 
@@ -1010,6 +806,9 @@ if(prediction.status === "succeeded"){
 
 clearInterval(interval);
 
+loading.style.display =
+"none";
+
 generatedImage.src =
 prediction.output[0];
 
@@ -1022,6 +821,9 @@ if(prediction.status === "failed"){
 
 clearInterval(interval);
 
+loading.style.display =
+"none";
+
 alert("Generation failed");
 
 }
@@ -1030,7 +832,7 @@ alert("Generation failed");
 
 }
 
-/* VOICE AI */
+/* AI VOICE */
 
 const playBtn =
 document.getElementById("playVoiceBtn");
@@ -1079,36 +881,22 @@ window.speechSynthesis.cancel();
 
 voiceAnimation.classList.add("active");
 
-playBtn.innerText =
-"Playing AI Voice...";
-
 const voices =
 await loadVoices();
 
 speechUtterance =
 new SpeechSynthesisUtterance(
-"Welcome to Amic Underwear. Experience premium elegance powered by AI luxury fashion."
+"Welcome to Amic Underwear. Experience premium elegance powered by AI."
 );
 
 speechUtterance.lang =
 "en-US";
 
-speechUtterance.rate =
-0.92;
-
-speechUtterance.pitch =
-1;
-
-speechUtterance.volume =
-1;
-
 const femaleVoice =
 voices.find((voice)=>
 
 voice.name.includes("Samantha") ||
-voice.name.includes("Google UK English Female") ||
-voice.name.includes("Karen") ||
-voice.name.includes("Moira")
+voice.name.includes("Google UK English Female")
 
 );
 
@@ -1122,9 +910,6 @@ femaleVoice;
 speechUtterance.onend = ()=>{
 
 voiceAnimation.classList.remove("active");
-
-playBtn.innerText =
-"▶ Play AI Voice";
 
 };
 
@@ -1145,9 +930,6 @@ stopBtn.addEventListener("click",()=>{
 window.speechSynthesis.cancel();
 
 voiceAnimation.classList.remove("active");
-
-playBtn.innerText =
-"▶ Play AI Voice";
 
 });
 
