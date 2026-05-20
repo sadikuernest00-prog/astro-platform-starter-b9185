@@ -1,3 +1,4 @@
+
 export const prerender = false;
 
 export async function POST({ request }) {
@@ -12,7 +13,7 @@ export async function POST({ request }) {
 
       return new Response(
         JSON.stringify({
-          error: "Missing API key"
+          error: "No API key found"
         }),
         {
           status: 500
@@ -21,19 +22,20 @@ export async function POST({ request }) {
 
     }
 
-    const response = await fetch(
+    const elevenResponse = await fetch(
       "https://api.elevenlabs.io/v1/text-to-speech/pNInz6obpgDQGcFmaJgB",
       {
         method: "POST",
 
         headers: {
-          "Accept": "audio/mpeg",
+          "xi-api-key": apiKey,
           "Content-Type": "application/json",
-          "xi-api-key": apiKey
+          "Accept": "audio/mpeg"
         },
 
         body: JSON.stringify({
-          text,
+
+          text: text,
 
           model_id: "eleven_multilingual_v2",
 
@@ -41,25 +43,29 @@ export async function POST({ request }) {
             stability: 0.5,
             similarity_boost: 0.8
           }
+
         })
+
       }
     );
 
-    if (!response.ok) {
+    if (!elevenResponse.ok) {
 
-      const err = await response.text();
+      const errorText =
+      await elevenResponse.text();
 
-      console.log(err);
+      console.log(errorText);
 
-      return new Response(err, {
+      return new Response(errorText, {
         status: 500
       });
 
     }
 
-    const audio = await response.arrayBuffer();
+    const audioData =
+    await elevenResponse.arrayBuffer();
 
-    return new Response(audio, {
+    return new Response(audioData, {
 
       headers: {
         "Content-Type": "audio/mpeg"
