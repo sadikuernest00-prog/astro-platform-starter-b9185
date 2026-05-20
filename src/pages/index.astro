@@ -304,6 +304,61 @@ background:#b58a56;
 transform:translateY(-2px);
 }
 
+/* AI MODEL GENERATOR */
+
+.model-generator{
+padding:80px 40px;
+text-align:center;
+}
+
+.generator-title{
+font-size:54px;
+margin-bottom:20px;
+}
+
+.generator-text{
+font-size:22px;
+color:#666;
+margin-bottom:30px;
+}
+
+.upload-input{
+padding:16px;
+font-size:18px;
+margin-bottom:25px;
+}
+
+.generate-btn{
+background:black;
+color:white;
+border:none;
+padding:18px 40px;
+border-radius:100px;
+font-size:22px;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+.generate-btn:hover{
+background:#b58a56;
+}
+
+.loading{
+margin-top:30px;
+font-size:22px;
+display:none;
+}
+
+.generated-image{
+margin-top:40px;
+max-width:500px;
+width:100%;
+border-radius:30px;
+display:none;
+box-shadow:0 10px 40px rgba(0,0,0,0.15);
+}
+
 /* REVIEWS */
 
 .reviews{
@@ -687,6 +742,43 @@ Buy Now
 
 </section>
 
+<!-- AI MODEL GENERATOR -->
+
+<section class="model-generator">
+
+<h2 class="generator-title">
+AI Fashion Model Generator
+</h2>
+
+<p class="generator-text">
+Upload your product and generate a luxury AI fashion model.
+</p>
+
+<input
+type="file"
+id="imageInput"
+accept="image/*"
+class="upload-input"
+/>
+
+<button
+id="generateBtn"
+class="generate-btn"
+>
+Generate AI Model
+</button>
+
+<div class="loading" id="loading">
+Generating AI Model...
+</div>
+
+<img
+id="generatedImage"
+class="generated-image"
+/>
+
+</section>
+
 <!-- REVIEWS -->
 
 <section class="reviews">
@@ -816,6 +908,130 @@ id="stopVoiceBtn"
 
 <script>
 
+/* AI MODEL */
+
+const generateBtn =
+document.getElementById("generateBtn");
+
+const imageInput =
+document.getElementById("imageInput");
+
+const generatedImage =
+document.getElementById("generatedImage");
+
+const loading =
+document.getElementById("loading");
+
+generateBtn.addEventListener("click", async()=>{
+
+const file =
+imageInput.files[0];
+
+if(!file){
+
+alert("Upload image first");
+
+return;
+
+}
+
+loading.style.display = "block";
+
+const reader =
+new FileReader();
+
+reader.readAsDataURL(file);
+
+reader.onload = async()=>{
+
+try{
+
+const response =
+await fetch("/api/generate-model",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+image:reader.result,
+
+prompt:
+"Luxury fashion model wearing elegant premium underwear, studio lighting, realistic ecommerce photography"
+
+})
+
+});
+
+const data =
+await response.json();
+
+loading.style.display = "none";
+
+if(data?.urls?.get){
+
+pollPrediction(data.urls.get);
+
+}else{
+
+alert("AI generation failed");
+
+}
+
+}catch(error){
+
+loading.style.display = "none";
+
+alert("AI generation failed");
+
+}
+
+};
+
+});
+
+/* POLL REPLICATE */
+
+async function pollPrediction(url){
+
+const interval =
+setInterval(async()=>{
+
+const response =
+await fetch(url);
+
+const prediction =
+await response.json();
+
+if(prediction.status === "succeeded"){
+
+clearInterval(interval);
+
+generatedImage.src =
+prediction.output[0];
+
+generatedImage.style.display =
+"block";
+
+}
+
+if(prediction.status === "failed"){
+
+clearInterval(interval);
+
+alert("Generation failed");
+
+}
+
+},3000);
+
+}
+
+/* VOICE AI */
+
 const playBtn =
 document.getElementById("playVoiceBtn");
 
@@ -912,17 +1128,6 @@ playBtn.innerText =
 
 };
 
-speechUtterance.onerror = ()=>{
-
-alert("AI Voice Failed");
-
-voiceAnimation.classList.remove("active");
-
-playBtn.innerText =
-"▶ Play AI Voice";
-
-};
-
 window.speechSynthesis.speak(
 speechUtterance
 );
@@ -930,11 +1135,6 @@ speechUtterance
 }catch(error){
 
 alert("AI Voice Failed");
-
-voiceAnimation.classList.remove("active");
-
-playBtn.innerText =
-"▶ Play AI Voice";
 
 }
 
