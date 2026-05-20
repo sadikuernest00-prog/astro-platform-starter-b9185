@@ -33,7 +33,7 @@ link:"https://buy.stripe.com/test_bJecN4gQD4dN31qfUp7Re03"
 
 {
 id:4,
-name:"Soft Nude Comfort",
+name:"Soft Nude Comfort Bra",
 price:"599 NOK",
 image:"/images/nude-bra.jpg",
 sizes:["XS","S","M","L"],
@@ -304,6 +304,68 @@ background:#b58a56;
 transform:translateY(-2px);
 }
 
+/* REVIEWS */
+
+.reviews{
+padding:40px 50px 100px;
+}
+
+.reviews-title{
+text-align:center;
+font-size:54px;
+margin-bottom:50px;
+font-weight:700;
+}
+
+.reviews-grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(280px,1fr));
+
+gap:30px;
+}
+
+.review-card{
+
+background:
+rgba(255,255,255,0.75);
+
+backdrop-filter:blur(15px);
+
+padding:35px;
+
+border-radius:30px;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,0.08);
+
+transition:0.4s;
+}
+
+.review-card:hover{
+transform:
+translateY(-8px);
+}
+
+.stars{
+font-size:28px;
+color:#b58a56;
+margin-bottom:20px;
+}
+
+.review-text{
+font-size:20px;
+line-height:1.6;
+color:#444;
+margin-bottom:20px;
+}
+
+.review-user{
+font-size:18px;
+font-weight:600;
+color:#111;
+}
+
 /* AI BOX */
 
 .ai-box{
@@ -477,6 +539,18 @@ font-size:38px;
 padding:20px;
 }
 
+.reviews{
+padding:20px;
+}
+
+.reviews-title{
+font-size:38px;
+}
+
+.review-text{
+font-size:18px;
+}
+
 .card img{
 height:340px;
 }
@@ -613,6 +687,86 @@ Buy Now
 
 </section>
 
+<!-- REVIEWS -->
+
+<section class="reviews">
+
+<h2 class="reviews-title">
+Customer Reviews
+</h2>
+
+<div class="reviews-grid">
+
+<div class="review-card">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p class="review-text">
+"The quality feels absolutely luxury. Soft fabric and perfect fit."
+</p>
+
+<div class="review-user">
+— Sophia M.
+</div>
+
+</div>
+
+<div class="review-card">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p class="review-text">
+"Best underwear I’ve ever bought online. Elegant packaging too."
+</p>
+
+<div class="review-user">
+— Emma L.
+</div>
+
+</div>
+
+<div class="review-card">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p class="review-text">
+"The AI stylist voice made the shopping experience feel premium."
+</p>
+
+<div class="review-user">
+— Olivia K.
+</div>
+
+</div>
+
+<div class="review-card">
+
+<div class="stars">
+★★★★★
+</div>
+
+<p class="review-text">
+"Very comfortable and looks amazing. Will definitely order again."
+</p>
+
+<div class="review-user">
+— Isabella R.
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- AI SECTION -->
+
 <section class="ai-box">
 
 <h2>
@@ -673,8 +827,6 @@ document.getElementById("voiceAnimation");
 
 let speechUtterance = null;
 
-/* LOAD VOICES FIX */
-
 function loadVoices(){
 
 return new Promise((resolve)=>{
@@ -702,8 +854,6 @@ resolve(voices);
 });
 
 }
-
-/* PLAY VOICE */
 
 playBtn.addEventListener("click", async()=>{
 
@@ -736,8 +886,6 @@ speechUtterance.pitch =
 speechUtterance.volume =
 1;
 
-/* BETTER FEMALE AI VOICE */
-
 const femaleVoice =
 voices.find((voice)=>
 
@@ -755,8 +903,6 @@ femaleVoice;
 
 }
 
-/* END EVENT */
-
 speechUtterance.onend = ()=>{
 
 voiceAnimation.classList.remove("active");
@@ -765,8 +911,6 @@ playBtn.innerText =
 "▶ Play AI Voice";
 
 };
-
-/* ERROR EVENT */
 
 speechUtterance.onerror = ()=>{
 
@@ -795,8 +939,6 @@ playBtn.innerText =
 }
 
 });
-
-/* STOP BUTTON */
 
 stopBtn.addEventListener("click",()=>{
 
