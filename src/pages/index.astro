@@ -4,432 +4,365 @@ const products = [
     name: "Elegant Lace Set",
     price: 599,
     image: "/images/white-lace.jpg",
-    badge: "Best Seller"
+    badge: "Best Seller",
   },
   {
     name: "Midnight Black Collection",
     price: 549,
     image: "/images/black-set.jpg",
-    badge: "New"
+    badge: "New",
   },
   {
     name: "Luxury Satin Sleepwear",
     price: 599,
-    image: "/images/satin-set.jpg",
-    badge: "Luxury"
+    image: "/images/white-bra.jpg",
+    badge: "Luxury",
   },
   {
     name: "Comfort Seamless Bra",
-    price: 399,
-    image: "/images/white-bra.jpg",
-    badge: "Popular"
+    price: 499,
+    image: "/images/black-bra.jpg",
+    badge: "Popular",
   },
   {
     name: "Black Comfort Bra",
-    price: 399,
-    image: "/images/black-bra.jpg",
-    badge: "Trending"
+    price: 499,
+    image: "/images/nude-bra.jpg",
+    badge: "Trending",
   },
   {
     name: "Soft Fit Satin Set",
     price: 699,
-    image: "/images/nude-bra.jpg",
-    badge: "Soft Fit"
-  }
+    image: "/images/satin-set.jpg",
+    badge: "Soft Fit",
+  },
 ];
 ---
 
 <html lang="en">
-
-<head>
-
-<meta charset="UTF-8" />
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-/>
-
-<title>AmicUnderwear</title>
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
-}
-
-body{
-background:#ece8e6;
-color:#111;
-}
-
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 40px;
-background:white;
-position:sticky;
-top:0;
-z-index:1000;
-border-bottom:1px solid #ddd;
-}
-
-.logo{
-font-size:38px;
-font-weight:900;
-}
-
-.logo span{
-color:#d8a56c;
-}
-
-.shop-btn{
-background:black;
-color:white;
-border:none;
-padding:14px 26px;
-border-radius:50px;
-font-size:18px;
-font-weight:700;
-cursor:pointer;
-}
-
-.hero{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
-align-items:center;
-padding:50px 40px;
-max-width:1400px;
-margin:auto;
-}
-
-.hero h1{
-font-size:70px;
-line-height:0.95;
-margin-bottom:20px;
-}
-
-.hero p{
-font-size:22px;
-margin-bottom:25px;
-color:#555;
-}
-
-.hero-button{
-background:black;
-color:white;
-border:none;
-padding:14px 28px;
-border-radius:50px;
-font-size:18px;
-font-weight:700;
-cursor:pointer;
-}
-
-.hero img{
-width:100%;
-height:650px;
-object-fit:cover;
-border-radius:30px;
-}
-
-.section-title{
-font-size:60px;
-font-weight:900;
-text-align:center;
-margin:40px 0;
-}
-
-.products{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:30px;
-padding:30px;
-max-width:1500px;
-margin:auto;
-}
-
-.card{
-background:white;
-border-radius:30px;
-overflow:hidden;
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-}
-
-.card-image{
-position:relative;
-}
-
-.card img{
-width:100%;
-height:420px;
-object-fit:cover;
-display:block;
-}
-
-.badge{
-position:absolute;
-top:18px;
-left:18px;
-background:white;
-padding:10px 18px;
-border-radius:50px;
-font-size:14px;
-font-weight:700;
-}
-
-.card-content{
-padding:24px;
-}
-
-.card h2{
-font-size:26px;
-line-height:1.2;
-margin-bottom:14px;
-}
-
-.price{
-font-size:34px;
-font-weight:900;
-color:#d8a56c;
-margin-bottom:18px;
-}
-
-.size-selector{
-display:flex;
-flex-direction:column;
-gap:14px;
-margin-bottom:14px;
-}
-
-.size-select{
-padding:14px;
-border-radius:14px;
-border:1px solid #ccc;
-font-size:16px;
-font-weight:600;
-background:white;
-}
-
-.buy-btn{
-background:black;
-color:white;
-border:none;
-padding:14px 24px;
-border-radius:50px;
-font-size:16px;
-font-weight:700;
-cursor:pointer;
-width:100%;
-}
-
-footer{
-padding:60px 20px;
-text-align:center;
-color:#666;
-font-size:15px;
-}
-
-@media(max-width:1000px){
-
-.hero{
-grid-template-columns:1fr;
-}
-
-.products{
-grid-template-columns:1fr;
-}
-
-.hero h1{
-font-size:48px;
-}
-
-.section-title{
-font-size:42px;
-}
-
-.hero img{
-height:500px;
-}
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<nav>
-
-<div class="logo">
-Amic<span>Underwear</span>
-</div>
-
-<button class="shop-btn">
-Shop Now
-</button>
-
-</nav>
-
-<section class="hero">
-
-<div>
-
-<h1>
-Underwear designed to feel beautiful.
-</h1>
-
-<p>
-Luxury underwear made for confidence and comfort.
-</p>
-
-<button class="hero-button">
-Explore Collection
-</button>
-
-</div>
-
-<img src="/images/hero.jpg" alt="Hero"/>
-
-</section>
-
-<h1 class="section-title">
-Featured Collection
-</h1>
-
-<section class="products">
-
-{
-products.map((product) => (
-
-<div class="card">
-
-<div class="card-image">
-
-<img
-src={product.image}
-alt={product.name}
-/>
-
-<div class="badge">
-{product.badge}
-</div>
-
-</div>
-
-<div class="card-content">
-
-<h2>
-{product.name}
-</h2>
-
-<div class="price">
-{product.price} NOK
-</div>
-
-<div class="size-selector">
-
-<select class="size-select">
-<option value="XS">XS</option>
-<option value="S">S</option>
-<option value="M">M</option>
-<option value="L">L</option>
-<option value="XL">XL</option>
-</select>
-
-<button
-class="buy-btn"
-data-name={product.name}
-data-price={product.price}
->
-Buy Now
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-))
-}
-
-</section>
-
-<footer>
-© 2026 AmicUnderwear
-</footer>
-
-<script>
-
-const buttons = document.querySelectorAll('.buy-btn');
-
-buttons.forEach((button) => {
-
-button.addEventListener('click', async () => {
-
-const card = button.closest('.card');
-
-const size = card.querySelector('.size-select').value;
-
-const name = button.dataset.name + ' - Size ' + size;
-
-const price = button.dataset.price;
-
-try {
-
-const response = await fetch('/api/create-checkout-session', {
-
-method:'POST',
-
-headers:{
-'Content-Type':'application/json'
-},
-
-body:JSON.stringify({
-name,
-price,
-size
-})
-
-});
-
-const data = await response.json();
-
-if(data.url){
-
-window.location.href = data.url;
-
-}else{
-
-alert('Stripe checkout failed');
-
-}
-
-}catch(error){
-
-console.error(error);
-
-alert('Checkout error');
-
-}
-
-});
-
-});
-
-</script>
-
-</body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>AmicUnderwear</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background: #f4f1ef;
+        color: #111;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 24px 60px;
+        background: white;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .logo {
+        font-size: 42px;
+        font-weight: 900;
+      }
+
+      .logo span {
+        color: #c79b67;
+      }
+
+      .shop-btn {
+        background: black;
+        color: white;
+        border: none;
+        padding: 18px 38px;
+        border-radius: 999px;
+        font-size: 22px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        padding: 60px;
+        gap: 40px;
+      }
+
+      .hero h1 {
+        font-size: 90px;
+        line-height: 0.95;
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        font-size: 28px;
+        margin-bottom: 30px;
+      }
+
+      .hero img {
+        width: 100%;
+        border-radius: 30px;
+      }
+
+      .hero-btn {
+        background: black;
+        color: white;
+        border: none;
+        padding: 18px 34px;
+        border-radius: 999px;
+        font-size: 22px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 90px;
+        margin: 80px 0 40px;
+        font-weight: 900;
+      }
+
+      .products {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        padding: 0 40px 100px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 30px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .card img {
+        width: 100%;
+        height: 600px;
+        object-fit: cover;
+      }
+
+      .badge {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: white;
+        padding: 14px 24px;
+        border-radius: 999px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .card-content {
+        padding: 30px;
+      }
+
+      .card h3 {
+        font-size: 40px;
+        margin-bottom: 10px;
+      }
+
+      .price {
+        color: #c79b67;
+        font-size: 60px;
+        font-weight: 900;
+        margin-bottom: 20px;
+      }
+
+      .sizes {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .size-btn {
+        padding: 10px 16px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        background: white;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .buy-btn {
+        background: black;
+        color: white;
+        border: none;
+        padding: 18px 34px;
+        border-radius: 999px;
+        font-size: 22px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .ai-voice-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: black;
+        color: white;
+        border: none;
+        padding: 18px 28px;
+        border-radius: 999px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 999;
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .products {
+          grid-template-columns: 1fr;
+        }
+
+        .hero h1 {
+          font-size: 60px;
+        }
+
+        .section-title {
+          font-size: 60px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        Amic<span>Underwear</span>
+      </div>
+
+      <button class="shop-btn">
+        Shop Now
+      </button>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1>
+          Underwear designed to feel beautiful.
+        </h1>
+
+        <p>
+          Luxury underwear made for confidence and comfort.
+        </p>
+
+        <button class="hero-btn">
+          Explore Collection
+        </button>
+      </div>
+
+      <img src="/images/hero.jpg" alt="Hero" />
+    </section>
+
+    <h2 class="section-title">
+      Featured Collection
+    </h2>
+
+    <section class="products">
+      {
+        products.map((product) => (
+          <div class="card">
+            <span class="badge">
+              {product.badge}
+            </span>
+
+            <img src={product.image} alt={product.name} />
+
+            <div class="card-content">
+              <h3>{product.name}</h3>
+
+              <div class="price">
+                {product.price} NOK
+              </div>
+
+              <div class="sizes">
+                <button class="size-btn">XS</button>
+                <button class="size-btn">S</button>
+                <button class="size-btn">M</button>
+                <button class="size-btn">L</button>
+                <button class="size-btn">XL</button>
+              </div>
+
+              <button
+                class="buy-btn"
+                onclick={`checkout('${product.name}', ${product.price})`}
+              >
+                Buy Now
+              </button>
+            </div>
+          </div>
+        ))
+      }
+    </section>
+
+    <button class="ai-voice-btn" onclick="speakAI()">
+      🎙 Hear AI Stylist
+    </button>
+
+    <script>
+      async function checkout(name, price) {
+        try {
+          const response = await fetch(
+            "/api/create-checkout-session",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name,
+                price,
+              }),
+            }
+          );
+
+          const data = await response.json();
+
+          if (data.url) {
+            window.location.href = data.url;
+          } else {
+            alert("Checkout error");
+          }
+        } catch (error) {
+          alert("Something went wrong");
+        }
+      }
+
+      async function speakAI() {
+        const response = await fetch("/api/voice", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            text:
+              "Welcome to AmicUnderwear luxury collection.",
+          }),
+        });
+
+        const blob = await response.blob();
+
+        const audio = new Audio(
+          URL.createObjectURL(blob)
+        );
+
+        audio.play();
+      }
+    </script>
+  </body>
 </html>
