@@ -11,15 +11,21 @@ export async function POST({ request }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          text,
+          text: text,
           model_id: "eleven_multilingual_v2",
           voice_settings: {
             stability: 0.5,
-            similarity_boost: 0.75,
-          },
+            similarity_boost: 0.8
+          }
         }),
       }
     );
+
+    if (!response.ok) {
+      return new Response("ElevenLabs API error", {
+        status: 500,
+      });
+    }
 
     const audioBuffer = await response.arrayBuffer();
 
@@ -29,7 +35,7 @@ export async function POST({ request }) {
       },
     });
   } catch (error) {
-    return new Response("Voice error", {
+    return new Response("Server error", {
       status: 500,
     });
   }
