@@ -1,40 +1,35 @@
-
 export async function POST({ request }) {
 
   try {
 
-    const body = await request.json();
+    const { text } = await request.json();
 
     const response = await fetch(
-      "https://api.elevenlabs.io/v1/text-to-speech/EXAVITQu4vr4xnSDxMaL",
+      "https://api.elevenlabs.io/v1/text-to-speech/pNInz6obpgDQGcFmaJgB",
       {
         method: "POST",
 
         headers: {
-          "xi-api-key": import.meta.env.ELEVENLABS_API_KEY,
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "xi-api-key": import.meta.env.ELEVENLABS_API_KEY
         },
 
         body: JSON.stringify({
-
-          text: body.text,
+          text: text,
 
           model_id: "eleven_multilingual_v2",
 
           voice_settings: {
-            stability: 0.45,
-            similarity_boost: 0.9,
-            style: 0.6,
-            use_speaker_boost: true
+            stability: 0.5,
+            similarity_boost: 0.8
           }
-
         })
       }
     );
 
-    const audio = await response.arrayBuffer();
+    const audioBuffer = await response.arrayBuffer();
 
-    return new Response(audio, {
+    return new Response(audioBuffer, {
       headers: {
         "Content-Type": "audio/mpeg"
       }
@@ -42,9 +37,14 @@ export async function POST({ request }) {
 
   } catch (error) {
 
-    return new Response("Voice Error", {
-      status: 500
-    });
+    return new Response(
+      JSON.stringify({
+        error: "Voice failed"
+      }),
+      {
+        status: 500
+      }
+    );
 
   }
 
