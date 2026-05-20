@@ -59,6 +59,7 @@ font-family:Arial, sans-serif;
 body{
 background:#f5f5f5;
 color:black;
+overflow-x:hidden;
 }
 
 header{
@@ -71,11 +72,13 @@ position:sticky;
 top:0;
 z-index:100;
 border-bottom:2px solid #eee;
+backdrop-filter:blur(10px);
 }
 
 .logo{
 font-size:42px;
 font-weight:bold;
+animation:fadeDown 1s ease;
 }
 
 .logo span{
@@ -95,6 +98,7 @@ transition:0.3s;
 
 .shop-btn:hover{
 background:#b88b4a;
+transform:scale(1.05);
 }
 
 .hero{
@@ -107,15 +111,25 @@ justify-content:center;
 align-items:center;
 text-align:center;
 padding:20px;
+position:relative;
+overflow:hidden;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.35);
 }
 
 .hero h1{
+position:relative;
 font-size:64px;
 color:white;
-background:rgba(0,0,0,0.45);
 padding:25px;
 border-radius:20px;
 max-width:900px;
+animation:floatHero 4s ease-in-out infinite;
 }
 
 .section-title{
@@ -123,6 +137,7 @@ text-align:center;
 font-size:52px;
 margin-top:70px;
 margin-bottom:40px;
+animation:fadeUp 1s ease;
 }
 
 .products{
@@ -137,17 +152,24 @@ background:white;
 border-radius:30px;
 overflow:hidden;
 box-shadow:0 5px 25px rgba(0,0,0,0.08);
-transition:0.3s;
+transition:0.4s;
+animation:fadeUp 1s ease;
 }
 
 .card:hover{
-transform:translateY(-8px);
+transform:translateY(-12px);
+box-shadow:0 20px 50px rgba(0,0,0,0.15);
 }
 
 .card img{
 width:100%;
 height:420px;
 object-fit:cover;
+transition:0.5s;
+}
+
+.card:hover img{
+transform:scale(1.06);
 }
 
 .card-content{
@@ -180,6 +202,12 @@ border:2px solid #ddd;
 font-size:18px;
 margin-bottom:25px;
 background:white;
+transition:0.3s;
+}
+
+.size-select:focus{
+border-color:#b88b4a;
+outline:none;
 }
 
 .buy-btn{
@@ -200,6 +228,7 @@ cursor:pointer;
 
 .buy-btn:hover{
 background:#b88b4a;
+transform:translateY(-2px);
 }
 
 .ai-box{
@@ -209,6 +238,7 @@ padding:40px;
 border-radius:30px;
 text-align:center;
 box-shadow:0 5px 20px rgba(0,0,0,0.08);
+animation:fadeUp 1s ease;
 }
 
 .ai-box h2{
@@ -221,6 +251,45 @@ font-size:22px;
 color:#555;
 margin-bottom:30px;
 line-height:1.5;
+}
+
+.voice-animation{
+display:flex;
+justify-content:center;
+align-items:flex-end;
+gap:8px;
+height:90px;
+margin-bottom:35px;
+opacity:0;
+transition:0.4s;
+}
+
+.voice-animation.active{
+opacity:1;
+}
+
+.voice-animation span{
+width:12px;
+height:20px;
+background:#b88b4a;
+border-radius:30px;
+animation:voiceWave 1s infinite ease-in-out;
+}
+
+.voice-animation span:nth-child(2){
+animation-delay:0.1s;
+}
+
+.voice-animation span:nth-child(3){
+animation-delay:0.2s;
+}
+
+.voice-animation span:nth-child(4){
+animation-delay:0.3s;
+}
+
+.voice-animation span:nth-child(5){
+animation-delay:0.4s;
 }
 
 .ai-buttons{
@@ -244,6 +313,7 @@ transition:0.3s;
 
 .ai-btn:hover{
 background:#b88b4a;
+transform:scale(1.05);
 }
 
 footer{
@@ -252,6 +322,66 @@ text-align:center;
 padding:40px;
 margin-top:60px;
 font-size:18px;
+}
+
+@keyframes voiceWave{
+
+0%{
+height:20px;
+}
+
+50%{
+height:80px;
+}
+
+100%{
+height:20px;
+}
+
+}
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+@keyframes fadeDown{
+
+from{
+opacity:0;
+transform:translateY(-40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+@keyframes floatHero{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-12px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
 }
 
 @media (max-width:768px){
@@ -401,6 +531,16 @@ AI Luxury Stylist
 Hear why customers love AmicUnderwear and discover our bestselling luxury collections.
 </div>
 
+<div class="voice-animation" id="voiceAnimation">
+
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+
+</div>
+
 <div class="ai-buttons">
 
 <button class="ai-btn" id="playVoiceBtn">
@@ -423,29 +563,40 @@ Hear why customers love AmicUnderwear and discover our bestselling luxury collec
 
 let currentAudio = null;
 
-const playBtn = document.getElementById("playVoiceBtn");
-const stopBtn = document.getElementById("stopVoiceBtn");
+const playBtn =
+document.getElementById("playVoiceBtn");
+
+const stopBtn =
+document.getElementById("stopVoiceBtn");
+
+const voiceAnimation =
+document.getElementById("voiceAnimation");
 
 playBtn.addEventListener("click", async () => {
 
 try {
 
+voiceAnimation.classList.add("active");
+
 if(currentAudio){
+
 currentAudio.pause();
+
 currentAudio.currentTime = 0;
+
 }
 
 const response = await fetch("/api/voice", {
 
-method: "POST",
+method:"POST",
 
-headers: {
-"Content-Type": "application/json"
+headers:{
+"Content-Type":"application/json"
 },
 
-body: JSON.stringify({
+body:JSON.stringify({
 
-text: `
+text:`
 Welcome to Amic Underwear.
 
 Our bestselling product is the Elegant Lace Set because customers love the premium comfort, elegant fit, and luxury feel.
@@ -469,7 +620,15 @@ currentAudio = new Audio(url);
 
 currentAudio.play();
 
-} catch (error) {
+currentAudio.onended = () => {
+
+voiceAnimation.classList.remove("active");
+
+};
+
+} catch(error){
+
+voiceAnimation.classList.remove("active");
 
 alert("AI voice failed");
 
@@ -486,6 +645,8 @@ currentAudio.pause();
 currentAudio.currentTime = 0;
 
 }
+
+voiceAnimation.classList.remove("active");
 
 });
 
