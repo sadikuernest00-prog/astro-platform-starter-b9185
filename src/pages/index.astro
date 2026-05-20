@@ -335,8 +335,6 @@ font-size:18px;
 color:#777;
 }
 
-/* MOBILE */
-
 @media(max-width:768px){
 
 .hero h1{
@@ -434,7 +432,7 @@ Buy Now
 
 <button
 class="ai-product-btn"
-onclick={`generateModel(${JSON.stringify(product.prompt)})`}
+data-prompt={product.prompt}
 >
 Generate AI Model Wearing This
 </button>
@@ -544,7 +542,15 @@ document.getElementById("generatedImage");
 const loading =
 document.getElementById("loading");
 
-async function generateModel(prompt){
+const aiButtons =
+document.querySelectorAll(".ai-product-btn");
+
+aiButtons.forEach((button)=>{
+
+button.addEventListener("click", async()=>{
+
+const prompt =
+button.dataset.prompt;
 
 loading.style.display =
 "block";
@@ -611,7 +617,9 @@ alert("AI generation failed");
 
 }
 
-}
+});
+
+});
 
 </script>
 
