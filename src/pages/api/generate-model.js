@@ -1,3 +1,5 @@
+// src/pages/api/generate-model.js
+
 export async function POST({ request }) {
 
 try {
@@ -57,7 +59,7 @@ status:500
 
 let result = prediction;
 
-/* WAIT FOR IMAGE */
+/* WAIT FOR AI IMAGE */
 
 while(
 result.status !== "succeeded" &&
