@@ -5,36 +5,42 @@ const products = [
     price: "599 NOK",
     image: "/images/white-lace.jpg",
     badge: "Best Seller",
+    link: "https://buy.stripe.com/test_4gM3cu2ZNcKjdG423z7Re01",
   },
   {
     name: "Midnight Black Collection",
     price: "549 NOK",
     image: "/images/black-set.jpg",
     badge: "New",
+    link: "https://buy.stripe.com/test_4gM5kCeIvdOnfOccId7Re02",
   },
   {
     name: "Luxury Satin Sleepwear",
     price: "599 NOK",
     image: "/images/satin-set.jpg",
     badge: "Luxury",
+    link: "https://buy.stripe.com/test_4gM3cu2ZNcKjdG423z7Re01",
   },
   {
     name: "Comfort Seamless Bra",
     price: "399 NOK",
     image: "/images/white-bra.jpg",
     badge: "Popular",
+    link: "https://buy.stripe.com/test_4gM3cu2ZNcKjdG423z7Re01",
   },
   {
     name: "Black Comfort Bra",
     price: "399 NOK",
     image: "/images/black-bra.jpg",
     badge: "Trending",
+    link: "https://buy.stripe.com/test_4gM5kCeIvdOnfOccId7Re02",
   },
   {
     name: "Soft Fit Collection",
     price: "449 NOK",
     image: "/images/nude-bra.jpg",
     badge: "Soft Fit",
+    link: "https://buy.stripe.com/test_4gM3cu2ZNcKjdG423z7Re01",
   },
 ];
 ---
@@ -317,7 +323,7 @@ const products = [
 
               <button
                 class="buy-btn"
-                onclick={`window.location.href='https://buy.stripe.com/test_4gM3cu2ZNcKjdG423z7Re01'`}
+                onclick={`window.location.href='${product.link}'`}
               >
                 Buy Now
               </button>
