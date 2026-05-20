@@ -35,382 +35,423 @@ const products = [
 ---
 
 <html lang="en">
-  <head>
-
-    <meta charset="UTF-8" />
-
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-
-    <title>AmicUnderwear</title>
-
-    <style>
-
-      *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-        font-family:Arial, sans-serif;
-      }
-
-      body{
-        background:#f5f5f5;
-        color:black;
-      }
-
-      header{
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        padding:20px 40px;
-        background:white;
-        position:sticky;
-        top:0;
-        z-index:100;
-        border-bottom:2px solid #eee;
-      }
-
-      .logo{
-        font-size:42px;
-        font-weight:bold;
-      }
-
-      .logo span{
-        color:#b88b4a;
-      }
-
-      .shop-btn{
-        background:black;
-        color:white;
-        text-decoration:none;
-        padding:16px 32px;
-        border-radius:50px;
-        font-size:22px;
-        font-weight:bold;
-        transition:0.3s;
-      }
-
-      .shop-btn:hover{
-        background:#b88b4a;
-      }
-
-      .hero{
-        height:70vh;
-        background-image:url('/images/hero.jpg');
-        background-size:cover;
-        background-position:center;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        text-align:center;
-        padding:20px;
-      }
-
-      .hero h1{
-        font-size:64px;
-        color:white;
-        background:rgba(0,0,0,0.45);
-        padding:25px;
-        border-radius:20px;
-      }
-
-      .section-title{
-        text-align:center;
-        font-size:52px;
-        margin-top:70px;
-        margin-bottom:40px;
-      }
-
-      .products{
-        display:grid;
-        grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
-        gap:30px;
-        padding:20px 40px 80px;
-      }
-
-      .card{
-        background:white;
-        border-radius:30px;
-        overflow:hidden;
-        box-shadow:0 5px 25px rgba(0,0,0,0.08);
-        transition:0.3s;
-      }
-
-      .card:hover{
-        transform:translateY(-8px);
-      }
-
-      .card img{
-        width:100%;
-        height:420px;
-        object-fit:cover;
-      }
-
-      .card-content{
-        padding:25px;
-      }
-
-      .card h2{
-        font-size:34px;
-        margin-bottom:15px;
-      }
-
-      .price{
-        font-size:42px;
-        font-weight:bold;
-        color:#b88b4a;
-        margin-bottom:20px;
-      }
-
-      .size-label{
-        font-size:18px;
-        font-weight:bold;
-        margin-bottom:10px;
-      }
-
-      .size-select{
-        width:100%;
-        padding:14px;
-        border-radius:14px;
-        border:2px solid #ddd;
-        font-size:18px;
-        margin-bottom:25px;
-        background:white;
-      }
-
-      .buy-btn{
-        display:block;
-        width:100%;
-        text-align:center;
-        background:black;
-        color:white;
-        text-decoration:none;
-        padding:18px;
-        border-radius:50px;
-        font-size:22px;
-        font-weight:bold;
-        transition:0.3s;
-      }
-
-      .buy-btn:hover{
-        background:#b88b4a;
-      }
-
-      .ai-box{
-        background:white;
-        margin:50px 40px;
-        padding:40px;
-        border-radius:30px;
-        text-align:center;
-        box-shadow:0 5px 20px rgba(0,0,0,0.08);
-      }
-
-      .ai-box h2{
-        font-size:42px;
-        margin-bottom:20px;
-      }
-
-      .ai-text{
-        font-size:22px;
-        color:#555;
-        margin-bottom:30px;
-      }
-
-      .ai-btn{
-        background:black;
-        color:white;
-        border:none;
-        padding:18px 40px;
-        border-radius:50px;
-        font-size:22px;
-        font-weight:bold;
-        cursor:pointer;
-        transition:0.3s;
-      }
-
-      .ai-btn:hover{
-        background:#b88b4a;
-      }
-
-      footer{
-        background:white;
-        text-align:center;
-        padding:40px;
-        margin-top:60px;
-        font-size:18px;
-      }
-
-      @media (max-width:768px){
-
-        header{
-          padding:15px 20px;
-        }
-
-        .logo{
-          font-size:28px;
-        }
-
-        .shop-btn{
-          font-size:16px;
-          padding:12px 20px;
-        }
-
-        .hero h1{
-          font-size:38px;
-        }
-
-        .section-title{
-          font-size:36px;
-        }
-
-        .card h2{
-          font-size:28px;
-        }
-
-        .price{
-          font-size:34px;
-        }
-
-        .card img{
-          height:340px;
-        }
-
-      }
-
-    </style>
-
-  </head>
-
-  <body>
-
-    <header>
 
-      <div class="logo">
-        Amic<span>Underwear</span>
-      </div>
+<head>
+
+<meta charset="UTF-8" />
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+/>
+
+<title>AmicUnderwear</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+background:#f5f5f5;
+color:black;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+background:white;
+position:sticky;
+top:0;
+z-index:100;
+border-bottom:2px solid #eee;
+}
+
+.logo{
+font-size:42px;
+font-weight:bold;
+}
+
+.logo span{
+color:#b88b4a;
+}
+
+.shop-btn{
+background:black;
+color:white;
+text-decoration:none;
+padding:16px 32px;
+border-radius:50px;
+font-size:22px;
+font-weight:bold;
+transition:0.3s;
+}
+
+.shop-btn:hover{
+background:#b88b4a;
+}
+
+.hero{
+height:70vh;
+background-image:url('/images/hero.jpg');
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.hero h1{
+font-size:64px;
+color:white;
+background:rgba(0,0,0,0.45);
+padding:25px;
+border-radius:20px;
+max-width:900px;
+}
+
+.section-title{
+text-align:center;
+font-size:52px;
+margin-top:70px;
+margin-bottom:40px;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+gap:30px;
+padding:20px 40px 80px;
+}
+
+.card{
+background:white;
+border-radius:30px;
+overflow:hidden;
+box-shadow:0 5px 25px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
+width:100%;
+height:420px;
+object-fit:cover;
+}
+
+.card-content{
+padding:25px;
+}
+
+.card h2{
+font-size:34px;
+margin-bottom:15px;
+}
+
+.price{
+font-size:42px;
+font-weight:bold;
+color:#b88b4a;
+margin-bottom:20px;
+}
+
+.size-label{
+font-size:18px;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.size-select{
+width:100%;
+padding:14px;
+border-radius:14px;
+border:2px solid #ddd;
+font-size:18px;
+margin-bottom:25px;
+background:white;
+}
+
+.buy-btn{
+display:block;
+width:100%;
+text-align:center;
+background:black;
+color:white;
+text-decoration:none;
+padding:18px;
+border-radius:50px;
+font-size:22px;
+font-weight:bold;
+transition:0.3s;
+border:none;
+cursor:pointer;
+}
+
+.buy-btn:hover{
+background:#b88b4a;
+}
+
+.ai-box{
+background:white;
+margin:50px 40px;
+padding:40px;
+border-radius:30px;
+text-align:center;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+.ai-box h2{
+font-size:42px;
+margin-bottom:20px;
+}
+
+.ai-text{
+font-size:22px;
+color:#555;
+margin-bottom:30px;
+line-height:1.5;
+}
+
+.ai-btn{
+background:black;
+color:white;
+border:none;
+padding:18px 40px;
+border-radius:50px;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+.ai-btn:hover{
+background:#b88b4a;
+}
+
+footer{
+background:white;
+text-align:center;
+padding:40px;
+margin-top:60px;
+font-size:18px;
+}
+
+@media (max-width:768px){
+
+header{
+padding:15px 20px;
+}
+
+.logo{
+font-size:28px;
+}
+
+.shop-btn{
+font-size:16px;
+padding:12px 20px;
+}
+
+.hero h1{
+font-size:38px;
+}
+
+.section-title{
+font-size:36px;
+}
+
+.card h2{
+font-size:28px;
+}
+
+.price{
+font-size:34px;
+}
+
+.card img{
+height:340px;
+}
+
+.ai-box{
+margin:30px 20px;
+padding:30px 20px;
+}
+
+.ai-box h2{
+font-size:30px;
+}
+
+.ai-text{
+font-size:18px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+Amic<span>Underwear</span>
+</div>
+
+<a href="#shop" class="shop-btn">
+Shop Now
+</a>
 
-      <a href="#shop" class="shop-btn">
-        Shop Now
-      </a>
+</header>
 
-    </header>
+<section class="hero">
 
-    <section class="hero">
+<h1>
+Luxury Underwear Designed For Confidence, Comfort & Elegance
+</h1>
 
-      <h1>
-        Luxury Underwear Collection
-      </h1>
+</section>
 
-    </section>
+<h2 class="section-title" id="shop">
+Featured Collection
+</h2>
 
-    <h2 class="section-title" id="shop">
-      Featured Collection
-    </h2>
+<section class="products">
 
-    <section class="products">
+{
+products.map((product) => (
 
-      {
-        products.map((product) => (
+<div class="card">
 
-          <div class="card">
+<img src={product.image} alt={product.name} />
 
-            <img src={product.image} alt={product.name} />
+<div class="card-content">
 
-            <div class="card-content">
+<h2>
+{product.name}
+</h2>
 
-              <h2>{product.name}</h2>
+<div class="price">
+{product.price}
+</div>
 
-              <div class="price">
-                {product.price}
-              </div>
+<div class="size-label">
+Select Size
+</div>
 
-              <div class="size-label">
-                Select Size
-              </div>
+<select class="size-select">
 
-              <select class="size-select">
+{
+product.sizes.map((size) => (
 
-                {
-                  product.sizes.map((size) => (
+<option value={size}>
+{size}
+</option>
 
-                    <option value={size}>
-                      {size}
-                    </option>
+))
+}
 
-                  ))
-                }
+</select>
 
-              </select>
+<button
+class="buy-btn"
+onclick={`window.open('${product.link}', '_blank')`}
+>
+Buy Now
+</button>
 
-              <a
-                href={product.link}
-                target="_blank"
-                class="buy-btn"
-              >
-                Buy Now
-              </a>
+</div>
 
-            </div>
+</div>
 
-          </div>
+))
+}
 
-        ))
-      }
+</section>
 
-    </section>
+<section class="ai-box">
 
-    <section class="ai-box">
+<h2>
+AI Luxury Stylist
+</h2>
 
-      <h2>
-        AI Voice Assistant
-      </h2>
+<div class="ai-text">
+Hear why customers love AmicUnderwear and discover our bestselling luxury collections.
+</div>
 
-      <div class="ai-text">
-        Hear why customers love AmicUnderwear
-      </div>
+<button class="ai-btn" id="voiceBtn">
+🎙 Talk With AI
+</button>
 
-      <button class="ai-btn" id="voiceBtn">
-        Talk With AI
-      </button>
+</section>
 
-    </section>
+<footer>
+© 2026 AmicUnderwear — Luxury Fashion
+</footer>
 
-    <footer>
-      © 2026 AmicUnderwear — Luxury Fashion
-    </footer>
+<script>
 
-    <script>
+const voiceBtn = document.getElementById("voiceBtn");
 
-      const voiceBtn = document.getElementById("voiceBtn");
+voiceBtn.addEventListener("click", async () => {
 
-      voiceBtn.addEventListener("click", () => {
+try {
 
-        const message = `
-          Welcome to Amic Underwear.
+const response = await fetch("/api/voice", {
 
-          Our most popular product is the Elegant Lace Set because customers love the luxury fit, elegant design, and premium comfort.
+method: "POST",
 
-          Customers choose Amic because we focus on luxury quality, modern feminine style, soft materials, and elegant comfort for everyday wear.
+headers: {
+"Content-Type": "application/json"
+},
 
-          Every collection is carefully selected to make you feel confident, stylish, and comfortable.
+body: JSON.stringify({
 
-          Discover our bestselling collections today.
-        `;
+text: `
+Welcome to Amic Underwear.
 
-        const speech = new SpeechSynthesisUtterance(message);
+Our bestselling product is the Elegant Lace Set because customers love the premium comfort, elegant fit, and luxury feel.
 
-        speech.lang = "en-US";
-        speech.rate = 0.95;
-        speech.pitch = 1;
-        speech.volume = 1;
+Customers choose Amic because we focus on confidence, comfort, premium materials, and modern feminine luxury.
 
-        window.speechSynthesis.speak(speech);
+Every collection is carefully selected to make you feel elegant, stylish, and comfortable every day.
 
-      });
+Discover your perfect luxury collection today.
+`
 
-    </script>
+})
 
-  </body>
+});
+
+const blob = await response.blob();
+
+const url = URL.createObjectURL(blob);
+
+const audio = new Audio(url);
+
+audio.play();
+
+} catch (error) {
+
+alert("AI voice failed");
+
+}
+
+});
+
+</script>
+
+</body>
+
 </html>
