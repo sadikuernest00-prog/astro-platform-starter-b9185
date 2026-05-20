@@ -4,44 +4,25 @@ const products = [
     name: "Elegant Lace Set",
     price: "599 NOK",
     image: "/images/white-lace.jpg",
-    badge: "Best Seller",
-    link: "https://buy.stripe.com/test_4gM3cu2ZNcKjdG423z7Re01",
+    sizes: ["S", "M", "L"],
+    link: "https://buy.stripe.com/test_4gM3cu2ZNcKjdG423z7Re01"
   },
+
   {
     name: "Midnight Black Collection",
     price: "549 NOK",
     image: "/images/black-set.jpg",
-    badge: "New",
-    link: "https://buy.stripe.com/test_4gM5kCeIvdOnfOccId7Re02",
+    sizes: ["S", "M", "L"],
+    link: "https://buy.stripe.com/test_4gM5kCeIvdOnfOccId7Re02"
   },
+
   {
     name: "Luxury Satin Sleepwear",
     price: "599 NOK",
-    image: "/images/satin-set.jpg",
-    badge: "Luxury",
-    link: "https://buy.stripe.com/test_4gM3cu2ZNcKjdG423z7Re01",
-  },
-  {
-    name: "Comfort Seamless Bra",
-    price: "399 NOK",
     image: "/images/white-bra.jpg",
-    badge: "Popular",
-    link: "https://buy.stripe.com/test_4gM3cu2ZNcKjdG423z7Re01",
-  },
-  {
-    name: "Black Comfort Bra",
-    price: "399 NOK",
-    image: "/images/black-bra.jpg",
-    badge: "Trending",
-    link: "https://buy.stripe.com/test_4gM5kCeIvdOnfOccId7Re02",
-  },
-  {
-    name: "Soft Fit Collection",
-    price: "449 NOK",
-    image: "/images/nude-bra.jpg",
-    badge: "Soft Fit",
-    link: "https://buy.stripe.com/test_4gM3cu2ZNcKjdG423z7Re01",
-  },
+    sizes: ["S", "M", "L"],
+    link: "https://buy.stripe.com/test_bJecN4gQD4dN31qfUp7Re03"
+  }
 ];
 ---
 
@@ -57,319 +38,320 @@ const products = [
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        font-family: Arial, sans-serif;
       }
 
       body {
-        font-family: Arial, sans-serif;
-        background: #ece8e5;
-        color: #111;
+        background: #f5f5f5;
+        color: black;
       }
 
       header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 20px 5%;
+        padding: 20px 40px;
         background: white;
+        border-bottom: 2px solid #eee;
         position: sticky;
         top: 0;
         z-index: 100;
       }
 
       .logo {
-        font-size: 48px;
-        font-weight: 900;
+        font-size: 42px;
+        font-weight: bold;
       }
 
       .logo span {
-        color: #c89a61;
+        color: #b88b4a;
       }
 
       .shop-btn {
         background: black;
         color: white;
-        border: none;
-        padding: 16px 34px;
+        padding: 16px 32px;
         border-radius: 50px;
+        text-decoration: none;
         font-size: 22px;
         font-weight: bold;
-        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .shop-btn:hover {
+        background: #b88b4a;
       }
 
       .hero {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        height: 70vh;
+        background-image: url('/images/hero.jpg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
         align-items: center;
-        padding: 60px 5%;
-        gap: 40px;
+        text-align: center;
+        padding: 20px;
       }
 
-      .hero-text h1 {
-        font-size: 90px;
-        line-height: 0.95;
+      .hero h1 {
+        font-size: 64px;
+        color: white;
+        background: rgba(0,0,0,0.45);
+        padding: 25px;
+        border-radius: 20px;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 52px;
+        margin-top: 70px;
+        margin-bottom: 40px;
+      }
+
+      .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+        padding: 20px 40px 80px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        transition: 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-8px);
+      }
+
+      .card img {
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+      }
+
+      .card-content {
+        padding: 25px;
+      }
+
+      .card h2 {
+        font-size: 38px;
+        margin-bottom: 15px;
+      }
+
+      .price {
+        font-size: 42px;
+        font-weight: bold;
+        color: #b88b4a;
         margin-bottom: 20px;
       }
 
-      .hero-text p {
-        font-size: 24px;
-        margin-bottom: 30px;
+      .sizes {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 25px;
       }
 
-      .hero-text button {
+      .size {
+        background: #eee;
+        padding: 10px 18px;
+        border-radius: 12px;
+        font-weight: bold;
+      }
+
+      .buy-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        background: black;
+        color: white;
+        text-decoration: none;
+        padding: 18px;
+        border-radius: 50px;
+        font-size: 22px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+
+      .buy-btn:hover {
+        background: #b88b4a;
+      }
+
+      .ai-box {
+        background: white;
+        margin: 50px 40px;
+        padding: 40px;
+        border-radius: 30px;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      }
+
+      .ai-box h2 {
+        font-size: 42px;
+        margin-bottom: 20px;
+      }
+
+      .ai-btn {
         background: black;
         color: white;
         border: none;
         padding: 18px 40px;
         border-radius: 50px;
         font-size: 22px;
+        font-weight: bold;
         cursor: pointer;
-        font-weight: bold;
+        transition: 0.3s;
       }
 
-      .hero img {
-        width: 100%;
-        border-radius: 30px;
-      }
-
-      .section-title {
-        text-align: center;
-        font-size: 72px;
-        margin: 60px 0;
-        font-weight: 900;
-      }
-
-      .products {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px;
-        padding: 0 5% 100px;
-      }
-
-      .card {
-        background: #f5f5f5;
-        border-radius: 30px;
-        overflow: hidden;
-      }
-
-      .card-image {
-        position: relative;
-      }
-
-      .card-image img {
-        width: 100%;
-        height: 500px;
-        object-fit: cover;
-      }
-
-      .badge {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        background: white;
-        padding: 10px 20px;
-        border-radius: 40px;
-        font-weight: bold;
-        font-size: 20px;
-      }
-
-      .card-content {
-        padding: 30px;
-      }
-
-      .card-content h2 {
-        font-size: 36px;
-        margin-bottom: 15px;
-      }
-
-      .price {
-        color: #c89a61;
-        font-size: 46px;
-        font-weight: bold;
-        margin-bottom: 20px;
-      }
-
-      select {
-        width: 100%;
-        padding: 16px;
-        font-size: 18px;
-        margin-bottom: 20px;
-        border-radius: 12px;
-        border: 1px solid #ccc;
-      }
-
-      .buy-btn {
-        width: 100%;
-        background: black;
-        color: white;
-        border: none;
-        padding: 18px;
-        border-radius: 50px;
-        font-size: 24px;
-        cursor: pointer;
-        font-weight: bold;
-      }
-
-      .buy-btn:hover {
-        opacity: 0.9;
-      }
-
-      .ai-section {
-        text-align: center;
-        padding-bottom: 100px;
-      }
-
-      .ai-btn {
-        background: #c89a61;
-        color: white;
-        border: none;
-        padding: 22px 45px;
-        font-size: 24px;
-        border-radius: 50px;
-        cursor: pointer;
-        font-weight: bold;
+      .ai-btn:hover {
+        background: #b88b4a;
       }
 
       footer {
+        background: white;
         text-align: center;
         padding: 40px;
+        margin-top: 60px;
         font-size: 18px;
       }
 
-      @media (max-width: 900px) {
-        .hero {
-          grid-template-columns: 1fr;
-        }
-
-        .products {
-          grid-template-columns: 1fr;
-        }
-
-        .hero-text h1 {
-          font-size: 56px;
-        }
-
-        .section-title {
-          font-size: 48px;
+      @media (max-width: 768px) {
+        header {
+          padding: 15px 20px;
         }
 
         .logo {
-          font-size: 32px;
+          font-size: 28px;
         }
 
-        .card-image img {
-          height: 420px;
+        .shop-btn {
+          font-size: 16px;
+          padding: 12px 20px;
+        }
+
+        .hero h1 {
+          font-size: 38px;
+        }
+
+        .section-title {
+          font-size: 36px;
+        }
+
+        .card h2 {
+          font-size: 28px;
+        }
+
+        .price {
+          font-size: 34px;
+        }
+
+        .card img {
+          height: 340px;
         }
       }
     </style>
   </head>
 
   <body>
+
     <header>
       <div class="logo">
         Amic<span>Underwear</span>
       </div>
 
-      <button class="shop-btn">
+      <a href="#shop" class="shop-btn">
         Shop Now
-      </button>
+      </a>
     </header>
 
     <section class="hero">
-      <div class="hero-text">
-        <h1>
-          Underwear designed to feel beautiful.
-        </h1>
-
-        <p>
-          Luxury underwear made for confidence and comfort.
-        </p>
-
-        <button>
-          Explore Collection
-        </button>
-      </div>
-
-      <img src="/images/hero.jpg" alt="Hero" />
+      <h1>
+        Luxury Underwear Collection
+      </h1>
     </section>
 
-    <h2 class="section-title">
+    <h2 class="section-title" id="shop">
       Featured Collection
     </h2>
 
     <section class="products">
+
       {
         products.map((product) => (
+
           <div class="card">
-            <div class="card-image">
-              <img src={product.image} alt={product.name} />
-              <div class="badge">{product.badge}</div>
-            </div>
+
+            <img src={product.image} alt={product.name} />
 
             <div class="card-content">
+
               <h2>{product.name}</h2>
 
               <div class="price">
                 {product.price}
               </div>
 
-              <select>
-                <option>Select Size</option>
-                <option>XS</option>
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
-              </select>
+              <div class="sizes">
+                {
+                  product.sizes.map((size) => (
+                    <div class="size">{size}</div>
+                  ))
+                }
+              </div>
 
-              <button
+              <a
+                href={product.link}
+                target="_blank"
                 class="buy-btn"
-                onclick={`window.location.href='${product.link}'`}
               >
                 Buy Now
-              </button>
+              </a>
+
             </div>
+
           </div>
+
         ))
       }
+
     </section>
 
-    <section class="ai-section">
+    <section class="ai-box">
+
+      <h2>
+        AI Voice Assistant
+      </h2>
+
       <button class="ai-btn" id="voiceBtn">
-        🎙 Hear AI Stylist
+        Talk With AI
       </button>
+
     </section>
 
     <footer>
-      © 2026 AmicUnderwear — Luxury & Comfort
+      © 2026 AmicUnderwear — Luxury Fashion
     </footer>
 
     <script>
-      const btn = document.getElementById("voiceBtn");
+      const voiceBtn = document.getElementById("voiceBtn");
 
-      btn.addEventListener("click", async () => {
-        try {
-          const response = await fetch("/api/voice", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              text:
-                "Welcome to Amic Underwear. Discover luxury fashion, comfort, and elegance made for you.",
-            }),
-          });
+      voiceBtn.addEventListener("click", () => {
 
-          const blob = await response.blob();
+        const speech = new SpeechSynthesisUtterance(
+          "Welcome to Amic Underwear. Discover luxury and elegance."
+        );
 
-          const url = URL.createObjectURL(blob);
+        speech.lang = "en-US";
+        speech.rate = 1;
 
-          const audio = new Audio(url);
+        window.speechSynthesis.speak(speech);
 
-          audio.play();
-        } catch (err) {
-          alert("AI voice failed");
-        }
       });
     </script>
+
   </body>
 </html>
