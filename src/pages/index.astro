@@ -1,8 +1,9 @@
 ---
 const products = [
   {
+    id: 1,
     name: "Elegant Lace Set",
-    price: "599 NOK",
+    price: 599,
     image: "/images/elegant-lace-set.png",
     badge: "BEST SELLER",
     stripe: "https://buy.stripe.com/test_6oU5kC57V9y759y6jP7Re04",
@@ -10,8 +11,9 @@ const products = [
   },
 
   {
+    id: 2,
     name: "Midnight Black Collection",
-    price: "549 NOK",
+    price: 549,
     image: "/images/midnight-black.png",
     badge: "NEW",
     stripe: "https://buy.stripe.com/test_bJecN4gQD4dN31qfUp7Re03",
@@ -19,29 +21,12 @@ const products = [
   },
 
   {
+    id: 3,
     name: "Luxury Sports Bra",
-    price: "499 NOK",
+    price: 499,
     image: "/images/luxury-sports-bra.png",
     badge: "HOT",
     stripe: "https://buy.stripe.com/test_4gM5kCeIvdOnfOccId7Re02",
-    monero: "https://nowpayments.io/payment/?iid=4680546954",
-  },
-
-  {
-    name: "Soft Nude Comfort",
-    price: "529 NOK",
-    image: "/images/soft-nude-comfort.png",
-    badge: "NEW",
-    stripe: "https://buy.stripe.com/test_4gM3cu2ZNcKjdG423z7Re01",
-    monero: "https://nowpayments.io/payment/?iid=4680546954",
-  },
-
-  {
-    name: "Luxury Satin Sleepwear",
-    price: "649 NOK",
-    image: "/images/luxury-satin-sleepwear.png",
-    badge: "PREMIUM",
-    stripe: "https://buy.stripe.com/test_6oU5kC57V9y759y6jP7Re04",
     monero: "https://nowpayments.io/payment/?iid=4680546954",
   },
 ];
@@ -50,7 +35,7 @@ const products = [
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <title>Amic Underwear</title>
 
@@ -67,6 +52,15 @@ const products = [
         color: black;
       }
 
+      .top-banner {
+        background: black;
+        color: white;
+        text-align: center;
+        padding: 12px;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
       .navbar {
         width: 100%;
         padding: 24px 40px;
@@ -74,10 +68,10 @@ const products = [
         justify-content: space-between;
         align-items: center;
         background: white;
+        border-bottom: 1px solid #eee;
         position: sticky;
         top: 0;
-        z-index: 100;
-        border-bottom: 1px solid #eee;
+        z-index: 1000;
       }
 
       .logo {
@@ -87,6 +81,17 @@ const products = [
 
       .logo span {
         color: #c1965c;
+      }
+
+      .cart-btn {
+        background: black;
+        color: white;
+        border: none;
+        padding: 14px 24px;
+        border-radius: 999px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
       }
 
       .hero {
@@ -110,7 +115,7 @@ const products = [
         margin: auto;
         padding: 30px;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 25px;
       }
 
@@ -135,7 +140,11 @@ const products = [
         width: 100%;
         height: 420px;
         object-fit: cover;
-        display: block;
+        transition: 0.4s;
+      }
+
+      .card img:hover {
+        transform: scale(1.05);
       }
 
       .badge {
@@ -155,7 +164,7 @@ const products = [
       }
 
       .content h2 {
-        font-size: 38px;
+        font-size: 34px;
         margin-bottom: 12px;
         font-weight: 900;
       }
@@ -167,12 +176,13 @@ const products = [
         margin-bottom: 20px;
       }
 
-      .sizes {
+      .sizes,
+      .quantity {
         width: 100%;
         padding: 14px;
         border-radius: 12px;
         border: 1px solid #ddd;
-        margin-bottom: 16px;
+        margin-bottom: 14px;
         font-size: 18px;
       }
 
@@ -183,17 +193,24 @@ const products = [
       }
 
       .btn {
+        border: none;
         text-decoration: none;
         text-align: center;
         padding: 16px;
         border-radius: 999px;
         font-size: 18px;
         font-weight: bold;
+        cursor: pointer;
         transition: 0.2s;
       }
 
       .btn:hover {
         transform: scale(1.02);
+      }
+
+      .cart-add {
+        background: #c1965c;
+        color: white;
       }
 
       .stripe {
@@ -202,7 +219,7 @@ const products = [
       }
 
       .monero {
-        background: #c1965c;
+        background: #444;
         color: white;
       }
 
@@ -250,6 +267,58 @@ const products = [
         font-weight: bold;
       }
 
+      .cart-sidebar {
+        position: fixed;
+        top: 0;
+        right: -400px;
+        width: 380px;
+        height: 100%;
+        background: white;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+        padding: 30px;
+        transition: 0.4s;
+        z-index: 2000;
+        overflow-y: auto;
+      }
+
+      .cart-sidebar.active {
+        right: 0;
+      }
+
+      .cart-title {
+        font-size: 34px;
+        font-weight: 900;
+        margin-bottom: 25px;
+      }
+
+      .cart-item {
+        border-bottom: 1px solid #eee;
+        padding: 18px 0;
+      }
+
+      .cart-item h4 {
+        margin-bottom: 10px;
+      }
+
+      .cart-total {
+        font-size: 28px;
+        font-weight: 900;
+        margin-top: 30px;
+      }
+
+      .checkout-btn {
+        width: 100%;
+        margin-top: 20px;
+        padding: 18px;
+        border: none;
+        border-radius: 999px;
+        background: black;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
       .footer {
         margin-top: 80px;
         padding: 60px 20px;
@@ -273,11 +342,11 @@ const products = [
         }
 
         .logo {
-          font-size: 30px;
+          font-size: 28px;
         }
 
         .content h2 {
-          font-size: 30px;
+          font-size: 28px;
         }
 
         .price {
@@ -288,18 +357,27 @@ const products = [
           height: 340px;
         }
 
-        .reviews-title {
-          font-size: 38px;
+        .cart-sidebar {
+          width: 100%;
         }
       }
     </style>
   </head>
 
   <body>
+
+    <div class="top-banner">
+      FREE WORLDWIDE SHIPPING ON ORDERS OVER 1000 NOK
+    </div>
+
     <nav class="navbar">
       <div class="logo">
         Amic<span>Underwear</span>
       </div>
+
+      <button class="cart-btn" onclick="toggleCart()">
+        Cart (<span id="cart-count">0</span>)
+      </button>
     </nav>
 
     <section class="hero">
@@ -316,14 +394,13 @@ const products = [
           <div class="card">
             <div class="image-wrapper">
               <img src={product.image} alt={product.name} />
-
               <div class="badge">{product.badge}</div>
             </div>
 
             <div class="content">
               <h2>{product.name}</h2>
 
-              <div class="price">{product.price}</div>
+              <div class="price">{product.price} NOK</div>
 
               <select class="sizes">
                 <option>XS</option>
@@ -333,13 +410,28 @@ const products = [
                 <option>XL</option>
               </select>
 
+              <input
+                class="quantity"
+                type="number"
+                min="1"
+                value="1"
+                id={`qty-${product.id}`}
+              />
+
               <div class="buttons">
+                <button
+                  class="btn cart-add"
+                  onclick={`addToCart('${product.name}', ${product.price}, ${product.id})`}
+                >
+                  Add To Cart
+                </button>
+
                 <a
                   href={product.stripe}
                   target="_blank"
                   class="btn stripe"
                 >
-                  Pay with Card
+                  Buy With Card
                 </a>
 
                 <a
@@ -347,7 +439,7 @@ const products = [
                   target="_blank"
                   class="btn monero"
                 >
-                  Pay with Monero
+                  Pay With Monero
                 </a>
               </div>
             </div>
@@ -360,12 +452,13 @@ const products = [
       <h2 class="reviews-title">What Our Customers Say</h2>
 
       <div class="reviews-grid">
+
         <div class="review-card">
           <div class="stars">★★★★★</div>
 
           <p class="review-text">
-            “Absolutely the softest underwear I’ve ever worn. The quality feels
-            super premium and the fit is perfect.”
+            “Absolutely the softest underwear I’ve ever worn.
+            The quality feels super premium and the fit is perfect.”
           </p>
 
           <div class="review-name">— Emma L.</div>
@@ -375,8 +468,8 @@ const products = [
           <div class="stars">★★★★★</div>
 
           <p class="review-text">
-            “The luxury feeling is insane. Packaging looked beautiful and the
-            material feels expensive.”
+            “The luxury feeling is insane. Packaging looked beautiful
+            and the material feels expensive.”
           </p>
 
           <div class="review-name">— Sophia K.</div>
@@ -386,14 +479,29 @@ const products = [
           <div class="stars">★★★★★</div>
 
           <p class="review-text">
-            “I ordered two sets and honestly didn’t expect this quality. Super
-            comfortable and elegant design.”
+            “I ordered two sets and honestly didn’t expect this quality.
+            Super comfortable and elegant design.”
           </p>
 
           <div class="review-name">— Olivia R.</div>
         </div>
+
       </div>
     </section>
+
+    <div class="cart-sidebar" id="cartSidebar">
+      <div class="cart-title">Shopping Cart</div>
+
+      <div id="cart-items"></div>
+
+      <div class="cart-total">
+        Total: <span id="cart-total">0</span> NOK
+      </div>
+
+      <button class="checkout-btn">
+        Checkout
+      </button>
+    </div>
 
     <footer class="footer">
       <h3>Amic Underwear</h3>
@@ -402,5 +510,52 @@ const products = [
         Elegant essentials crafted for everyday luxury.
       </p>
     </footer>
+
+    <script>
+      let cart = [];
+
+      function toggleCart() {
+        document.getElementById("cartSidebar").classList.toggle("active");
+      }
+
+      function addToCart(name, price, id) {
+        const qty = parseInt(document.getElementById(`qty-${id}`).value);
+
+        cart.push({
+          name,
+          price,
+          qty
+        });
+
+        updateCart();
+      }
+
+      function updateCart() {
+        const cartItems = document.getElementById("cart-items");
+        const cartCount = document.getElementById("cart-count");
+        const cartTotal = document.getElementById("cart-total");
+
+        cartItems.innerHTML = "";
+
+        let total = 0;
+        let count = 0;
+
+        cart.forEach((item) => {
+          total += item.price * item.qty;
+          count += item.qty;
+
+          cartItems.innerHTML += `
+            <div class="cart-item">
+              <h4>${item.name}</h4>
+              <p>${item.qty} × ${item.price} NOK</p>
+            </div>
+          `;
+        });
+
+        cartCount.innerText = count;
+        cartTotal.innerText = total;
+      }
+    </script>
+
   </body>
 </html>
