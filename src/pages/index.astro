@@ -1,3 +1,4 @@
+
 ---
 const products = [
   {
@@ -237,8 +238,8 @@ const products = [
       .cart-sidebar {
         position: fixed;
         top: 0;
-        right: -450px;
-        width: 420px;
+        right: -400px;
+        width: 380px;
         height: 100%;
         background: white;
         box-shadow: -10px 0 30px rgba(0,0,0,0.1);
@@ -305,21 +306,6 @@ const products = [
         border-radius: 999px;
         cursor: pointer;
         font-weight: bold;
-      }
-
-      .shipping-form {
-        margin-top: 25px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .shipping-input {
-        width: 100%;
-        padding: 14px;
-        border-radius: 12px;
-        border: 1px solid #ddd;
-        font-size: 16px;
       }
 
       .reviews-section {
@@ -585,52 +571,6 @@ const products = [
         Total: <span id="cart-total">0</span> NOK
       </div>
 
-      <div class="shipping-form">
-
-        <input
-          type="text"
-          id="customer-name"
-          placeholder="Full Name"
-          class="shipping-input"
-        />
-
-        <input
-          type="email"
-          id="customer-email"
-          placeholder="Email Address"
-          class="shipping-input"
-        />
-
-        <input
-          type="text"
-          id="customer-address"
-          placeholder="Shipping Address"
-          class="shipping-input"
-        />
-
-        <input
-          type="text"
-          id="customer-city"
-          placeholder="City"
-          class="shipping-input"
-        />
-
-        <input
-          type="text"
-          id="customer-country"
-          placeholder="Country"
-          class="shipping-input"
-        />
-
-        <input
-          type="text"
-          id="customer-zip"
-          placeholder="ZIP / Postal Code"
-          class="shipping-input"
-        />
-
-      </div>
-
       <div class="checkout-buttons">
 
         <button
@@ -760,49 +700,10 @@ const products = [
 
       });
 
-      function validateShipping() {
-
-        const name =
-          document.getElementById("customer-name").value;
-
-        const email =
-          document.getElementById("customer-email").value;
-
-        const address =
-          document.getElementById("customer-address").value;
-
-        const city =
-          document.getElementById("customer-city").value;
-
-        const country =
-          document.getElementById("customer-country").value;
-
-        const zip =
-          document.getElementById("customer-zip").value;
-
-        if (
-          !name ||
-          !email ||
-          !address ||
-          !city ||
-          !country ||
-          !zip
-        ) {
-          alert("Please fill in all shipping information");
-          return false;
-        }
-
-        return true;
-      }
-
       function checkoutStripe() {
 
         if (cart.length === 0) {
           alert("Your cart is empty");
-          return;
-        }
-
-        if (!validateShipping()) {
           return;
         }
 
@@ -814,10 +715,6 @@ const products = [
 
         if (cart.length === 0) {
           alert("Your cart is empty");
-          return;
-        }
-
-        if (!validateShipping()) {
           return;
         }
 
