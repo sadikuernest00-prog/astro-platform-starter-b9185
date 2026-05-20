@@ -25,9 +25,9 @@ const products = [
   },
 
   {
-    name: "Soft Nude Comfort ",
+    name: "Soft Nude Comfort Bra",
     price: "599 NOK",
-    image: "/images/black-bra.jpg",
+    image: "/images/nude-bra.jpg",
     sizes: ["XS", "S", "M", "L"],
     link: "https://buy.stripe.com/test_6oU5kC57V9y759y6jP7Re04"
   }
@@ -36,242 +36,257 @@ const products = [
 
 <html lang="en">
   <head>
+
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
 
     <title>AmicUnderwear</title>
 
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
+
+      *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial, sans-serif;
       }
 
-      body {
-        background: #f5f5f5;
-        color: black;
+      body{
+        background:#f5f5f5;
+        color:black;
       }
 
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 40px;
-        background: white;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        border-bottom: 2px solid #eee;
+      header{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:20px 40px;
+        background:white;
+        position:sticky;
+        top:0;
+        z-index:100;
+        border-bottom:2px solid #eee;
       }
 
-      .logo {
-        font-size: 42px;
-        font-weight: bold;
+      .logo{
+        font-size:42px;
+        font-weight:bold;
       }
 
-      .logo span {
-        color: #b88b4a;
+      .logo span{
+        color:#b88b4a;
       }
 
-      .shop-btn {
-        background: black;
-        color: white;
-        text-decoration: none;
-        padding: 16px 32px;
-        border-radius: 50px;
-        font-size: 22px;
-        font-weight: bold;
-        transition: 0.3s;
+      .shop-btn{
+        background:black;
+        color:white;
+        text-decoration:none;
+        padding:16px 32px;
+        border-radius:50px;
+        font-size:22px;
+        font-weight:bold;
+        transition:0.3s;
       }
 
-      .shop-btn:hover {
-        background: #b88b4a;
+      .shop-btn:hover{
+        background:#b88b4a;
       }
 
-      .hero {
-        height: 70vh;
-        background-image: url('/images/hero.jpg');
-        background-size: cover;
-        background-position: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 20px;
+      .hero{
+        height:70vh;
+        background-image:url('/images/hero.jpg');
+        background-size:cover;
+        background-position:center;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        text-align:center;
+        padding:20px;
       }
 
-      .hero h1 {
-        font-size: 64px;
-        color: white;
-        background: rgba(0,0,0,0.45);
-        padding: 25px;
-        border-radius: 20px;
+      .hero h1{
+        font-size:64px;
+        color:white;
+        background:rgba(0,0,0,0.45);
+        padding:25px;
+        border-radius:20px;
       }
 
-      .section-title {
-        text-align: center;
-        font-size: 52px;
-        margin-top: 70px;
-        margin-bottom: 40px;
+      .section-title{
+        text-align:center;
+        font-size:52px;
+        margin-top:70px;
+        margin-bottom:40px;
       }
 
-      .products {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 30px;
-        padding: 20px 40px 80px;
+      .products{
+        display:grid;
+        grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+        gap:30px;
+        padding:20px 40px 80px;
       }
 
-      .card {
-        background: white;
-        border-radius: 30px;
-        overflow: hidden;
-        box-shadow: 0 5px 25px rgba(0,0,0,0.08);
-        transition: 0.3s;
+      .card{
+        background:white;
+        border-radius:30px;
+        overflow:hidden;
+        box-shadow:0 5px 25px rgba(0,0,0,0.08);
+        transition:0.3s;
       }
 
-      .card:hover {
-        transform: translateY(-8px);
+      .card:hover{
+        transform:translateY(-8px);
       }
 
-      .card img {
-        width: 100%;
-        height: 420px;
-        object-fit: cover;
+      .card img{
+        width:100%;
+        height:420px;
+        object-fit:cover;
       }
 
-      .card-content {
-        padding: 25px;
+      .card-content{
+        padding:25px;
       }
 
-      .card h2 {
-        font-size: 34px;
-        margin-bottom: 15px;
+      .card h2{
+        font-size:34px;
+        margin-bottom:15px;
       }
 
-      .price {
-        font-size: 42px;
-        font-weight: bold;
-        color: #b88b4a;
-        margin-bottom: 20px;
+      .price{
+        font-size:42px;
+        font-weight:bold;
+        color:#b88b4a;
+        margin-bottom:20px;
       }
 
-      .size-label {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 10px;
+      .size-label{
+        font-size:18px;
+        font-weight:bold;
+        margin-bottom:10px;
       }
 
-      .size-select {
-        width: 100%;
-        padding: 14px;
-        border-radius: 14px;
-        border: 2px solid #ddd;
-        font-size: 18px;
-        margin-bottom: 25px;
-        background: white;
+      .size-select{
+        width:100%;
+        padding:14px;
+        border-radius:14px;
+        border:2px solid #ddd;
+        font-size:18px;
+        margin-bottom:25px;
+        background:white;
       }
 
-      .buy-btn {
-        display: block;
-        width: 100%;
-        text-align: center;
-        background: black;
-        color: white;
-        text-decoration: none;
-        padding: 18px;
-        border-radius: 50px;
-        font-size: 22px;
-        font-weight: bold;
-        transition: 0.3s;
+      .buy-btn{
+        display:block;
+        width:100%;
+        text-align:center;
+        background:black;
+        color:white;
+        text-decoration:none;
+        padding:18px;
+        border-radius:50px;
+        font-size:22px;
+        font-weight:bold;
+        transition:0.3s;
       }
 
-      .buy-btn:hover {
-        background: #b88b4a;
+      .buy-btn:hover{
+        background:#b88b4a;
       }
 
-      .ai-box {
-        background: white;
-        margin: 50px 40px;
-        padding: 40px;
-        border-radius: 30px;
-        text-align: center;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      .ai-box{
+        background:white;
+        margin:50px 40px;
+        padding:40px;
+        border-radius:30px;
+        text-align:center;
+        box-shadow:0 5px 20px rgba(0,0,0,0.08);
       }
 
-      .ai-box h2 {
-        font-size: 42px;
-        margin-bottom: 20px;
+      .ai-box h2{
+        font-size:42px;
+        margin-bottom:20px;
       }
 
-      .ai-btn {
-        background: black;
-        color: white;
-        border: none;
-        padding: 18px 40px;
-        border-radius: 50px;
-        font-size: 22px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.3s;
+      .ai-text{
+        font-size:22px;
+        color:#555;
+        margin-bottom:30px;
       }
 
-      .ai-btn:hover {
-        background: #b88b4a;
+      .ai-btn{
+        background:black;
+        color:white;
+        border:none;
+        padding:18px 40px;
+        border-radius:50px;
+        font-size:22px;
+        font-weight:bold;
+        cursor:pointer;
+        transition:0.3s;
       }
 
-      footer {
-        background: white;
-        text-align: center;
-        padding: 40px;
-        margin-top: 60px;
-        font-size: 18px;
+      .ai-btn:hover{
+        background:#b88b4a;
       }
 
-      @media (max-width: 768px) {
+      footer{
+        background:white;
+        text-align:center;
+        padding:40px;
+        margin-top:60px;
+        font-size:18px;
+      }
 
-        header {
-          padding: 15px 20px;
+      @media (max-width:768px){
+
+        header{
+          padding:15px 20px;
         }
 
-        .logo {
-          font-size: 28px;
+        .logo{
+          font-size:28px;
         }
 
-        .shop-btn {
-          font-size: 16px;
-          padding: 12px 20px;
+        .shop-btn{
+          font-size:16px;
+          padding:12px 20px;
         }
 
-        .hero h1 {
-          font-size: 38px;
+        .hero h1{
+          font-size:38px;
         }
 
-        .section-title {
-          font-size: 36px;
+        .section-title{
+          font-size:36px;
         }
 
-        .card h2 {
-          font-size: 28px;
+        .card h2{
+          font-size:28px;
         }
 
-        .price {
-          font-size: 34px;
+        .price{
+          font-size:34px;
         }
 
-        .card img {
-          height: 340px;
+        .card img{
+          height:340px;
         }
 
       }
+
     </style>
+
   </head>
 
   <body>
 
     <header>
+
       <div class="logo">
         Amic<span>Underwear</span>
       </div>
@@ -279,12 +294,15 @@ const products = [
       <a href="#shop" class="shop-btn">
         Shop Now
       </a>
+
     </header>
 
     <section class="hero">
+
       <h1>
         Luxury Underwear Collection
       </h1>
+
     </section>
 
     <h2 class="section-title" id="shop">
@@ -313,13 +331,17 @@ const products = [
               </div>
 
               <select class="size-select">
+
                 {
                   product.sizes.map((size) => (
+
                     <option value={size}>
                       {size}
                     </option>
+
                   ))
                 }
+
               </select>
 
               <a
@@ -345,6 +367,10 @@ const products = [
         AI Voice Assistant
       </h2>
 
+      <div class="ai-text">
+        Hear why customers love AmicUnderwear
+      </div>
+
       <button class="ai-btn" id="voiceBtn">
         Talk With AI
       </button>
@@ -356,20 +382,34 @@ const products = [
     </footer>
 
     <script>
+
       const voiceBtn = document.getElementById("voiceBtn");
 
       voiceBtn.addEventListener("click", () => {
 
-        const speech = new SpeechSynthesisUtterance(
-          "Welcome to Amic Underwear. Discover luxury and elegance."
-        );
+        const message = `
+          Welcome to Amic Underwear.
+
+          Our most popular product is the Elegant Lace Set because customers love the luxury fit, elegant design, and premium comfort.
+
+          Customers choose Amic because we focus on luxury quality, modern feminine style, soft materials, and elegant comfort for everyday wear.
+
+          Every collection is carefully selected to make you feel confident, stylish, and comfortable.
+
+          Discover our bestselling collections today.
+        `;
+
+        const speech = new SpeechSynthesisUtterance(message);
 
         speech.lang = "en-US";
-        speech.rate = 1;
+        speech.rate = 0.95;
+        speech.pitch = 1;
+        speech.volume = 1;
 
         window.speechSynthesis.speak(speech);
 
       });
+
     </script>
 
   </body>
