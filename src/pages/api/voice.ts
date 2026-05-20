@@ -1,8 +1,25 @@
+export const prerender = false;
+
 export async function POST({ request }) {
 
   try {
 
-    const body = await request.json();
+    const { text } = await request.json();
+
+    const apiKey = import.meta.env.ELEVENLABS_API_KEY;
+
+    if (!apiKey) {
+
+      return new Response(
+        JSON.stringify({
+          error: "Missing API key"
+        }),
+        {
+          status: 500
+        }
+      );
+
+    }
 
     const response = await fetch(
       "https://api.elevenlabs.io/v1/text-to-speech/pNInz6obpgDQGcFmaJgB",
@@ -12,17 +29,17 @@ export async function POST({ request }) {
         headers: {
           "Accept": "audio/mpeg",
           "Content-Type": "application/json",
-          "xi-api-key": import.meta.env.ELEVENLABS_API_KEY
+          "xi-api-key": apiKey
         },
 
         body: JSON.stringify({
-          text: body.text,
+          text,
 
           model_id: "eleven_multilingual_v2",
 
           voice_settings: {
             stability: 0.5,
-            similarity_boost: 0.75
+            similarity_boost: 0.8
           }
         })
       }
@@ -30,11 +47,11 @@ export async function POST({ request }) {
 
     if (!response.ok) {
 
-      const error = await response.text();
+      const err = await response.text();
 
-      console.log(error);
+      console.log(err);
 
-      return new Response(error, {
+      return new Response(err, {
         status: 500
       });
 
@@ -50,9 +67,9 @@ export async function POST({ request }) {
 
     });
 
-  } catch (err) {
+  } catch (error) {
 
-    console.log(err);
+    console.log(error);
 
     return new Response(
       JSON.stringify({
