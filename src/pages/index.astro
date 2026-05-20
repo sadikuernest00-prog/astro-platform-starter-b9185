@@ -5,464 +5,408 @@ const products = [
     price: "599 NOK",
     image: "/images/lace-set.jpg",
     badge: "BEST SELLER",
-    payment: "https://nowpayments.io/payment/?iid=4680546954&paymentId=5747508343"
+    payment: "https://nowpayments.io/payment/?iid=4680546954&source=button"
   },
-
   {
     name: "Midnight Black Collection",
     price: "549 NOK",
     image: "/images/black-night.jpg",
     badge: "NEW",
-    payment: "https://nowpayments.io/payment/?iid=4680546954&paymentId=5747508343"
+    payment: "https://nowpayments.io/payment/?iid=4680546954&source=button"
   },
-
   {
     name: "Luxury Sports Bra",
     price: "499 NOK",
     image: "/images/black-sports-bra.jpg",
     badge: "HOT",
-    payment: "https://nowpayments.io/payment/?iid=4680546954&paymentId=5747508343"
+    payment: "https://nowpayments.io/payment/?iid=4680546954&source=button"
   },
-
   {
     name: "White Sports Bra",
     price: "499 NOK",
     image: "/images/white-sports-bra.jpg",
-    badge: "LIMITED",
-    payment: "https://nowpayments.io/payment/?iid=4680546954&paymentId=5747508343"
-  },
-
-  {
-    name: "Nude Collection",
-    price: "459 NOK",
-    image: "/images/nude-sports-bra.jpg",
     badge: "TRENDING",
-    payment: "https://nowpayments.io/payment/?iid=4680546954&paymentId=5747508343"
+    payment: "https://nowpayments.io/payment/?iid=4680546954&source=button"
   },
-
   {
-    name: "Soft Nude Cami",
+    name: "Nude Comfort Bra",
     price: "529 NOK",
+    image: "/images/nude-sports-bra.jpg",
+    badge: "SOFT",
+    payment: "https://nowpayments.io/payment/?iid=4680546954&source=button"
+  },
+  {
+    name: "Luxury Nude Cami",
+    price: "579 NOK",
     image: "/images/nude-cami.jpg",
-    badge: "LUXURY",
-    payment: "https://nowpayments.io/payment/?iid=4680546954&paymentId=5747508343"
+    badge: "LIMITED",
+    payment: "https://nowpayments.io/payment/?iid=4680546954&source=button"
   }
 ];
 ---
 
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>AmicUnderwear</title>
+  <title>AmicUnderwear</title>
 
-<style>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial, Helvetica, sans-serif;
-}
+    body{
+      background:#f5f5f5;
+      color:#111;
+    }
 
-body{
-  background:#f5f5f5;
-  color:black;
-}
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:25px 40px;
+      background:white;
+      position:sticky;
+      top:0;
+      z-index:100;
+      border-bottom:1px solid #eee;
+    }
 
-header{
-  position:sticky;
-  top:0;
-  z-index:999;
-  background:white;
-  padding:28px 40px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border-bottom:1px solid #eee;
-}
+    .logo{
+      font-size:55px;
+      font-weight:900;
+    }
 
-.logo{
-  font-size:54px;
-  font-weight:900;
-  letter-spacing:-3px;
-}
+    .logo span{
+      color:#c79b5d;
+    }
 
-.logo span{
-  color:#c49a5c;
-}
+    .shop-btn{
+      background:black;
+      color:white;
+      padding:18px 35px;
+      border-radius:50px;
+      text-decoration:none;
+      font-weight:700;
+      font-size:20px;
+    }
 
-.shop-btn{
-  background:black;
-  color:white;
-  border:none;
-  padding:18px 34px;
-  border-radius:999px;
-  font-size:20px;
-  font-weight:800;
-  cursor:pointer;
-}
+    .hero{
+      padding:100px 20px 70px;
+      text-align:center;
+    }
 
-.hero{
-  padding:120px 20px 80px;
-  text-align:center;
-}
+    .hero h1{
+      font-size:90px;
+      font-weight:900;
+      line-height:1;
+      margin-bottom:25px;
+    }
 
-.hero h1{
-  font-size:92px;
-  font-weight:900;
-  line-height:0.95;
-  letter-spacing:-4px;
-  max-width:1200px;
-  margin:auto;
-}
+    .hero p{
+      font-size:32px;
+      color:#666;
+      max-width:900px;
+      margin:auto;
+      line-height:1.5;
+    }
 
-.hero p{
-  margin-top:28px;
-  color:#666;
-  font-size:34px;
-  max-width:900px;
-  margin-left:auto;
-  margin-right:auto;
-  line-height:1.5;
-}
+    .products{
+      width:100%;
+      max-width:1700px;
+      margin:auto;
+      padding:30px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
+      gap:35px;
+    }
 
-.hero button{
-  margin-top:45px;
-  background:black;
-  color:white;
-  border:none;
-  padding:28px 60px;
-  border-radius:999px;
-  font-size:28px;
-  font-weight:900;
-  cursor:pointer;
-}
+    .card{
+      background:white;
+      border-radius:35px;
+      overflow:hidden;
+      box-shadow:0 10px 30px rgba(0,0,0,0.06);
+      transition:0.3s;
+      position:relative;
+    }
 
-.products{
-  max-width:1700px;
-  margin:auto;
-  padding:40px 20px 120px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(380px,1fr));
-  gap:30px;
-}
+    .card:hover{
+      transform:translateY(-10px);
+    }
 
-.card{
-  background:white;
-  border-radius:34px;
-  overflow:hidden;
-  position:relative;
-  transition:0.3s;
-}
+    .badge{
+      position:absolute;
+      top:25px;
+      left:25px;
+      background:#c79b5d;
+      color:white;
+      padding:14px 22px;
+      border-radius:40px;
+      font-weight:700;
+      z-index:2;
+      font-size:18px;
+    }
 
-.card:hover{
-  transform:translateY(-10px);
-}
+    .card img{
+      width:100%;
+      height:700px;
+      object-fit:cover;
+      background:#ececec;
+    }
 
-.badge{
-  position:absolute;
-  top:20px;
-  left:20px;
-  background:#c49a5c;
-  color:white;
-  padding:14px 24px;
-  border-radius:999px;
-  font-size:18px;
-  font-weight:900;
-  z-index:10;
-}
+    .content{
+      padding:30px;
+    }
 
-.card img{
-  width:100%;
-  height:650px;
-  object-fit:cover;
-  display:block;
-  background:#eee;
-}
+    .content h2{
+      font-size:55px;
+      margin-bottom:20px;
+      font-weight:900;
+      line-height:1.1;
+    }
 
-.card-content{
-  padding:30px;
-}
+    .price{
+      color:#c79b5d;
+      font-size:70px;
+      font-weight:900;
+      margin-bottom:25px;
+    }
 
-.card h2{
-  font-size:56px;
-  line-height:1;
-  font-weight:900;
-  letter-spacing:-2px;
-  margin-bottom:20px;
-}
+    select{
+      width:100%;
+      padding:20px;
+      border-radius:14px;
+      border:2px solid #eee;
+      margin-bottom:20px;
+      font-size:24px;
+      font-weight:700;
+    }
 
-.price{
-  font-size:72px;
-  font-weight:900;
-  color:#c49a5c;
-  margin-bottom:25px;
-}
+    .btn{
+      width:100%;
+      border:none;
+      padding:24px;
+      border-radius:60px;
+      font-size:28px;
+      font-weight:900;
+      cursor:pointer;
+      transition:0.3s;
+      margin-top:10px;
+    }
 
-select{
-  width:100%;
-  padding:18px;
-  border-radius:16px;
-  border:2px solid #eee;
-  font-size:24px;
-  margin-bottom:20px;
-}
+    .buy{
+      background:black;
+      color:white;
+    }
 
-.buy-btn{
-  width:100%;
-  background:black;
-  color:white;
-  border:none;
-  padding:26px;
-  border-radius:999px;
-  font-size:30px;
-  font-weight:900;
-  cursor:pointer;
-  margin-bottom:18px;
-}
+    .buy:hover{
+      opacity:0.9;
+    }
 
-.buy-btn:hover{
-  opacity:0.92;
-}
+    .ai{
+      background:#c79b5d;
+      color:white;
+    }
 
-.monero-btn{
-  width:100%;
-  background:#c49a5c;
-  color:white;
-  border:none;
-  padding:24px;
-  border-radius:999px;
-  font-size:26px;
-  font-weight:900;
-  cursor:pointer;
-}
+    .ai:hover{
+      opacity:0.9;
+    }
 
-.monero-btn:hover{
-  opacity:0.92;
-}
+    .trust{
+      padding:100px 20px;
+      text-align:center;
+    }
 
-.reviews{
-  padding:100px 20px;
-  background:white;
-  text-align:center;
-}
+    .trust h2{
+      font-size:60px;
+      margin-bottom:50px;
+      font-weight:900;
+    }
 
-.reviews h2{
-  font-size:70px;
-  font-weight:900;
-  margin-bottom:60px;
-}
+    .trust-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+      max-width:1400px;
+      margin:auto;
+    }
 
-.review-grid{
-  max-width:1400px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:30px;
-}
+    .trust-box{
+      background:white;
+      padding:40px;
+      border-radius:30px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.05);
+    }
 
-.review{
-  background:#f5f5f5;
-  padding:40px;
-  border-radius:30px;
-  text-align:left;
-}
+    .trust-box h3{
+      font-size:35px;
+      margin-bottom:15px;
+    }
 
-.review .stars{
-  color:#c49a5c;
-  font-size:28px;
-  margin-bottom:20px;
-}
+    .trust-box p{
+      color:#666;
+      font-size:20px;
+      line-height:1.6;
+    }
 
-.review p{
-  color:#444;
-  line-height:1.6;
-  font-size:24px;
-}
+    footer{
+      background:black;
+      color:white;
+      text-align:center;
+      padding:50px 20px;
+      margin-top:80px;
+    }
 
-.review h3{
-  margin-top:25px;
-  font-size:22px;
-}
+    footer h2{
+      font-size:40px;
+      margin-bottom:10px;
+    }
 
-footer{
-  background:black;
-  color:white;
-  padding:80px 20px;
-  text-align:center;
-}
+    footer p{
+      color:#aaa;
+      font-size:18px;
+    }
 
-footer h2{
-  font-size:60px;
-  margin-bottom:20px;
-}
+    @media(max-width:900px){
 
-footer p{
-  color:#bbb;
-  font-size:24px;
-}
+      .hero h1{
+        font-size:55px;
+      }
 
-@media(max-width:900px){
+      .hero p{
+        font-size:22px;
+      }
 
-  .logo{
-    font-size:38px;
-  }
+      .logo{
+        font-size:34px;
+      }
 
-  .hero h1{
-    font-size:58px;
-  }
+      .products{
+        grid-template-columns:1fr;
+        padding:15px;
+      }
 
-  .hero p{
-    font-size:24px;
-  }
+      .card img{
+        height:500px;
+      }
 
-  .card h2{
-    font-size:42px;
-  }
+      .content h2{
+        font-size:38px;
+      }
 
-  .price{
-    font-size:52px;
-  }
-
-  .card img{
-    height:500px;
-  }
-
-}
-
-</style>
+      .price{
+        font-size:48px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-
   <div class="logo">
     Amic<span>Underwear</span>
   </div>
 
-  <button class="shop-btn">
+  <a href="#shop" class="shop-btn">
     Shop
-  </button>
-
+  </a>
 </header>
 
 <section class="hero">
-
-  <h1>
-    Luxury Underwear Made For Confidence
-  </h1>
+  <h1>Luxury Underwear Designed For Confidence</h1>
 
   <p>
-    Elegant premium collections designed for beauty, comfort and confidence.
+    Discover premium comfort, elegant designs and timeless luxury pieces made to feel incredible every day.
   </p>
-
-  <button onclick="document.querySelector('.products').scrollIntoView({behavior:'smooth'})">
-    Explore Collection
-  </button>
-
 </section>
 
-<section class="products">
+<section class="products" id="shop">
 
-  {
-    products.map((product) => (
+  {products.map((product) => (
 
-      <div class="card">
+    <div class="card">
 
-        <div class="badge">
-          {product.badge}
-        </div>
-
-        <img
-          src={product.image}
-          alt={product.name}
-          loading="lazy"
-        />
-
-        <div class="card-content">
-
-          <h2>{product.name}</h2>
-
-          <div class="price">
-            {product.price}
-          </div>
-
-          <select>
-            <option>XS</option>
-            <option>S</option>
-            <option>M</option>
-            <option>L</option>
-            <option>XL</option>
-          </select>
-
-          <button
-            class="buy-btn"
-            onclick={`window.location.href='${product.payment}'`}
-          >
-            Buy Now
-          </button>
-
-          <button
-            class="monero-btn"
-            onclick={`window.location.href='${product.payment}'`}
-          >
-            Buy With Monero
-          </button>
-
-        </div>
-
+      <div class="badge">
+        {product.badge}
       </div>
 
-    ))
-  }
+      <img src={product.image} alt={product.name} />
+
+      <div class="content">
+
+        <h2>{product.name}</h2>
+
+        <div class="price">
+          {product.price}
+        </div>
+
+        <select>
+          <option>XS</option>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+          <option>XL</option>
+        </select>
+
+        <button
+          class="btn buy"
+          onclick={`window.open('${product.payment}', '_blank')`}
+        >
+          Buy With Monero
+        </button>
+
+        <button
+          class="btn ai"
+          onclick={`window.location.href='/generate-model?product=${encodeURIComponent(product.name)}&image=${encodeURIComponent(product.image)}'`}
+        >
+          Generate AI Model Wearing This
+        </button>
+
+      </div>
+    </div>
+
+  ))}
 
 </section>
 
-<section class="reviews">
+<section class="trust">
 
-  <h2>
-    Loved By Customers
-  </h2>
+  <h2>Why Customers Love AmicUnderwear</h2>
 
-  <div class="review-grid">
+  <div class="trust-grid">
 
-    <div class="review">
-      <div class="stars">★★★★★</div>
-
+    <div class="trust-box">
+      <h3>Premium Quality</h3>
       <p>
-        Incredible quality and beautiful fit. Feels like luxury designer underwear.
+        Soft luxury fabrics designed for comfort, elegance and everyday confidence.
       </p>
-
-      <h3>
-        — Sophia M.
-      </h3>
     </div>
 
-    <div class="review">
-      <div class="stars">★★★★★</div>
-
+    <div class="trust-box">
+      <h3>Fast Worldwide Shipping</h3>
       <p>
-        Very soft fabrics and elegant designs. The lace set is my favorite.
+        Secure worldwide delivery with premium packaging experience.
       </p>
-
-      <h3>
-        — Emma R.
-      </h3>
     </div>
 
-    <div class="review">
-      <div class="stars">★★★★★</div>
-
+    <div class="trust-box">
+      <h3>Luxury Fit</h3>
       <p>
-        Beautiful premium collection and very comfortable for everyday wear.
+        Designed to shape beautifully while remaining ultra comfortable.
       </p>
+    </div>
 
-      <h3>
-        — Olivia K.
-      </h3>
+    <div class="trust-box">
+      <h3>Private Checkout</h3>
+      <p>
+        Pay privately with Monero crypto checkout for secure shopping.
+      </p>
     </div>
 
   </div>
@@ -471,12 +415,10 @@ footer p{
 
 <footer>
 
-  <h2>
-    AmicUnderwear
-  </h2>
+  <h2>AmicUnderwear</h2>
 
   <p>
-    Luxury essentials crafted for confidence.
+    Luxury underwear made for confidence and comfort.
   </p>
 
 </footer>
