@@ -1,5 +1,5 @@
 ---
-// PREMIUM AI LUXURY STORE
+// src/pages/index.astro
 
 const products = [
 
@@ -156,14 +156,6 @@ position:relative;
 z-index:2;
 padding:20px;
 max-width:1000px;
-}
-
-.hero-sub{
-font-size:20px;
-color:#ddd;
-margin-bottom:20px;
-letter-spacing:2px;
-text-transform:uppercase;
 }
 
 .hero h1{
@@ -492,7 +484,7 @@ font-size:42px;
 }
 
 .products,
-reviews{
+.reviews{
 padding:20px;
 }
 
@@ -528,17 +520,12 @@ Shop
 
 <div class="hero-content">
 
-<div class="hero-sub">
-AI POWERED LUXURY FASHION
-</div>
-
 <h1>
 Luxury Underwear Designed To Make You Feel Incredible
 </h1>
 
 <p>
 Premium collections crafted for elegance, comfort and confidence.
-Experience the future of AI luxury fashion.
 </p>
 
 <div class="hero-buttons">
@@ -570,8 +557,8 @@ Customer Reviews
 </div>
 
 <div class="trust-card">
-<h3>AI Fashion</h3>
-<p>Experience AI generated campaigns.</p>
+<h3>Premium Comfort</h3>
+<p>Designed for confidence and elegance.</p>
 </div>
 
 <div class="trust-card">
@@ -666,14 +653,14 @@ AI Fashion Model Generator
 </h2>
 
 <p class="generator-text">
-Generate luxury AI fashion campaigns instantly.
+Generate luxury fashion campaigns instantly.
 </p>
 
 <div
 class="loading"
 id="loading"
 >
-Generating AI Fashion Model...
+Generating Fashion Model...
 </div>
 
 <img
@@ -730,7 +717,7 @@ Customer Reviews
 </div>
 
 <p class="review-text">
-“The AI experience makes this store feel futuristic and premium.”
+“The experience feels premium and elegant.”
 </p>
 
 <div class="review-user">
@@ -744,7 +731,7 @@ Customer Reviews
 </section>
 
 <footer>
-© 2026 AmicUnderwear — Luxury AI Fashion
+© 2026 AmicUnderwear
 </footer>
 
 <script>
@@ -824,7 +811,7 @@ behavior:"smooth"
 }else{
 
 alert(
-"AI generation failed. Try again."
+"Generation failed. Try again."
 );
 
 }
@@ -842,7 +829,7 @@ button.innerText =
 "Generate AI Model Wearing This";
 
 alert(
-"AI generation failed."
+"Generation failed."
 );
 
 }
