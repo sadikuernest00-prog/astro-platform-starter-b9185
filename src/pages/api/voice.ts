@@ -30,17 +30,19 @@ export async function POST({ request }) {
 
     if (!response.ok) {
 
-      const errorText = await response.text();
+      const error = await response.text();
 
-      return new Response(errorText, {
+      console.log(error);
+
+      return new Response(error, {
         status: 500
       });
 
     }
 
-    const audioBuffer = await response.arrayBuffer();
+    const audio = await response.arrayBuffer();
 
-    return new Response(audioBuffer, {
+    return new Response(audio, {
 
       headers: {
         "Content-Type": "audio/mpeg"
@@ -49,6 +51,8 @@ export async function POST({ request }) {
     });
 
   } catch (err) {
+
+    console.log(err);
 
     return new Response(
       JSON.stringify({
