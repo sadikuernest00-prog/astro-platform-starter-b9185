@@ -1,4 +1,6 @@
 ---
+// src/pages/index.astro
+
 const products = [
 
 {
@@ -8,6 +10,8 @@ price:"599 NOK",
 image:"/images/white-lace.jpg",
 sizes:["XS","S","M","L"],
 badge:"BEST SELLER",
+prompt:
+"Ultra realistic luxury female fashion model wearing elegant white lace lingerie set, matching white lace bra and panties, luxury ecommerce photography, studio lighting, photorealistic",
 link:"https://buy.stripe.com/test_4gM3cu2ZNcKjdG423z7Re01"
 },
 
@@ -18,7 +22,33 @@ price:"549 NOK",
 image:"/images/black-set.jpg",
 sizes:["XS","S","M","L"],
 badge:"NEW",
+prompt:
+"Ultra realistic luxury female model wearing elegant black satin nightdress, luxury studio lighting, realistic skin texture, premium ecommerce fashion campaign",
 link:"https://buy.stripe.com/test_4gM5kCeIvdOnfOccId7Re02"
+},
+
+{
+id:3,
+name:"Luxury Sports Bra",
+price:"499 NOK",
+image:"/images/sports-bra.jpg",
+sizes:["XS","S","M","L"],
+badge:"HOT",
+prompt:
+"Ultra realistic athletic female model wearing black luxury sports bra, fitness luxury campaign, realistic studio lighting, premium ecommerce photography",
+link:"https://buy.stripe.com/test_bJecN4gQD4dN31qfUp7Re03"
+},
+
+{
+id:4,
+name:"Soft Nude Comfort",
+price:"599 NOK",
+image:"/images/nude-bra.jpg",
+sizes:["XS","S","M","L"],
+badge:"LUXURY",
+prompt:
+"Ultra realistic luxury female model wearing elegant nude luxury underwear, premium fashion photography, realistic studio lighting",
+link:"https://buy.stripe.com/test_6oU5kC57V9y759y6jP7Re04"
 }
 
 ];
@@ -54,6 +84,8 @@ color:#111;
 overflow-x:hidden;
 }
 
+/* HEADER */
+
 header{
 display:flex;
 justify-content:space-between;
@@ -84,6 +116,8 @@ text-decoration:none;
 font-weight:600;
 }
 
+/* HERO */
+
 .hero{
 height:80vh;
 
@@ -108,12 +142,16 @@ line-height:1.1;
 color:white;
 }
 
+/* TITLES */
+
 .section-title{
 text-align:center;
 font-size:54px;
 margin:80px 0 50px;
 font-weight:700;
 }
+
+/* PRODUCTS */
 
 .products{
 display:grid;
@@ -148,6 +186,7 @@ padding:10px 18px;
 border-radius:50px;
 font-size:14px;
 font-weight:600;
+z-index:2;
 }
 
 .card img{
@@ -191,10 +230,24 @@ border-radius:100px;
 font-size:20px;
 font-weight:600;
 cursor:pointer;
+margin-bottom:15px;
 }
 
-.buy-btn:hover{
+.ai-product-btn{
+width:100%;
 background:#b58a56;
+color:white;
+padding:16px;
+border:none;
+border-radius:100px;
+font-size:18px;
+font-weight:600;
+cursor:pointer;
+}
+
+.buy-btn:hover,
+.ai-product-btn:hover{
+opacity:0.9;
 }
 
 /* AI MODEL */
@@ -213,22 +266,6 @@ margin-bottom:20px;
 font-size:22px;
 color:#666;
 margin-bottom:35px;
-}
-
-.generate-btn{
-background:black;
-color:white;
-padding:20px 45px;
-border:none;
-border-radius:100px;
-font-size:24px;
-font-weight:600;
-cursor:pointer;
-transition:0.3s;
-}
-
-.generate-btn:hover{
-background:#b58a56;
 }
 
 .loading{
@@ -297,6 +334,8 @@ text-align:center;
 font-size:18px;
 color:#777;
 }
+
+/* MOBILE */
 
 @media(max-width:768px){
 
@@ -393,6 +432,13 @@ onclick={`window.open('${product.link}','_blank')`}
 Buy Now
 </button>
 
+<button
+class="ai-product-btn"
+onclick={`generateModel(${JSON.stringify(product.prompt)})`}
+>
+Generate AI Model Wearing This
+</button>
+
 </div>
 
 </div>
@@ -401,8 +447,6 @@ Buy Now
 }
 
 </section>
-
-<!-- AI MODEL -->
 
 <section class="model-generator">
 
@@ -413,13 +457,6 @@ AI Fashion Model Generator
 <p class="generator-text">
 Generate luxury AI fashion campaigns instantly.
 </p>
-
-<button
-id="generateBtn"
-class="generate-btn"
->
-Generate AI Model
-</button>
 
 <div
 class="loading"
@@ -434,8 +471,6 @@ class="generated-image"
 />
 
 </section>
-
-<!-- REVIEWS -->
 
 <section class="reviews">
 
@@ -503,16 +538,13 @@ Customer Reviews
 
 <script>
 
-const generateBtn =
-document.getElementById("generateBtn");
-
 const generatedImage =
 document.getElementById("generatedImage");
 
 const loading =
 document.getElementById("loading");
 
-generateBtn.addEventListener("click", async()=>{
+async function generateModel(prompt){
 
 loading.style.display =
 "block";
@@ -532,10 +564,7 @@ headers:{
 },
 
 body:JSON.stringify({
-
-prompt:
-"Ultra realistic luxury female fashion model wearing elegant luxury lingerie, studio lighting, luxury fashion campaign, photorealistic"
-
+prompt
 })
 
 });
@@ -554,7 +583,18 @@ data.image;
 generatedImage.style.display =
 "block";
 
+window.scrollTo({
+
+top:
+generatedImage.offsetTop - 120,
+
+behavior:"smooth"
+
+});
+
 }else{
+
+console.log(data);
 
 alert("AI generation failed");
 
@@ -565,11 +605,13 @@ alert("AI generation failed");
 loading.style.display =
 "none";
 
+console.log(error);
+
 alert("AI generation failed");
 
 }
 
-});
+}
 
 </script>
 
