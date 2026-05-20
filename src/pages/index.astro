@@ -1,4 +1,3 @@
-
 ---
 const products = [
   {
@@ -64,12 +63,15 @@ const products = [
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 24px 5%;
+        padding: 20px 5%;
         background: white;
+        position: sticky;
+        top: 0;
+        z-index: 100;
       }
 
       .logo {
-        font-size: 60px;
+        font-size: 48px;
         font-weight: 900;
       }
 
@@ -81,9 +83,9 @@ const products = [
         background: black;
         color: white;
         border: none;
-        padding: 20px 42px;
+        padding: 16px 34px;
         border-radius: 50px;
-        font-size: 28px;
+        font-size: 22px;
         font-weight: bold;
         cursor: pointer;
       }
@@ -97,13 +99,13 @@ const products = [
       }
 
       .hero-text h1 {
-        font-size: 110px;
+        font-size: 90px;
         line-height: 0.95;
         margin-bottom: 20px;
       }
 
       .hero-text p {
-        font-size: 30px;
+        font-size: 24px;
         margin-bottom: 30px;
       }
 
@@ -113,8 +115,9 @@ const products = [
         border: none;
         padding: 18px 40px;
         border-radius: 50px;
-        font-size: 24px;
+        font-size: 22px;
         cursor: pointer;
+        font-weight: bold;
       }
 
       .hero img {
@@ -124,7 +127,7 @@ const products = [
 
       .section-title {
         text-align: center;
-        font-size: 90px;
+        font-size: 72px;
         margin: 60px 0;
         font-weight: 900;
       }
@@ -148,7 +151,7 @@ const products = [
 
       .card-image img {
         width: 100%;
-        height: 600px;
+        height: 500px;
         object-fit: cover;
       }
 
@@ -160,7 +163,7 @@ const products = [
         padding: 10px 20px;
         border-radius: 40px;
         font-weight: bold;
-        font-size: 24px;
+        font-size: 20px;
       }
 
       .card-content {
@@ -168,13 +171,13 @@ const products = [
       }
 
       .card-content h2 {
-        font-size: 42px;
+        font-size: 36px;
         margin-bottom: 15px;
       }
 
       .price {
         color: #c89a61;
-        font-size: 54px;
+        font-size: 46px;
         font-weight: bold;
         margin-bottom: 20px;
       }
@@ -182,9 +185,10 @@ const products = [
       select {
         width: 100%;
         padding: 16px;
-        font-size: 20px;
+        font-size: 18px;
         margin-bottom: 20px;
         border-radius: 12px;
+        border: 1px solid #ccc;
       }
 
       .buy-btn {
@@ -192,11 +196,15 @@ const products = [
         background: black;
         color: white;
         border: none;
-        padding: 20px;
+        padding: 18px;
         border-radius: 50px;
-        font-size: 28px;
+        font-size: 24px;
         cursor: pointer;
         font-weight: bold;
+      }
+
+      .buy-btn:hover {
+        opacity: 0.9;
       }
 
       .ai-section {
@@ -209,10 +217,16 @@ const products = [
         color: white;
         border: none;
         padding: 22px 45px;
-        font-size: 28px;
+        font-size: 24px;
         border-radius: 50px;
         cursor: pointer;
         font-weight: bold;
+      }
+
+      footer {
+        text-align: center;
+        padding: 40px;
+        font-size: 18px;
       }
 
       @media (max-width: 900px) {
@@ -225,15 +239,19 @@ const products = [
         }
 
         .hero-text h1 {
-          font-size: 60px;
+          font-size: 56px;
         }
 
         .section-title {
-          font-size: 55px;
+          font-size: 48px;
         }
 
         .logo {
-          font-size: 34px;
+          font-size: 32px;
+        }
+
+        .card-image img {
+          height: 420px;
         }
       }
     </style>
@@ -299,7 +317,7 @@ const products = [
 
               <button
                 class="buy-btn"
-                onclick={`window.location.href='https://buy.stripe.com/test_14k8wQ4VQ9sB6jGdQQ'`}
+                onclick={`window.location.href='https://buy.stripe.com/test_4gM3cu2ZNcKjdG423z7Re01'`}
               >
                 Buy Now
               </button>
@@ -314,6 +332,10 @@ const products = [
         🎙 Hear AI Stylist
       </button>
     </section>
+
+    <footer>
+      © 2026 AmicUnderwear — Luxury & Comfort
+    </footer>
 
     <script>
       const btn = document.getElementById("voiceBtn");
