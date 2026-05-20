@@ -223,6 +223,54 @@ const products = [
         color: white;
       }
 
+      .cart-sidebar {
+        position: fixed;
+        top: 0;
+        right: -400px;
+        width: 380px;
+        height: 100%;
+        background: white;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+        padding: 30px;
+        transition: 0.4s;
+        z-index: 2000;
+        overflow-y: auto;
+      }
+
+      .cart-sidebar.active {
+        right: 0;
+      }
+
+      .cart-title {
+        font-size: 34px;
+        font-weight: 900;
+        margin-bottom: 25px;
+      }
+
+      .cart-item {
+        border-bottom: 1px solid #eee;
+        padding: 18px 0;
+      }
+
+      .cart-total {
+        font-size: 28px;
+        font-weight: 900;
+        margin-top: 30px;
+      }
+
+      .checkout-btn {
+        width: 100%;
+        margin-top: 20px;
+        padding: 18px;
+        border: none;
+        border-radius: 999px;
+        background: black;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
       .reviews-section {
         max-width: 1450px;
         margin: 80px auto;
@@ -265,58 +313,6 @@ const products = [
       .review-name {
         font-size: 20px;
         font-weight: bold;
-      }
-
-      .cart-sidebar {
-        position: fixed;
-        top: 0;
-        right: -400px;
-        width: 380px;
-        height: 100%;
-        background: white;
-        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
-        padding: 30px;
-        transition: 0.4s;
-        z-index: 2000;
-        overflow-y: auto;
-      }
-
-      .cart-sidebar.active {
-        right: 0;
-      }
-
-      .cart-title {
-        font-size: 34px;
-        font-weight: 900;
-        margin-bottom: 25px;
-      }
-
-      .cart-item {
-        border-bottom: 1px solid #eee;
-        padding: 18px 0;
-      }
-
-      .cart-item h4 {
-        margin-bottom: 10px;
-      }
-
-      .cart-total {
-        font-size: 28px;
-        font-weight: 900;
-        margin-top: 30px;
-      }
-
-      .checkout-btn {
-        width: 100%;
-        margin-top: 20px;
-        padding: 18px;
-        border: none;
-        border-radius: 999px;
-        background: black;
-        color: white;
-        font-size: 18px;
-        font-weight: bold;
-        cursor: pointer;
       }
 
       .footer {
@@ -392,6 +388,7 @@ const products = [
       {
         products.map((product) => (
           <div class="card">
+
             <div class="image-wrapper">
               <img src={product.image} alt={product.name} />
               <div class="badge">{product.badge}</div>
@@ -419,9 +416,12 @@ const products = [
               />
 
               <div class="buttons">
+
                 <button
                   class="btn cart-add"
-                  onclick={`addToCart('${product.name}', ${product.price}, ${product.id})`}
+                  data-name={product.name}
+                  data-price={product.price}
+                  data-id={product.id}
                 >
                   Add To Cart
                 </button>
@@ -441,6 +441,7 @@ const products = [
                 >
                   Pay With Monero
                 </a>
+
               </div>
             </div>
           </div>
@@ -457,8 +458,7 @@ const products = [
           <div class="stars">★★★★★</div>
 
           <p class="review-text">
-            “Absolutely the softest underwear I’ve ever worn.
-            The quality feels super premium and the fit is perfect.”
+            “Absolutely the softest underwear I’ve ever worn.”
           </p>
 
           <div class="review-name">— Emma L.</div>
@@ -468,8 +468,7 @@ const products = [
           <div class="stars">★★★★★</div>
 
           <p class="review-text">
-            “The luxury feeling is insane. Packaging looked beautiful
-            and the material feels expensive.”
+            “The luxury feeling is insane. Material feels expensive.”
           </p>
 
           <div class="review-name">— Sophia K.</div>
@@ -479,8 +478,7 @@ const products = [
           <div class="stars">★★★★★</div>
 
           <p class="review-text">
-            “I ordered two sets and honestly didn’t expect this quality.
-            Super comfortable and elegant design.”
+            “Super comfortable and elegant design.”
           </p>
 
           <div class="review-name">— Olivia R.</div>
@@ -490,7 +488,10 @@ const products = [
     </section>
 
     <div class="cart-sidebar" id="cartSidebar">
-      <div class="cart-title">Shopping Cart</div>
+
+      <div class="cart-title">
+        Shopping Cart
+      </div>
 
       <div id="cart-items"></div>
 
@@ -501,6 +502,7 @@ const products = [
       <button class="checkout-btn">
         Checkout
       </button>
+
     </div>
 
     <footer class="footer">
@@ -512,25 +514,15 @@ const products = [
     </footer>
 
     <script>
+
       let cart = [];
 
       function toggleCart() {
         document.getElementById("cartSidebar").classList.toggle("active");
       }
 
-      function addToCart(name, price, id) {
-        const qty = parseInt(document.getElementById(`qty-${id}`).value);
-
-        cart.push({
-          name,
-          price,
-          qty
-        });
-
-        updateCart();
-      }
-
       function updateCart() {
+
         const cartItems = document.getElementById("cart-items");
         const cartCount = document.getElementById("cart-count");
         const cartTotal = document.getElementById("cart-total");
@@ -541,6 +533,7 @@ const products = [
         let count = 0;
 
         cart.forEach((item) => {
+
           total += item.price * item.qty;
           count += item.qty;
 
@@ -555,6 +548,37 @@ const products = [
         cartCount.innerText = count;
         cartTotal.innerText = total;
       }
+
+      document.querySelectorAll(".cart-add").forEach((button) => {
+
+        button.addEventListener("click", () => {
+
+          const name = button.dataset.name;
+          const price = parseInt(button.dataset.price);
+          const id = button.dataset.id;
+
+          const qty = parseInt(
+            document.getElementById(`qty-${id}`).value
+          );
+
+          cart.push({
+            name,
+            price,
+            qty
+          });
+
+          updateCart();
+
+          document
+            .getElementById("cartSidebar")
+            .classList.add("active");
+
+        });
+
+      });
+
+      window.toggleCart = toggleCart;
+
     </script>
 
   </body>
