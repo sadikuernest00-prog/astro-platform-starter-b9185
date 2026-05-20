@@ -1,8 +1,7 @@
----
 const products = [
   {
     name: "Elegant Lace Set",
-    price: "599 NOK",
+    price: 599,
     image: "/images/white-lace.jpg",
     sizes: ["XS", "S", "M", "L"],
     link: "https://buy.stripe.com/test_4gM3cu2ZNcKjdG423z7Re01"
@@ -10,7 +9,7 @@ const products = [
 
   {
     name: "Midnight Black Collection",
-    price: "549 NOK",
+    price: 549,
     image: "/images/black-set.jpg",
     sizes: ["XS", "S", "M", "L"],
     link: "https://buy.stripe.com/test_4gM5kCeIvdOnfOccId7Re02"
@@ -18,7 +17,7 @@ const products = [
 
   {
     name: "Luxury Satin Sleepwear",
-    price: "599 NOK",
+    price: 599,
     image: "/images/white-bra.jpg",
     sizes: ["XS", "S", "M", "L"],
     link: "https://buy.stripe.com/test_bJecN4gQD4dN31qfUp7Re03"
@@ -26,13 +25,12 @@ const products = [
 
   {
     name: "Soft Nude Comfort Bra",
-    price: "599 NOK",
+    price: 599,
     image: "/images/nude-bra.jpg",
     sizes: ["XS", "S", "M", "L"],
     link: "https://buy.stripe.com/test_6oU5kC57V9y759y6jP7Re04"
   }
 ];
----
 
 <html lang="en">
 
@@ -192,6 +190,7 @@ margin-bottom:20px;
 font-size:18px;
 font-weight:bold;
 margin-bottom:10px;
+margin-top:15px;
 }
 
 .size-select{
@@ -200,7 +199,7 @@ padding:14px;
 border-radius:14px;
 border:2px solid #ddd;
 font-size:18px;
-margin-bottom:25px;
+margin-bottom:20px;
 background:white;
 transition:0.3s;
 }
@@ -208,6 +207,13 @@ transition:0.3s;
 .size-select:focus{
 border-color:#b88b4a;
 outline:none;
+}
+
+.total-price{
+font-size:24px;
+font-weight:bold;
+margin-bottom:20px;
+color:#b88b4a;
 }
 
 .buy-btn{
@@ -471,7 +477,7 @@ Featured Collection
 <section class="products">
 
 {
-products.map((product) => (
+products.map((product, index) => (
 
 <div class="card">
 
@@ -484,14 +490,14 @@ products.map((product) => (
 </h2>
 
 <div class="price">
-{product.price}
+{product.price} NOK
 </div>
 
 <div class="size-label">
 Select Size
 </div>
 
-<select class="size-select">
+<select class="size-select" id={`size-${index}`}>
 
 {
 product.sizes.map((size) => (
@@ -505,9 +511,31 @@ product.sizes.map((size) => (
 
 </select>
 
+<div class="size-label">
+Quantity
+</div>
+
+<select
+class="size-select"
+id={`qty-${index}`}
+onchange={`updatePrice(${index})`}
+>
+
+<option value="1">1 Item</option>
+<option value="2">2 Items</option>
+<option value="3">3 Items</option>
+<option value="4">4 Items</option>
+<option value="5">5 Items</option>
+
+</select>
+
+<div class="total-price" id={`total-${index}`}>
+Total: {product.price} NOK
+</div>
+
 <button
 class="buy-btn"
-onclick={`window.open('${product.link}', '_blank')`}
+onclick={`buyProduct(${index})`}
 >
 Buy Now
 </button>
@@ -560,6 +588,39 @@ Hear why customers love AmicUnderwear and discover our bestselling luxury collec
 </footer>
 
 <script>
+
+function updatePrice(index){
+
+const qty =
+document.getElementById(`qty-${index}`).value;
+
+const total =
+products[index].price * qty;
+
+document.getElementById(`total-${index}`).innerHTML =
+`Total: ${total} NOK`;
+
+}
+
+function buyProduct(index){
+
+const qty =
+document.getElementById(`qty-${index}`).value;
+
+const size =
+document.getElementById(`size-${index}`).value;
+
+const product =
+products[index];
+
+alert(
+`Added ${qty} x ${product.name}
+Size: ${size}`
+);
+
+window.open(product.link, "_blank");
+
+}
 
 let currentAudio = null;
 
