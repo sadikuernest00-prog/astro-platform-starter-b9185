@@ -223,6 +223,13 @@ margin-bottom:30px;
 line-height:1.5;
 }
 
+.ai-buttons{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
 .ai-btn{
 background:black;
 color:white;
@@ -293,6 +300,10 @@ font-size:30px;
 
 .ai-text{
 font-size:18px;
+}
+
+.ai-buttons{
+flex-direction:column;
 }
 
 }
@@ -390,9 +401,17 @@ AI Luxury Stylist
 Hear why customers love AmicUnderwear and discover our bestselling luxury collections.
 </div>
 
-<button class="ai-btn" id="voiceBtn">
-🎙 Talk With AI
+<div class="ai-buttons">
+
+<button class="ai-btn" id="playVoiceBtn">
+▶ Play AI Voice
 </button>
+
+<button class="ai-btn" id="stopVoiceBtn">
+⏹ Stop Voice
+</button>
+
+</div>
 
 </section>
 
@@ -402,11 +421,19 @@ Hear why customers love AmicUnderwear and discover our bestselling luxury collec
 
 <script>
 
-const voiceBtn = document.getElementById("voiceBtn");
+let currentAudio = null;
 
-voiceBtn.addEventListener("click", async () => {
+const playBtn = document.getElementById("playVoiceBtn");
+const stopBtn = document.getElementById("stopVoiceBtn");
+
+playBtn.addEventListener("click", async () => {
 
 try {
+
+if(currentAudio){
+currentAudio.pause();
+currentAudio.currentTime = 0;
+}
 
 const response = await fetch("/api/voice", {
 
@@ -438,13 +465,25 @@ const blob = await response.blob();
 
 const url = URL.createObjectURL(blob);
 
-const audio = new Audio(url);
+currentAudio = new Audio(url);
 
-audio.play();
+currentAudio.play();
 
 } catch (error) {
 
 alert("AI voice failed");
+
+}
+
+});
+
+stopBtn.addEventListener("click", () => {
+
+if(currentAudio){
+
+currentAudio.pause();
+
+currentAudio.currentTime = 0;
 
 }
 
