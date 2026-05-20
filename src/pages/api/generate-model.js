@@ -8,9 +8,9 @@ await request.json();
 const prompt =
 body.prompt;
 
-const startResponse =
+const response =
 await fetch(
-"https://api.replicate.com/v1/predictions",
+"https://api.replicate.com/v1/models/black-forest-labs/flux-dev/predictions",
 {
 
 method:"POST",
@@ -24,11 +24,14 @@ headers:{
 
 body:JSON.stringify({
 
-version:
-"black-forest-labs/flux-dev",
-
 input:{
-prompt:prompt
+
+prompt:prompt,
+
+go_fast:true,
+
+megapixels:"1"
+
 }
 
 })
@@ -37,11 +40,24 @@ prompt:prompt
 );
 
 const prediction =
-await startResponse.json();
+await response.json();
+
+if(!prediction?.urls?.get){
+
+return new Response(
+JSON.stringify({
+error:"Prediction failed"
+}),
+{
+status:500
+}
+);
+
+}
 
 let result = prediction;
 
-/* WAIT FOR AI IMAGE */
+/* WAIT FOR IMAGE */
 
 while(
 result.status !== "succeeded" &&
